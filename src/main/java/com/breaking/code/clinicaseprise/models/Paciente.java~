@@ -1,0 +1,36 @@
+package com.breaking.code.clinicaseprise.models;
+
+
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+
+import java.util.List;
+
+@Getter
+@Setter
+@Entity
+@Table(name = "pacientes")
+public class Paciente {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer paciente_id;
+    @Column(nullable = false)
+    private String nombre;
+    @Column(nullable = false)
+    private String apellido;
+    @Column(nullable = false)
+    private Boolean obra_social;
+    @Column(nullable = false)
+    private String sexo;
+    @Column(nullable = false)
+    private String sangre;
+
+    @OneToOne(mappedBy = "paciente")
+    private HistoriaClinica historiaClinica;
+
+    @OneToMany(mappedBy = "paciente")
+    private List<Turno> turnos;
+}

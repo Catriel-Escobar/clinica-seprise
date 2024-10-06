@@ -1,0 +1,28 @@
+package com.breaking.code.clinicaseprise.services.impl;
+
+import com.breaking.code.clinicaseprise.models.Usuario;
+import com.breaking.code.clinicaseprise.repositories.UsuarioRepository;
+import com.breaking.code.clinicaseprise.services.UsuarioService;
+import org.springframework.stereotype.Service;
+
+
+@Service
+public class UsuarioServicesImpl implements UsuarioService {
+
+    private UsuarioRepository usuarioRepository;
+
+    public UsuarioServicesImpl(UsuarioRepository usuarioRepository) {
+        this.usuarioRepository = usuarioRepository;
+    }
+
+    public boolean crearUsuario(Usuario usuario) {
+        usuarioRepository.save(usuario);
+        return true;
+    }
+
+    @Override
+    public boolean save(Usuario usuario) {
+        usuarioRepository.save(usuario);
+        return false;
+    }
+}

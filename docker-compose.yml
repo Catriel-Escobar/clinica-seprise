@@ -1,0 +1,19 @@
+version: '3.9'
+
+services:
+  mysql:
+    image: mysql:latest
+    container_name: mysql_seprise
+    environment:
+      MYSQL_DATABASE: seprise
+      MYSQL_USER: catriel
+      MYSQL_PASSWORD: asda1234
+      MYSQL_ROOT_PASSWORD: rootpassword # Cambia esto a una contraseña segura
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    restart: always
+
+volumes:
+  mysql_data:

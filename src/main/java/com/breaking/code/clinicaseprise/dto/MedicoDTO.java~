@@ -1,0 +1,6 @@
+package com.breaking.code.clinicaseprise.dto;
+
+public class MedicoDTO {
+
+    
+}
