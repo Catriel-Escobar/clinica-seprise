@@ -12,7 +12,7 @@ import java.util.List;
 @Getter
 @Entity
 @Table(name = "medicos")
-public class Medico extends UserGeneric{
+public class Medico  {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int medicoId;
@@ -20,7 +20,7 @@ public class Medico extends UserGeneric{
     @OneToMany(mappedBy = "medico")
     private List<RegistroClinico> registrosClinicos;
     @OneToMany(mappedBy = "medico")
-    private List<Turno> turnos;
+    private java.util.List<Turno> turnos;
 
     @OneToMany(mappedBy = "medico")
     private List<Honorario> honorarios;
@@ -28,4 +28,8 @@ public class Medico extends UserGeneric{
     @ManyToOne()
     @JoinColumn(name = "especialidad_id",nullable = false,foreignKey = @ForeignKey(name = "FK_ESPECIALIDAD_MEDICO"))
     private Especialidad especialidad;
+
+    @OneToOne
+    @JoinColumn(name = "usuario_id",nullable = false,foreignKey = @ForeignKey(name = "FK_USUARIO_MEDICO"))
+    private Usuario usuario;
 }
