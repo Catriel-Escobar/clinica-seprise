@@ -1,15 +1,16 @@
 package com.breaking.code.clinicaseprise.controllers;
 
 
+import com.breaking.code.clinicaseprise.dto.response.MedicoResponseDTO;
 import com.breaking.code.clinicaseprise.models.Medico;
 import com.breaking.code.clinicaseprise.services.MedicoService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
-@RequestMapping("/api/usuario")
+@RequestMapping("/api/medico")
 public class MedicoControllador {
 
 
@@ -24,5 +25,10 @@ public class MedicoControllador {
     public String create(@RequestBody Medico medico) {
         service.save(medico);
         return "create";
+    }
+
+    @GetMapping("/find-all")
+    public ResponseEntity<List<MedicoResponseDTO>>findAll() {
+        return ResponseEntity.ok().body(service.findAll());
     }
 }
