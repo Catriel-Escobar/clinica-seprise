@@ -5,13 +5,6 @@ import Headers from "@/Components/Headers";
 
 const montserrat = Montserrat({ subsets: ["latin"] });
 
-export const metadata = {
-  title: "BREAKING CODE MEDICAL CENTER - Home",
-  icons: {
-    icon: "@/app/icon.ico"
-  },
-};
-
 
 export default function RootLayout({ children }) {
   return (
