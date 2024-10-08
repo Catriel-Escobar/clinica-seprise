@@ -1,8 +1,9 @@
-
 const Liquidacion = () => {
   return (
-    <div>Liquidacion</div>
-  )
-}
+    <>
+      <div>Liquidacion</div>
+    </>
+  );
+};
 
-export default Liquidacion
+export default Liquidacion;

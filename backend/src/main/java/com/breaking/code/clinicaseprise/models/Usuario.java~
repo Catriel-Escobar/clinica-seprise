@@ -9,12 +9,24 @@ import lombok.Setter;
 @Getter
 @Entity
 @Table(name = "usuarios")
-public class Usuario extends UserGeneric {
+public class Usuario  {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "usuario_id")
-    private int usuarioId;
+    private Integer usuarioId;
 
-    @
+    @Enumerated(EnumType.STRING)
     private Role role;
+
+    @Column(nullable = false, unique = true,name = "usuario")
+    private String usuario;
+
+    @Column(nullable = false)
+    private String contrasena;
+
+    @Column(nullable = false)
+    private String nombre;
+
+    @Column(nullable = false)
+    private String apellido;
 }

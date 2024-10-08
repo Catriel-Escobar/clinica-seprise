@@ -1,0 +1,1 @@
+INSERT INTO usuarios (usuario_id, nombre,apellido,usuario,contrasena) VALUES (1,'catrielll','escobarrrr','catrieloski','asda1234');

@@ -1,0 +1,4 @@
+package com.breaking.code.clinicaseprise.config;
+
+public class WebConfig {
+}

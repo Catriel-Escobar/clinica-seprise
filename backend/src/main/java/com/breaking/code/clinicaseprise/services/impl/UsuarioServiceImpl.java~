@@ -1,0 +1,31 @@
+package com.breaking.code.clinicaseprise.services.impl;
+
+import com.breaking.code.clinicaseprise.dto.request.UserRequestDTO;
+import com.breaking.code.clinicaseprise.dto.response.UsuarioResponseDTO;
+import com.breaking.code.clinicaseprise.exceptions.NotFoundException;
+import com.breaking.code.clinicaseprise.mappers.UsuarioMapper;
+import com.breaking.code.clinicaseprise.models.Usuario;
+import com.breaking.code.clinicaseprise.repositories.UsuarioRepository;
+import com.breaking.code.clinicaseprise.services.UsuarioService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.Optional;
+
+@Service
+public class UsuarioServiceImpl implements UsuarioService {
+    @Autowired
+    private UsuarioRepository usuarioRepository;
+
+    @Autowired
+    private UsuarioMapper mapper;
+    @Override
+    public UsuarioResponseDTO login(UserRequestDTO userRequestDTO) {
+
+        Usuario usuario = usuarioRepository.findByUsuario(userRequestDTO.getUsername())
+                .orElseThrow(() -> new NotFoundException("Usuario no encontrado"));
+        if(!usuario.getContrasena().equals(userRequestDTO.getContrasena())) throw new RuntimeException();
+
+        return mapper.toResponse(usuario);
+    }
+}

@@ -2,7 +2,7 @@ package com.breaking.code.clinicaseprise.dto.response;
 
 public record UsuarioResponseDTO (
 
-        Integer usuarioId,
+        int usuarioId,
         String usuario,
         String nombre,
         String apellido
