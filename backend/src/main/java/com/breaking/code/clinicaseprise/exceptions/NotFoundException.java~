@@ -1,0 +1,10 @@
+package com.breaking.code.clinicaseprise.exceptions;
+
+public class NotFoundException extends RuntimeException {
+
+    private final Integer statusCode = 404;
+
+    public NotFoundException(String message) {
+        super(message);
+    }
+}

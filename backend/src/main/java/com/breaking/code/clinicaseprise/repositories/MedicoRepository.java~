@@ -1,2 +1,0 @@
-package com.breaking.code.clinicaseprise.repositories;public interface MedicoRepository {
-}

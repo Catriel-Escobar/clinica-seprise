@@ -22,6 +22,8 @@ public class Paciente {
     private String nombre;
     @Column(nullable = false)
     private String apellido;
+    @Column(nullable = false, unique = true)
+    private String dni;
     @Column(nullable = false, name = "obra_social")
     private Boolean obraSocial;
     @Column(nullable = false)
@@ -29,7 +31,7 @@ public class Paciente {
     @Column(nullable = false)
     private String sangre;
 
-    @OneToOne(mappedBy = "paciente")
+    @OneToOne(mappedBy = "paciente",cascade = CascadeType.PERSIST)
     private HistoriaClinica historiaClinica;
 
     @OneToMany(mappedBy = "paciente")

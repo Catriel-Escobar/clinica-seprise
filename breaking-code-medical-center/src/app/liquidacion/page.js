@@ -1,4 +1,3 @@
-
 const Liquidacion = () => {
   return (
     <div className="flex justify-center items-center h-[calc(100vh-90px)]">
@@ -7,4 +6,4 @@ const Liquidacion = () => {
   )
 }
 
-export default Liquidacion
+export default Liquidacion;

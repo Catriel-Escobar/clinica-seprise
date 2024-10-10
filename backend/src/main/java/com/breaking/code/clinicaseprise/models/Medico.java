@@ -1,6 +1,8 @@
 package com.breaking.code.clinicaseprise.models;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import lombok.Getter;
@@ -15,7 +17,7 @@ import java.util.List;
 public class Medico  {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int medicoId;
+    private Integer medicoId;
 
     @OneToMany(mappedBy = "medico")
     private List<RegistroClinico> registrosClinicos;
@@ -25,8 +27,9 @@ public class Medico  {
     @OneToMany(mappedBy = "medico")
     private List<Honorario> honorarios;
 
-    @ManyToOne()
+    @ManyToOne
     @JoinColumn(name = "especialidad_id",nullable = false,foreignKey = @ForeignKey(name = "FK_ESPECIALIDAD_MEDICO"))
+    @JsonBackReference
     private Especialidad especialidad;
 
     @OneToOne

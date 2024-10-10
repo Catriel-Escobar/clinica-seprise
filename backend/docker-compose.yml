@@ -1,3 +1,24 @@
+#version: '3.9'
+#
+#services:
+#  mysql:
+#    image: mysql:latest
+#    container_name: mysql_seprise
+#    environment:
+#      MYSQL_DATABASE: seprise
+#      MYSQL_USER: catriel
+#      MYSQL_PASSWORD: asda1234
+#      MYSQL_ROOT_PASSWORD: rootpassword # Cambia esto a una contraseña segura
+#    ports:
+#      - "3306:3306"
+#    volumes:
+#      - mysql_data:/var/lib/mysql
+#    restart: always
+#
+#volumes:
+#  mysql_data:
+
+
 version: '3.9'
 
 services:
@@ -13,6 +34,19 @@ services:
       - "3306:3306"
     volumes:
       - mysql_data:/var/lib/mysql
+    restart: always
+
+  spring-app:
+    image: clinica-seprise:0.0.1-SNAPSHOT
+    container_name: spring_seprise
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/seprise
+      SPRING_DATASOURCE_USERNAME: catriel
+      SPRING_DATASOURCE_PASSWORD: asda1234
+    ports:
+      - "8080:8080" # Expone el puerto 8080 para el proyecto Spring Boot
+    depends_on:
+      - mysql # Se asegura de que MySQL se inicie antes de la aplicación
     restart: always
 
 volumes:

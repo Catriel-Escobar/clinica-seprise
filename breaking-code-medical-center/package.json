@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "breaking-code-medical-center": "file:",
     "next": "14.2.14",
     "react": "^18",
     "react-dom": "^18",

@@ -1,5 +1,6 @@
 package com.breaking.code.clinicaseprise.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -24,7 +25,8 @@ public class Especialidad {
     @Column(name = "tiempo_consulta",nullable = false)
     private Integer tiempoConsulta;
 
-    @OneToMany(mappedBy = "especialidad")
+    @OneToMany(mappedBy = "especialidad",fetch = FetchType.LAZY)
+    @JsonManagedReference
     private List<Medico> medicos;
 
     @Column(nullable = false)
@@ -32,7 +34,4 @@ public class Especialidad {
 
     @Column(nullable = false)
     private BigDecimal nomenclador;
-
-    @Column(name = "ultima_fecha_pago")
-    private LocalDate ultimaFechaPago;
 }
