@@ -1,10 +1,15 @@
+import Encabezado from "@/Components/Encabezado"
+
 
 const Facturacion = () => {
+  
+  
   return (
-    <div className="flex justify-center items-center h-[calc(100vh-90px)]">
-      Facturacion
-    </div>
+    <>
+      <Encabezado titulo={"Facturación"} consigna={"Ingrese Id de paciente"}/>
+    </>
   )
+
 }
 
 export default Facturacion
