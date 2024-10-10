@@ -1,29 +1,12 @@
 "use client";
 import Link from "next/link";
 import { IoMdLogOut } from "react-icons/io";
-import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
 import Image from "next/image";
 import logo from "../assets/logo.png";
+import useAuth from '@/hooks/useAuth';
 
 const Headers = () => {
-  const [user, setUser] = useState(null);
-  const router = useRouter();
-
-  useEffect(() => {
-    const storedUser = sessionStorage.getItem("username");
-    if (storedUser) {
-      setUser(storedUser);
-    } else {
-      router.push("/auth");
-    }
-  }, [router, user]);
-
-  const handleLogout = () => {
-    sessionStorage.removeItem("username");
-    setUser("")
-    router.push("/auth");
-   };
+  const {user, logout} = useAuth();
 
   const navLinks = [
     { name: "Home", href: "/" },
@@ -57,7 +40,7 @@ const Headers = () => {
                 {user.toUpperCase()}
               </button>
             )}
-            <button onClick={handleLogout} className="text-white px-3 py-1 rounded" >
+            <button onClick={logout} className="text-white px-3 py-1 rounded" >
               <IoMdLogOut size={30} />
             </button>
           </div>

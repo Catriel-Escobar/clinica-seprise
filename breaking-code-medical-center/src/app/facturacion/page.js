@@ -1,7 +1,9 @@
 
 const Facturacion = () => {
   return (
-    <div>Facturacion</div>
+    <div className="flex justify-center items-center h-[calc(100vh-90px)]">
+      Facturacion
+    </div>
   )
 }
 

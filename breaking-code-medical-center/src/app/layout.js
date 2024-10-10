@@ -5,7 +5,6 @@ import Headers from "@/Components/Headers";
 
 const montserrat = Montserrat({ subsets: ["latin"] });
 
-
 export default function RootLayout({ children }) {
   return (
     <html lang="en">

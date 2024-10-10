@@ -1,7 +1,9 @@
 
 const HistoriaClinica = () => {
   return (
-    <div>HistoriaClinica</div>
+    <div className="flex justify-center items-center h-[calc(100vh-90px)]">
+      HistoriaClinica
+    </div>
   )
 }
 

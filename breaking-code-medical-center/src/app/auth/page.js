@@ -12,13 +12,13 @@ const SignIn = () => {
   const router = useRouter(); 
 
    const users = [
-    { username: 'gb', password: 'admin' },
-    { username: 'ma', password: 'admin' },
+    { username: 'mg', password: 'admin' },
+    { username: 'me', password: 'admin' },
     { username: 'ce', password: 'admin' },
     { username: 'gb', password: 'admin' },
     { username: 'aa', password: 'admin' },
   ];
-
+  
   useEffect(() => {
     const storedUser = sessionStorage.getItem('username');
     if (storedUser) {
@@ -58,7 +58,7 @@ const SignIn = () => {
             className="bg-white mt-[-50px] container-slider rounded-xl px-8 pt-6 pb-8 mb-4"
             onSubmit={handleSubmit}
           >
-            <div className="input-container">
+          <div className="input-container">
               <input
                 required
                 className="text-input"
