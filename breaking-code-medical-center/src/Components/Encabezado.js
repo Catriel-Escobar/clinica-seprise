@@ -2,6 +2,7 @@ import Image from "next/image"
 import { FaSearch } from "react-icons/fa";
 
 
+
 const Encabezado = ({titulo, consigna}) => {
     
     
