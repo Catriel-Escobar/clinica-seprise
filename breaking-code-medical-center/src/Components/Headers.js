@@ -3,6 +3,7 @@ import Link from "next/link"
 const Headers = () => {
     const navLinks = [
         {name: "Home", href: "/"},
+        {name: "Nuevo paciente", href: "/paciente"},
         {name: "Agenda", href: "/agenda"},
         {name: "Historia Clinica", href: "/hc"},
         {name: "Facturacion", href: "/facturacion"},
@@ -15,7 +16,7 @@ const Headers = () => {
             Logo
         </div>
         <div>
-            <ul className="flex justify-center items-center gap-x-4">
+            <ul className="flex justify-around items-center gap-x-4 text-gray-50">
                 {navLinks.map( (item) =>
                     <li key={item.id}>
                         <Link href={item.href}>{item.name}</Link> 

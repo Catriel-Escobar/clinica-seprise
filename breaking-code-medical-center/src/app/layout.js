@@ -3,6 +3,8 @@ import "./globals.css";
 import Headers from "@/Components/Headers";
 
 
+
+
 const montserrat = Montserrat({ subsets: ["latin"] });
 
 export const metadata = {
@@ -20,6 +22,7 @@ export default function RootLayout({ children }) {
         className={`${montserrat.className} antialiased  min-h-[calc(100vh)] justify-center mx-auto`}
       >
         <Headers />
+        
         {children}
       </body>
     </html>

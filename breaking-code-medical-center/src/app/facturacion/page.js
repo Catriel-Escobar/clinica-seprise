@@ -1,8 +1,15 @@
+import Encabezado from "@/Components/Encabezado"
+
 
 const Facturacion = () => {
+  
+  
   return (
-    <div>Facturacion</div>
+    <>
+      <Encabezado titulo={"Facturación"} consigna={"Ingrese Id de paciente"}/>
+    </>
   )
+
 }
 
 export default Facturacion
