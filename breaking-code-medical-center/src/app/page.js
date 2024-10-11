@@ -9,7 +9,7 @@ const Home = () => {
         <Image
           src={fondo}
           alt="Consultorio externos"
-          className="z-[-1] object-cover"
+          className="w-full h-full object-cover"
           width={1920} 
           height={1080}
           priority 

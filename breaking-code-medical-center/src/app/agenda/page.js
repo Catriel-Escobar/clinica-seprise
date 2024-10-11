@@ -22,30 +22,19 @@ const Agenda = () => {
 
   const handleClick = () => {
     setActive(!active);
-    console.log(active);
-    
+    console.log(active);1    
   };
 
   return (
     <div>
       <Encabezado titulo={"Agenda"} consigna={"Ingrese Id del médico"} />
-
       <section className="bg-white dark:bg-gray-900 antialiased">
         <div className="px-4 py-8 mx-auto lg:px-6 sm:py-16 lg:py-24">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-4xl font-extrabold leading-tight tracking-tight text-gray-900 dark:text-white">
               Agenda diaria
             </h2>
-
-            <div className="mt-4">
-              <a
-                href="#"
-                title=""
-                className="inline-flex items-center text-lg font-medium text-primary-600 hover:underline dark:text-primary-500"
-              ></a>
-            </div>
           </div>
-
           <div className="flow-root max-w-3xl mx-auto mt-8 sm:mt-12 lg:mt-16">
             <div className="-my-4 divide-y divide-gray-200 dark:divide-gray-700">
               {horas.map((item, index) => (
@@ -73,7 +62,6 @@ const Agenda = () => {
           </div>
         </div>
       </section>
-
       <Modal active={active} handleClick={handleClick} />
     </div>
   );
