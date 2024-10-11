@@ -9,6 +9,10 @@ const Liquidacion = () => {
   return (
     <>
       <Encabezado titulo={"Liquidación"} consigna={"Ingrese Id de médico"}/>
+
+      <div>
+        
+      </div>
     </>
   )
 }
