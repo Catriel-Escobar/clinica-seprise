@@ -12,7 +12,7 @@ const SignIn = () => {
 
   return (
     <Suspense fallback={<Spinner />}>
-      <div className="min-h-screen flex items-center justify-center py-[30px] pb-[20px] text-center" style={{ background: "linear-gradient(to right, #397935 0%, #7AE687 34%, #C4EDED 100%)" }}>
+      <div className="min-h-screen flex items-center justify-center py-[30px] pb-[20px] text-center" style={{ background: "linear-gradient(to right, #87b9a5 0%, #7AE687 34%, #C4EDED 100%)" }}>
         <div className="w-full max-w-md">
           <form className="bg-white mt-[-50px] container-slider rounded-xl px-8 pt-6 pb-8 mb-4">
             <div className="input-container">

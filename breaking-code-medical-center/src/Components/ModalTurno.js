@@ -1,8 +1,15 @@
 import { FaPencilAlt } from "react-icons/fa";
+import { useState } from "react";
+import ModalMensaje from "./ModalMensaje";
 
 
-const Modal = ({ active, handleClick }) => {
+const ModalTurno = ({ active, handleClick }) => {
+    const [active2, setActive2] = useState(false)
 
+    const handleClick2 = () => {
+        setActive2(!active2)
+        
+    }
 
     return (
         <>
@@ -34,17 +41,18 @@ const Modal = ({ active, handleClick }) => {
                                 </div>
                                 <div className="modal-actions bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
                                     <div>
-                                    <button id="cancel-modal" className="w-full inline-flex justify-center rounded-md border-gray-300 shadow-md mt-3 
+                                    <button onClick={handleClick2} id="agregar-modal" className="w-full inline-flex justify-center rounded-md border-gray-300 shadow-md mt-3 
                                             px-4 py-2 bg-white font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 
                                             focus:ring-blue-200 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+                                            
                                             Agregar
                                         </button>
-                                        <button id="cancel-modal" className="w-full inline-flex justify-center rounded-md border-gray-300 shadow-md mt-3 
+                                        <button onClick={handleClick2} id="modificar-modal" className="w-full inline-flex justify-center rounded-md border-gray-300 shadow-md mt-3 
                                             px-4 py-2 bg-white font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 
                                             focus:ring-blue-200 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
                                             Modificar
                                         </button>
-                                        <button id="cancel-modal" className="w-full inline-flex justify-center rounded-md border-gray-300 shadow-md mt-3 
+                                        <button onClick={handleClick2} id="eliminar-modal" className="w-full inline-flex justify-center rounded-md border-gray-300 shadow-md mt-3 
                                             px-4 py-2 bg-white font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 
                                             focus:ring-blue-200 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
                                             Eliminar
@@ -55,7 +63,7 @@ const Modal = ({ active, handleClick }) => {
                                     <button onClick={handleClick} id="close-modal" className="w-full inline-flex justify-center rounded-md border-gray-300 shadow-md px-4 py-2 
                                             bg-white font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 
                                             focus:ring-blue-200 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
-                                        Cancelar
+                                        Cerrar
                                     </button>
                                 </div>
 
@@ -64,8 +72,9 @@ const Modal = ({ active, handleClick }) => {
                     </div>
                 </div>
             }
+            <ModalMensaje active2={active2} handleClick2={handleClick2} />
         </>
     )
 }
 
-export default Modal
+export default ModalTurno

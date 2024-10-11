@@ -20,7 +20,7 @@ const Encabezado = ({ titulo, consigna }) => {
 
         <div class="flex w-96 mx-5 rounded bg-white">
           <input className=" w-96 border-none bg-transparent px-6 py-4 text-gray-400 outline-none focus:outline-none " type="search" name="search" placeholder="Buscar..." />
-          <button type="submit" class="m-2 rounded bg-blue-600 px-4 py-4 text-white">
+          <button type="submit" class="m-2 rounded bg-[#87b9a5] px-4 py-4 text-white">
             <FaSearch />
 
           </button>

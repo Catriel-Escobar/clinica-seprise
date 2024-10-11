@@ -3,7 +3,6 @@ import Link from "next/link"
 const Headers = () => {
     const navLinks = [
         {name: "Home", href: "/"},
-        {name: "Nuevo paciente", href: "/paciente"},
         {name: "Agenda", href: "/agenda"},
         {name: "Historia Clinica", href: "/hc"},
         {name: "Facturacion", href: "/facturacion"},
