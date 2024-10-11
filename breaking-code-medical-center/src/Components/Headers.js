@@ -23,7 +23,7 @@ const Headers = () => {
         <div className='flex justify-around items-center h-[90px] bg-[#87b9a5] text-white font-semibold'>
           <div className='h-[70px] w-[100px]'>
             <Link href={'/'} aria-label="Ir a la página de inicio">
-              <Image src={logo} alt="Logo" className='w-full h-auto' priority />
+              <Image src={logo} alt="Logo" className='w-full h-auto' width="90" height="70" priority />
             </Link>
           </div>
           <div>
