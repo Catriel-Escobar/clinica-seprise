@@ -19,7 +19,7 @@ const Encabezado = ({ titulo, consigna }) => {
           />
           <button
             type="submit"
-            className="m-2 rounded bg-blue-600 px-4 py-4 text-white"
+            className="m-2 rounded bg-[#87b9a5] px-4 py-4 text-white"
           >
             <FaSearch />
           </button>

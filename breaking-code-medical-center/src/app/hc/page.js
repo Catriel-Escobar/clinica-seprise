@@ -9,8 +9,8 @@ const HistoriaClinica = () => {
       />
 
       <div className="w-full">
-        <a className="justify-center block w-full h-60 p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
-          <h6 className="px-20 mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">
+        <a className="justify-center block w-full h-60 p-6 bg-white border border-gray-200 rounded-lg shadow">
+          <h6 className="px-20 mb-2 text-xl font-bold tracking-tight text-gray-900">
             Paciente
           </h6>
           <p className="font-normal px-20">Historia clínica hasta la fecha.</p>
@@ -18,30 +18,30 @@ const HistoriaClinica = () => {
       </div>
 
       <form className="flex justify-center items-center">
-        <div className="w-[1000px] mt-10 mb-4 border border-gray-400 rounded-lg bg-gray-100 dark:bg-gray-700 dark:border-gray-600">
-          <div className="px-4 py-2 bg-white rounded-t-lg dark:bg-gray-800">
+        <div className="w-[1000px] mt-10 mb-4 border border-gray-400 rounded-lg bg-gray-100">
+          <div className="px-4 py-2 bg-white rounded-t-lg">
             <label htmlFor="comment" className="sr-only">
               Your comment
             </label>
             <textarea
               id="comment"
               rows="7"
-              className="w-full px-2 py-2 text-sm text-gray-400 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-600"
+              className="w-full px-2 py-2 text-sm text-gray-400 bg-white border-0 focus:ring-0"
               placeholder="Escriba un comentario..."
               required
             ></textarea>
           </div>
-          <div className="flex items-center justify-between px-3 py-2 border-t dark:border-gray-600">
+          <div className="flex items-center justify-between px-3 py-2 border-t">
             <button
               type="submit"
-              className="inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800"
+              className="inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 hover:bg-blue-800"
             >
               Enviar
             </button>
             <div className="flex ps-0 space-x-1 rtl:space-x-reverse sm:ps-2">
               <button
                 type="button"
-                className="inline-flex justify-center items-center p-2 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600"
+                className="inline-flex justify-center items-center p-2 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100"
               >
                 <svg
                   className="w-4 h-4"
@@ -62,7 +62,7 @@ const HistoriaClinica = () => {
               </button>
               <button
                 type="button"
-                className="inline-flex justify-center items-center p-2 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600"
+                className="inline-flex justify-center items-center p-2 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100"
               >
                 <svg
                   className="w-4 h-4"
@@ -78,7 +78,7 @@ const HistoriaClinica = () => {
               </button>
               <button
                 type="button"
-                className="inline-flex justify-center items-center p-2 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600"
+                className="inline-flex justify-center items-center p-2 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100"
               >
                 <svg
                   className="w-4 h-4"
