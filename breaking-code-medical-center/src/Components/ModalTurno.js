@@ -26,31 +26,36 @@ const ModalTurno = ({ active, handleClick }) => {
                                 </div>
                                 <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
                                     <h3 className="text-lg font-medium text-gray-900 pb-6">
-                                        Asignar turno a:
+                                        Turno asignado a:
                                     </h3>
                                     <div className="w-96 rounded bg-white pb-6">
                                         <input className="w-96 border-none bg-slate-100 px-3 py-3 text-gray-500 outline-none focus:outline-none" type="search" name="nombre" placeholder="Nombre..." />
                                         <input className="mt-4 w-96 border-none bg-slate-100 px-3 py-3 text-gray-500 outline-none focus:outline-none" type="search" name="apellido" placeholder="Apellido..." />
                                         <input className="mt-4 w-96 border-none bg-slate-100 px-3 py-3 text-gray-500 outline-none focus:outline-none" type="search" name="dni" placeholder="DNI..." />
+                                        <input className="mt-4 w-96 border-none bg-slate-100 px-3 py-3 text-gray-500 outline-none focus:outline-none" type="search" name="Obra Social" placeholder="Obra Social..." />
                                         <input className="mt-4 w-96 border-none bg-slate-100 px-3 py-3 text-gray-500 outline-none focus:outline-none" type="search" name="grupoFactor" placeholder="Grupo y Factor sanguíneo..." />
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div className="bg-gray-200 px-4 py-3 justify-center sm:px-6 sm:flex sm:flex-row-reverse">
-                        <button onClick={handleClick} className="w-full inline-flex justify-center rounded-md border-gray-300 shadow-md mx-2 px-6 py-2 bg-white font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-200 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+                        <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                            <button onClick={handleToggleMensaje} className="w-full inline-flex justify-center rounded-md border-gray-300 shadow-md px-4 py-2 bg-white font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-200 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+                                Agregar
+                            </button>
+                            <button onClick={handleToggleMensaje} className="w-full inline-flex justify-center rounded-md border-gray-300 shadow-md px-4 py-2 bg-white font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-200 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+                                Modificar
+                            </button>
+                            <button onClick={handleToggleMensaje} className="w-full inline-flex justify-center rounded-md border-gray-300 shadow-md px-4 py-2 bg-white font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-200 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+                                Eliminar
+                            </button>
+                        </div>
+                        <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                            <button onClick={handleClick} className="w-full inline-flex justify-center rounded-md border-gray-300 shadow-md px-4 py-2 bg-white font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-200 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
                                 Cerrar
                             </button>
-
-                            <button onClick={handleToggleMensaje} className="w-full inline-flex justify-center rounded-md border-gray-300 shadow-md mx-2 px-6 py-2 bg-white font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-200 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
-                                Aceptar
-                            </button>
-                    
                         </div>
                     </div>
-                        
                 </div>
-                
             )}
             <ModalMensaje active={activeMensaje} handleClick={handleToggleMensaje} />
         </>

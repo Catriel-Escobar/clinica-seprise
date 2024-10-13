@@ -24,7 +24,7 @@ const Facturacion = () => {
 
   return (
     <>
-      <Encabezado titulo={"Facturación"} consigna={"Ingrese Id de paciente"} />
+      <Encabezado titulo={"Facturación de atención médica"} consigna={"Ingrese Id de paciente"} />
 
       <section className="flex justify-items-center bg-white antialiased">
         <div className=" sm:py-16">
