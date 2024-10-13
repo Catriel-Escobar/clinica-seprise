@@ -4,10 +4,12 @@ import com.breaking.code.clinicaseprise.dto.request.TurnoRequestDTO;
 import com.breaking.code.clinicaseprise.dto.response.TurnoResponseDTO;
 import com.breaking.code.clinicaseprise.models.Turno;
 
+import java.util.List;
+
 public interface TurnoService {
 	TurnoResponseDTO create(TurnoRequestDTO dto);
-	Turno findByMedicoId(Integer medicoId);
-	Turno findByPacienteId(Integer pacienteId);
+	List<Turno> findByMedicoId( Integer medicoId);
+	List<Turno> findByPacienteId(Integer pacienteId);
 
-	String armandoAgenda();
+//	String armandoAgenda();
 }

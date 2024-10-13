@@ -7,6 +7,8 @@ import com.breaking.code.clinicaseprise.services.TurnoService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/turno")
 public class TurnoController {
@@ -22,7 +24,7 @@ public class TurnoController {
 	}
 
 	@GetMapping("medico")
-	public ResponseEntity<Turno> findMedicoId(@RequestParam("medicoId") Integer medicoId) {
+	public ResponseEntity<List<Turno>> findMedicoId( @RequestParam("medicoId") Integer medicoId) {
 		return ResponseEntity.ok().body(turnoService.findByMedicoId(medicoId));
 	}
 
@@ -30,4 +32,10 @@ public class TurnoController {
 	public ResponseEntity<Turno> findPacienteId(@RequestParam("pacienteId") Integer pacienteId) {
 		return ResponseEntity.ok().body(turnoService.findByMedicoId(pacienteId));
 	}
+
+//	@PostMapping("armado-agenda")
+//	public ResponseEntity<?> armadoAgenda() {
+//			turnoService.armandoAgenda();
+//		return ResponseEntity.ok("Armado correcto");
+//	}
 }

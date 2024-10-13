@@ -28,7 +28,6 @@ public class PacienteRequestDTO {
 	@NotBlank
 	private String tipoSangre;
 
-	@NotBlank
 	private LocalDate fechaNacimiento;
 
 }

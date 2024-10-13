@@ -39,9 +39,4 @@ INSERT INTO pacientes(paciente_id, obra_social, apellido, nombre, dni, tipo_sang
 
 INSERT INTO pacientes(paciente_id, obra_social, apellido, nombre, dni, tipo_sangre, fecha_nac, sexo) VALUES (5, TRUE, 'Pérez', 'Carla', '34561234', 'O+', '1995-11-11', 'F');
 
-INSERT INTO turnos (turno_id,paciente_id,medico_id,fecha,acreditado) VALUES (1,1,1,'2024-10-14 08:00:00',false);
-INSERT INTO turnos (turno_id,paciente_id,medico_id,fecha,acreditado) VALUES (2,2,2,'2024-10-18 18:00:00',false);
-INSERT INTO turnos (turno_id,paciente_id,medico_id,fecha,acreditado) VALUES (3,3,3,'2024-10-16 10:00:00',false);
-INSERT INTO turnos (turno_id,paciente_id,medico_id,fecha,acreditado) VALUES (4,4,1,'2024-10-15 09:00:00',false);
-INSERT INTO turnos (turno_id,paciente_id,medico_id,fecha,acreditado) VALUES (5,5,2,'2024-10-14 15:00:00',false);
-INSERT INTO turnos (turno_id,paciente_id,medico_id,fecha,acreditado) VALUES (6,2,4,'2024-10-14 14:00:00',false);
+INSERT INTO turnos (turno_id,paciente_id,medico_id,fecha,acreditado) VALUES (1,1,1,)

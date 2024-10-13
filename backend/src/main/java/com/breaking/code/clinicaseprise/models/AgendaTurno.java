@@ -25,10 +25,8 @@ public class AgendaTurno {
 	@Column(nullable = false, name = "fecha")
 	private LocalDate fecha;
 
-	@Column(name = "start_time", nullable = false)
-	private LocalTime startTime;
-	@Column(name = "end_time", nullable = false)
-	private LocalTime endTime;
+	@Column(nullable = false, name = "hora")
+	private LocalTime hora;
 
 	@ManyToOne
 	@JoinColumn(name = "medico_id", foreignKey = @ForeignKey(name = "FK_AGENDA_TURNO_MEDICO"),nullable = false)

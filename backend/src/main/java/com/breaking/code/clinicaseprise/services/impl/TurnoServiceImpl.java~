@@ -20,9 +20,11 @@ import org.springframework.stereotype.Service;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -44,29 +46,18 @@ public class TurnoServiceImpl implements TurnoService {
 
 
 
-	public String armandoAgenda() {
-//		List<MedicoProyeccion> medicos = medicoService.findAllProjections();
-		List<LocalDate> semanaLaboral = new ArrayList<>();
-		String currentDay = LocalDate.now().getDayOfWeek().name();
-		if(currentDay.equals( "MONDAY" )) {
-			List<AgendaTurno> agenda = this.agendaTurnoRepository.findByFecha( LocalDate.now() );
-			if(!agenda.isEmpty()) throw new BadRequestException( "La agenda de esta semana ya esta realizada." );
-			semanaLaboral = this.crearTurnos(LocalDate.now());
-		}else {
-			LocalDate lunes  = LocalDate.now().with( DayOfWeek.MONDAY );
-			if( lunes.isBefore( LocalDate.now() )) {
-				lunes = lunes.plusDays( 7L );
-			}
-			semanaLaboral = this.crearTurnos( lunes );
-		}
 
-		List<LocalTime> horarios = crearHorarios( 15 );
-
-		return null;
-	}
 
 	@Override
 	public TurnoResponseDTO create (TurnoRequestDTO dto) {
+		Integer hora = dto.getFecha().getHour();
+		String dia = dto.getFecha().getDayOfWeek().name();
+		LocalDateTime fecha = dto.getFecha();
+		if((hora < 8 || hora > 19) || (dia.equals( "SATURDAY" ) || dia.equals( "SUNDAY" )) || fecha.isBefore( LocalDateTime.now() ) ) throw new BadRequestException( "Fuera de dia y horario" );
+
+		Optional<Turno> turnoFound = turnoRepository.findByFechaHoraMedico( dto.getMedicoId(),dto.getFecha() );
+		if(turnoFound.isPresent()) throw new BadRequestException( "El turno solicitado ya esta ocupado" );
+
 		Paciente paciente = pacienteService.findByDni(dto.getDni());
 		Medico medico = medicoService.findById(dto.getMedicoId());
 		Turno turno = new Turno();
@@ -75,14 +66,12 @@ public class TurnoServiceImpl implements TurnoService {
 		turno.setFecha(dto.getFecha());
 		turno = turnoRepository.save(turno);
 		return turnoMapper.toDto(turno);
-
 	}
 
 	@Override
-	public Turno findByMedicoId (Integer medicoId) {
-		Turno turno = turnoRepository.findByMedicoId(medicoId).orElseThrow(() -> new NotFoundException(String.format(
-					"Turno para el medico con id %s no encontrado!",medicoId.toString())));
-		return turno;
+	public List<Turno> findByMedicoId (Integer medicoId) {
+		List<Turno> turnos = turnoRepository.findByMedicoId(medicoId);
+		return turnos;
 	}
 
 	@Override
@@ -92,53 +81,50 @@ public class TurnoServiceImpl implements TurnoService {
 		return turno;
 	}
 
-
-	private List<LocalDate> crearTurnos (LocalDate dateStart) {
-		if(!this.agendaTurnoRepository.findByFecha( dateStart ).isEmpty()) throw new BadRequestException( "La agenda de esta semana ya esta realizada." );
-		List<LocalDate> semanaLaboral = new ArrayList<>();
-		for (int i = 0; i < 5; i++) {
-			semanaLaboral.add(dateStart.plusDays(i));
-		}
-		return semanaLaboral;
-	}
-
-//	private List<LocalTime> crearHorarios (Integer duracion) {
-//
-//		LocalTime start = LocalTime.of( 8,0,0 );
-//		LocalTime end = LocalTime.of( 19,0,0 );
-//		List<LocalTime> horarioTurnos = new ArrayList<>();
-//		while ( start.plusMinutes( duracion ).isBefore( end ) || start.plusMinutes( duracion ).equals( end ) ) {
-//			if(duracion == 15) {
-//				for ( int i = 0; i < 2; i++ ) {
-//					horarioTurnos.add( start );
-//					start = start.plusMinutes( 30 );
-//				}
-//			}else {
-//				horarioTurnos.add( start );
-//				start = start.plusMinutes( 60 );
-//			}
-//
+//	public String armandoAgenda() {
+//		List<MedicoProyeccion> medicos = medicoService.findAllProjections();
+//		List<LocalDate> semanaLaboral = new ArrayList<>();
+//		if(LocalDate.now().getDayOfWeek().name().equals( "MONDAY" )) {
+//			List<AgendaTurno> agenda = this.agendaTurnoRepository.findByFecha( LocalDate.now() );
+//			if(!agenda.isEmpty()) throw new BadRequestException( "La agenda de esta semana ya esta realizada." );
+//			semanaLaboral = this.diasLaborales(LocalDate.now());
+//		}else {
+//			LocalDate lunes  = LocalDate.now().with( DayOfWeek.MONDAY ).plusDays( 7 );
+//			semanaLaboral = this.diasLaborales( lunes );
 //		}
+//		List<List<LocalTime>> horarios = new ArrayList<>();
+//		for (MedicoProyeccion medico :medicos) {
+//			horarios.add(crearHorarios( medico.getEspecialidad().getTiempoConsulta() ))	;
+//		}
+//		List<AgendaTurno> agendaTurnos = new ArrayList<>();
+//		return null;
+//	}
+//
+//	private List<LocalDate> diasLaborales( LocalDate dateStart) {
+//		if(!this.agendaTurnoRepository.findByFecha( dateStart ).isEmpty()) throw new BadRequestException( "La agenda de esta semana ya esta realizada." );
+//		List<LocalDate> semanaLaboral = new ArrayList<>();
+//		for (int i = 0; i < 5; i++) {
+//			semanaLaboral.add(dateStart.plusDays(i));
+//		}
+//		return semanaLaboral;
+//	}
+//
+//	public static List<LocalTime> crearHorarios(Integer duracion) {
+//		//horario de comienzo
+//		LocalTime start = LocalTime.of(8, 0, 0);
+//		//horario de final
+//		LocalTime end = LocalTime.of(19, 0, 0);
+//		List<LocalTime> horarioTurnos = new ArrayList<>();
+//
+//		while (start.isBefore(end)) {
+//			horarioTurnos.add(start);
+//			if (duracion == 15) {
+//				start = start.plusMinutes(30);
+//				horarioTurnos.add(start);
+//			}
+//			start = start.plusMinutes(60 - (duracion == 15 ? 30 : 0));
+//		}
+//
 //		return horarioTurnos;
 //	}
-
-	public static List<LocalTime> crearHorarios(Integer duracion) {
-		LocalTime start = LocalTime.of(8, 0, 0);
-		LocalTime end = LocalTime.of(19, 0, 0);
-		List<LocalTime> horarioTurnos = new ArrayList<>();
-
-		while (start.isBefore(end)) {
-			horarioTurnos.add(start);
-
-
-			if (duracion == 15) {
-				start = start.plusMinutes(30);
-				horarioTurnos.add(start);
-			}
-
-			start = start.plusMinutes(60 - (duracion == 15 ? 30 : 0));
-		}
-
-		return horarioTurnos;
-	}
 }
