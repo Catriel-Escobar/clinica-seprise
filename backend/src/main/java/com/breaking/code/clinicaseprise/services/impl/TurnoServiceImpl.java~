@@ -60,7 +60,7 @@ public class TurnoServiceImpl implements TurnoService {
 			semanaLaboral = this.crearTurnos( lunes );
 		}
 
-		List<LocalTime> horarios = crearHorarios( 25 );
+		List<LocalTime> horarios = crearHorarios( 15 );
 
 		return null;
 	}

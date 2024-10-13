@@ -8,6 +8,4 @@ public interface TurnoService {
 	TurnoResponseDTO create(TurnoRequestDTO dto);
 	Turno findByMedicoId(Integer medicoId);
 	Turno findByPacienteId(Integer pacienteId);
-
-	String armandoAgenda();
 }

@@ -30,10 +30,4 @@ public class TurnoController {
 	public ResponseEntity<Turno> findPacienteId(@RequestParam("pacienteId") Integer pacienteId) {
 		return ResponseEntity.ok().body(turnoService.findByMedicoId(pacienteId));
 	}
-
-	@PostMapping("armado-agenda")
-	public ResponseEntity<?> armadoAgenda() {
-			turnoService.armandoAgenda();
-		return ResponseEntity.ok("Armado correcto");
-	}
 }
