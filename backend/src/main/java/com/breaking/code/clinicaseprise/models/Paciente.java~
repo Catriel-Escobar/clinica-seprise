@@ -6,7 +6,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @Getter
@@ -29,11 +28,8 @@ public class Paciente {
     private Boolean obraSocial;
     @Column(nullable = false)
     private String sexo;
-    @Column(nullable = false, name = "tipo_sangre")
-    private String tipoSangre;
-
-    @Column(nullable = false, name = "fecha_nac")
-    private LocalDate fechaNacimiento;
+    @Column(nullable = false)
+    private String sangre;
 
     @OneToOne(mappedBy = "paciente",cascade = CascadeType.PERSIST)
     private HistoriaClinica historiaClinica;

@@ -30,5 +30,5 @@ public class PacienteRequestDTO {
 
 	@NotBlank
 	private LocalDate fechaNacimiento;
-
+	
 }
