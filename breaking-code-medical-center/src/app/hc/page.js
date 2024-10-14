@@ -1,5 +1,7 @@
 "use client";
 
+import ConsultaModal from "@/Components/ConsultaModal";
+import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/24/solid";
 import axios from "axios";
 import { format } from "date-fns";
 import { es } from "date-fns/locale";
@@ -12,9 +14,10 @@ const HistoriaClinica = () => {
   const [mensaje, setMensaje] = useState("");
   const [loading, setLoading] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
-  const [consultaEditar, setConsultaEditar] = useState(null);
   const [expandedConsultas, setExpandedConsultas] = useState(new Set());
+  const http = "https://670848c88e86a8d9e42e92dd.mockapi.io/api";
 
+  // Formatear fecha
   const formatDate = (dateString) => {
     const date = new Date(dateString);
     if (isNaN(date)) return "Fecha inválida";
@@ -23,7 +26,7 @@ const HistoriaClinica = () => {
 
   // Función para buscar paciente por DNI
   const buscarPaciente = async () => {
-    if (!dni) {
+    if (!dni.trim()) {
       setMensaje("Por favor, introduce un DNI.");
       return;
     }
@@ -33,34 +36,32 @@ const HistoriaClinica = () => {
     setPaciente(null);
     setHistoriaClinica(null);
 
-    const http = "https://670848c88e86a8d9e42e92dd.mockapi.io";
-
     try {
       // Buscar paciente por DNI
-      const respuestaPaciente = await axios.get(
-        `${http}/api/pacientes?dni=${dni}`,
-      );
+      const respuestaPaciente = await axios.get(`${http}/pacientes?dni=${dni}`);
       const pacienteData = respuestaPaciente.data[0];
       setPaciente(pacienteData);
 
-      // Obtener historia clínica por ID
-      const respuestaHistoria = await axios.get(
-        `${http}/api/historia-clinica/${pacienteData.historiaClinicaId}`,
-      );
-      const historiaData = respuestaHistoria.data;
+      try {
+        // Obtener registros clínica por ID paciente
+        const respuestaHistoria = await axios.get(
+          `${http}/historia-clinica?paciente_id=${pacienteData.paciente_id}`,
+        );
 
-      // Ordenar registros por fecha más reciente
-      const registrosOrdenados = historiaData.registros.sort(
-        (a, b) => new Date(b.fecha) - new Date(a.fecha),
-      );
+        const historiaData = respuestaHistoria.data;
 
-      setHistoriaClinica({ ...historiaData, registros: registrosOrdenados });
-    } catch (error) {
-      if (error.response && error.response.status === 404) {
-        setMensaje("Paciente no encontrado.");
-      } else {
-        setMensaje("Ocurrió un error al buscar el paciente.");
+        const registrosOrdenados = ordenarRegistros(historiaData);
+
+        setHistoriaClinica(registrosOrdenados);
+      } catch (historiaError) {
+        if (historiaError.response && historiaError.response.status === 404) {
+          setHistoriaClinica([]);
+        } else {
+          setMensaje("Ocurrió un error al buscar la historia clínica.");
+        }
       }
+    } catch (error) {
+      setMensaje("Paciente no encontrado");
     } finally {
       setLoading(false);
     }
@@ -68,11 +69,10 @@ const HistoriaClinica = () => {
 
   // Función para abrir el modal para agregar una nueva consulta
   const agregarConsulta = () => {
-    setConsultaEditar(null);
     setModalOpen(true);
   };
 
-  // Función para alternar la expansión de una consulta
+  // Función para expansión de una consulta
   const toggleExpand = (registroId) => {
     const newExpanded = new Set(expandedConsultas);
     if (newExpanded.has(registroId)) {
@@ -87,6 +87,27 @@ const HistoriaClinica = () => {
   const truncateText = (text, maxLength) => {
     if (text.length <= maxLength) return text;
     return text.substring(0, maxLength) + "...";
+  };
+
+  // Función para ordenar historia clinica
+  const ordenarRegistros = (data) => {
+    return [...data].sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
+  };
+
+  // Función para refrescar la historia clínica
+  const refrescarHistoriaClinica = async () => {
+    if (paciente) {
+      try {
+        const respuesta = await axios.get(
+          `${http}/historia-clinica?paciente_id=${paciente.paciente_id}`,
+        );
+        const registrosOrdenados = ordenarRegistros(respuesta.data);
+
+        setHistoriaClinica(registrosOrdenados);
+      } catch (error) {
+        setMensaje("Ocurrió un error al actualizar la historia clínica.");
+      }
+    }
   };
 
   return (
@@ -127,14 +148,15 @@ const HistoriaClinica = () => {
               <strong>DNI:</strong> {paciente.dni}
             </p>
             <p className="text-gray-800">
-              <strong>Fecha de Nacimiento:</strong>{" "}
+              <strong>Fecha de Nac:</strong>{" "}
               {formatDate(paciente.fechaNacimiento)}
             </p>
             <p className="text-gray-800">
-              <strong>Obra Social:</strong> {paciente.obraSocial}
+              <strong>Obra Social:</strong> {paciente.obraSocial ? "Sí" : "No"}
             </p>
             <p className="text-gray-800">
-              <strong>Sexo:</strong> {paciente.sexo}
+              <strong>Sexo:</strong>{" "}
+              {paciente.sexo === "M" ? "Masculino" : "Femenino"}
             </p>
             <p className="text-gray-800">
               <strong>Tipo de Sangre:</strong> {paciente.tipoSangre}
@@ -158,7 +180,7 @@ const HistoriaClinica = () => {
         </div>
 
         {historiaClinica ? (
-          historiaClinica.registros.length > 0 ? (
+          historiaClinica.length > 0 ? (
             <div className="overflow-x-auto">
               <table className="min-w-full bg-white border">
                 <thead>
@@ -175,14 +197,14 @@ const HistoriaClinica = () => {
                     <th className="px-4 py-2 border-b text-left text-gray-700">
                       Detalle
                     </th>
-                    <th className="px-4 py-2 border-b text-center text-gray-700">
-                      Acciones
-                    </th>
                   </tr>
                 </thead>
                 <tbody>
-                  {historiaClinica.registros.map((registro) => (
-                    <tr key={registro.id} className="hover:bg-gray-100">
+                  {historiaClinica.map((registro) => (
+                    <tr
+                      key={registro.registro_id}
+                      className="hover:bg-gray-100"
+                    >
                       <td className="px-4 py-2 border-b text-gray-800">
                         {formatDate(registro.fecha)}
                       </td>
@@ -193,22 +215,26 @@ const HistoriaClinica = () => {
                         {registro.motivo}
                       </td>
                       <td className="px-4 py-2 border-b text-gray-800">
-                        <span
-                          onClick={() => toggleExpand(registro.id)}
-                          className="cursor-pointer text-blue-600 hover:underline"
-                        >
-                          {expandedConsultas.has(registro.id)
-                            ? registro.detalle
-                            : truncateText(registro.detalle, 100)}
-                        </span>
-                      </td>
-                      <td className="px-4 py-2 border-b text-center">
-                        <button
-                          onClick={() => editarConsulta(registro)}
-                          className="bg-yellow-500 text-white px-3 py-1 rounded-md hover:bg-yellow-600 transition-colors mr-2"
-                        >
-                          Editar
-                        </button>
+                        <div className="flex items-center">
+                          <span
+                            onClick={() => toggleExpand(registro.registro_id)}
+                            className="cursor-pointer text-blue-600 hover:underline flex-grow"
+                          >
+                            {expandedConsultas.has(registro.registro_id)
+                              ? registro.detalle
+                              : truncateText(registro.detalle, 100)}
+                          </span>
+                          <button
+                            onClick={() => toggleExpand(registro.registro_id)}
+                            className="ml-2 focus:outline-none"
+                          >
+                            {expandedConsultas.has(registro.registro_id) ? (
+                              <ChevronUpIcon className="h-5 w-5 text-gray-500" />
+                            ) : (
+                              <ChevronDownIcon className="h-5 w-5 text-gray-500" />
+                            )}
+                          </button>
+                        </div>
                       </td>
                     </tr>
                   ))}
@@ -226,6 +252,16 @@ const HistoriaClinica = () => {
           </p>
         )}
       </div>
+      {/* Modal para Agregar una consulta */}
+      {modalOpen && (
+        <ConsultaModal
+          isOpen={modalOpen}
+          onRequestClose={() => setModalOpen(false)}
+          onSuccess={refrescarHistoriaClinica}
+          historiaClinicaId={historiaClinica.id}
+          pacienteId={paciente.paciente_id}
+        />
+      )}
     </div>
   );
 };
