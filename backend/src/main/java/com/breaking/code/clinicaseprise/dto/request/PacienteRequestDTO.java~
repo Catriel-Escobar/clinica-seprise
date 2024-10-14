@@ -27,7 +27,6 @@ public class PacienteRequestDTO {
 	private String sexo;
 	@NotBlank
 	private String tipoSangre;
-
 	private LocalDate fechaNacimiento;
 
 }

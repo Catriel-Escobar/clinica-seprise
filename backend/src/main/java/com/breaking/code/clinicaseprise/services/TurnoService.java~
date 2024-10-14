@@ -9,7 +9,7 @@ import java.util.List;
 public interface TurnoService {
 	TurnoResponseDTO create(TurnoRequestDTO dto);
 	List<Turno> findByMedicoId( Integer medicoId);
-	List<Turno> findByPacienteId(Integer pacienteId);
+	Turno findByPacienteId(Integer pacienteId);
 
 //	String armandoAgenda();
 }

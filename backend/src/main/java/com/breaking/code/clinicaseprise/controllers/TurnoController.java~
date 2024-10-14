@@ -29,7 +29,7 @@ public class TurnoController {
 	}
 
 	@GetMapping("paciente")
-	public ResponseEntity<List<Turno>> findPacienteId(@RequestParam("pacienteId") Integer pacienteId) {
+	public ResponseEntity<Turno> findPacienteId(@RequestParam("pacienteId") Integer pacienteId) {
 		return ResponseEntity.ok().body(turnoService.findByMedicoId(pacienteId));
 	}
 

@@ -1,9 +1,20 @@
+import Encabezado from "@/Components/Encabezado"
+import Image from "next/image"
+
 const Liquidacion = () => {
+  const sectores = [
+    
+  ]
+  
   return (
     <>
-      <div>Liquidacion</div>
+      <Encabezado titulo={"Liquidación"} consigna={"Ingrese Id de médico"}/>
+
+      <div>
+        
+      </div>
     </>
-  );
-};
+  )
+}
 
 export default Liquidacion;

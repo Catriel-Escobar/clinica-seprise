@@ -75,9 +75,10 @@ public class TurnoServiceImpl implements TurnoService {
 	}
 
 	@Override
-	public List<Turno> findByPacienteId (Integer pacienteId) {
-		List<Turno> turnos = turnoRepository.findByPacienteId(pacienteId);
-		return turnos;
+	public Turno findByPacienteId (Integer pacienteId) {
+		Turno turno = turnoRepository.findByMedicoId(pacienteId).orElseThrow(() -> new NotFoundException(String.format(
+					"Turno para el medico con id %s no encontrado!",pacienteId.toString())));
+		return turno;
 	}
 
 //	public String armandoAgenda() {
