@@ -111,7 +111,7 @@ const HistoriaClinica = () => {
   };
 
   return (
-    <div className="container mx-auto p-6 flex flex-col md:flex-row p-6 bg-white min-h-screen">
+    <div className="container mx-auto p-6 flex flex-col md:flex-row  bg-white min-h-screen">
       {/* Columna izquierda - Datos del paciente */}
       <div className="md:w-1/3 md:pr-6 border-r border-gray-200">
         <h2 className="text-2xl font-semibold mb-4">Historia Clínica</h2>
