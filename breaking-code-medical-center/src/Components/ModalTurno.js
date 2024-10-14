@@ -2,9 +2,9 @@ import { FaPencilAlt } from "react-icons/fa";
 import { useState } from "react";
 import ModalMensaje from "./ModalMensaje";
 
-const ModalTurno = ({ active, handleClick }) => {
+const ModalTurno = ({ active, handleClick, turno }) => {
     const [activeMensaje, setActiveMensaje] = useState(false);
-
+    console.log(turno)
     const handleToggleMensaje = () => {
         setActiveMensaje(!activeMensaje);
     };
