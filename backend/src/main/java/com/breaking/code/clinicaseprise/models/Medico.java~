@@ -20,14 +20,18 @@ public class Medico  {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer medicoId;
 
-    @OneToMany(mappedBy = "medico")
+    @OneToMany(mappedBy = "medico", fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<RegistroClinico> registrosClinicos;
+
+    @OneToMany(mappedBy = "medico", fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<Honorario> honorarios;
 
     @OneToMany(mappedBy = "medico",fetch = FetchType.LAZY)
     private java.util.List<Turno> turnos;
 
-    @OneToMany(mappedBy = "medico")
-    private List<Honorario> honorarios;
+
 
     @ManyToOne
     @JoinColumn(name = "especialidad_id",nullable = false,foreignKey = @ForeignKey(name = "FK_ESPECIALIDAD_MEDICO"))

@@ -1,14 +1,11 @@
 package com.breaking.code.clinicaseprise.dto.response;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 public record TurnoResponseDTO(
 			Integer turnoId,
-			LocalDate fecha,
-			LocalTime hora,
+			LocalDateTime fecha,
 			Boolean acreditado,
 			Integer pacienteId,
 			String pacienteName,

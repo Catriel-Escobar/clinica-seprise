@@ -1,6 +1,5 @@
 package com.breaking.code.clinicaseprise.services.impl;
 
-import com.breaking.code.clinicaseprise.dto.response.MedicoResponseDTO;
 import com.breaking.code.clinicaseprise.exceptions.NotFoundException;
 import com.breaking.code.clinicaseprise.mappers.MedicoMapper;
 import com.breaking.code.clinicaseprise.models.Medico;
@@ -10,7 +9,6 @@ import com.breaking.code.clinicaseprise.services.MedicoService;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -35,16 +33,10 @@ public class MedicoServiceImpl implements MedicoService {
       return medicoRepository.findAllMedicosProjected();
     }
 
-    public List<MedicoResponseDTO> findByName( String name ) {
-        List<Medico> medicos = this.medicoRepository.findByName(name);
-
-        List<MedicoResponseDTO> medicoResponseDTOS = new ArrayList<>();
-        for ( Medico medico : medicos ) {
-            medicoResponseDTOS.add( medicoMapper.medicoToDto(medico) );
-        }
-
+    public List<MedicoProyeccion> findByName( String name ) {
+        List<MedicoProyeccion> medicos = this.medicoRepository.findByName(name);
         if(medicos.isEmpty())throw new NotFoundException( String.format( "No se encontraron medicos con el nombre: %s",name ) );
-        return medicoResponseDTOS;
+        return medicos;
     }
 
     @Override

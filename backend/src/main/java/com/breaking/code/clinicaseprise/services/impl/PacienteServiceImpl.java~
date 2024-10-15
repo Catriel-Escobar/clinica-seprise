@@ -45,6 +45,7 @@ public class PacienteServiceImpl implements PacienteService {
 		Paciente paciente =
 					pacienteRepository.findByDni(dni).orElseThrow(() -> new NotFoundException(String.format("No se encontro " +
 								"ningun paciente con el dni: %s",dni)));
+		List<RegistroClinico> registroClinicos = this.registroClinicoRepository.findByPacienteId(paciente.getPacienteId());
 		PacienteResponseDTO pacienteResponseDTO = pacienteMapper.toDto( paciente );
 		return pacienteResponseDTO;
 	}

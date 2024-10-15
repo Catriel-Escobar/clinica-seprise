@@ -1,0 +1,14 @@
+package com.breaking.code.clinicaseprise.repositories.projections;
+
+import java.time.LocalDate;
+
+public interface RegistroClinicoProyeccion {
+
+	Integer getRegistroClinicoId();
+
+	LocalDate getFecha();
+
+	String getInforme();
+
+	MedicoProyeccion getMedico();
+}
