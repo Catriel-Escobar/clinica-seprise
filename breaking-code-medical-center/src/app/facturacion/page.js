@@ -6,6 +6,7 @@ import { useState } from "react";
 
 const Facturacion = () => {
   const [active, setActive] = useState(false);
+  
 
   const datos = [
     { id: "Nombre", razon: "María" },
