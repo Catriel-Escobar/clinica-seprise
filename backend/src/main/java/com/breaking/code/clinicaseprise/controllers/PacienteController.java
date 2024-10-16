@@ -2,6 +2,7 @@ package com.breaking.code.clinicaseprise.controllers;
 
 
 import com.breaking.code.clinicaseprise.dto.request.PacienteRequestDTO;
+import com.breaking.code.clinicaseprise.dto.response.PacienteResponseDTO;
 import com.breaking.code.clinicaseprise.models.Paciente;
 import com.breaking.code.clinicaseprise.services.PacienteService;
 import jakarta.validation.Valid;
@@ -25,11 +26,12 @@ public class PacienteController {
 	}
 
 	@GetMapping()
-	public ResponseEntity<Paciente> findByDni(
+	public ResponseEntity<PacienteResponseDTO> findByDni(
 				@RequestParam("dni")
 				@Pattern(regexp = "^[0-9]{8}$", message = "El DNI debe tener exactamente 8 dígitos numéricos.")
 				String dni
 	){
-		return ResponseEntity.ok().body(pacienteService.findByDni(dni));
+		return ResponseEntity.ok().body(pacienteService.findByDniDto(dni));
 	}
+
 }

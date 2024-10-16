@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Setter
 @Getter
@@ -29,8 +30,9 @@ public class Turno {
     @JsonIgnore
     private Medico medico;
     @Column(nullable = false)
-    private LocalDateTime fecha;
-
+    private LocalDate fecha;
+    @Column(nullable = false)
+    private LocalTime hora;
     @Column(nullable = false)
     private Boolean acreditado = false;
 

@@ -11,7 +11,7 @@ public interface MedicoService {
     boolean save(Medico medico);
     List<MedicoProyeccion> findAllProjections();
 
-    List<MedicoResponseDTO> findByName(String name );
+    List<MedicoProyeccion> findByName(String name );
 
     Medico findById(Integer id);
 

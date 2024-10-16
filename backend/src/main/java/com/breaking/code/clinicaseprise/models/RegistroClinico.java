@@ -1,11 +1,13 @@
 package com.breaking.code.clinicaseprise.models;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -21,8 +23,9 @@ public class RegistroClinico {
 
 
     @ManyToOne
-    @JoinColumn(name = "historia_clinica_id",nullable = false,foreignKey = @ForeignKey(name = "FK_HISTORIA_CLINICA_REGISTRO_CLINICO"))
-    private HistoriaClinica historiaClinica;
+    @JoinColumn(name = "paciente_id",foreignKey = @ForeignKey(name = "FK_PACIENTE_REGISTRO_CLINICO"))
+    @JsonIgnore
+    private Paciente paciente;
 
     @ManyToOne
     @JoinColumn(name = "medico_id", nullable = false,foreignKey = @ForeignKey(name = "FK_MEDICO_REGISTRO_CLINICO"))

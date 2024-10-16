@@ -1,12 +1,15 @@
 package com.breaking.code.clinicaseprise.models;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.util.List;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -28,12 +31,16 @@ public class Paciente {
     private Boolean obraSocial;
     @Column(nullable = false)
     private String sexo;
-    @Column(nullable = false)
-    private String sangre;
+    @Column(nullable = false, name = "tipo_sangre")
+    private String tipoSangre;
 
-    @OneToOne(mappedBy = "paciente",cascade = CascadeType.PERSIST)
-    private HistoriaClinica historiaClinica;
+    @Column(nullable = false, name = "fecha_nac")
+    private LocalDate fechaNacimiento;
 
     @OneToMany(mappedBy = "paciente")
+    @JsonIgnore
     private List<Turno> turnos;
+
+    @OneToMany(mappedBy = "paciente", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<RegistroClinico> registrosClinicos;
 }
