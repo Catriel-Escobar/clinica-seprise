@@ -45,7 +45,7 @@ const Agenda = () => {
         const selectedDate = date ? date : new Date(); 
 
         const filtered = turnosConFechas.flatMap((turno) => {
-            const medicoCoincide = `${turno.nombre} ${turno.apellido}`.toLowerCase().includes(text.toLowerCase());
+            const medicoCoincide = `${turno.nombre}${turno.apellido}`.toLowerCase().includes(text.toLowerCase());
             const fechaCoincide = turno.fecha.toDateString() === selectedDate.toDateString();
             return medicoCoincide && fechaCoincide
                 ? turno.horarios.map((horario) => ({
@@ -76,20 +76,32 @@ const Agenda = () => {
         handleSearch(searchText, date);
     };
 
+    console.log(tituloFecha)
     return (
         <div>
             <Encabezado
                 titulo={"Agenda de turnos médicos"}
-                consigna={"Ingrese Id del médico"}
+                consigna={"Ingrese nombre del médico"}
                 onSearch={(text) => handleSearch(text, filterDate)}
             />
 
             <section className="bg-white antialiased">
                 <div className="px-4 py-8 mx-auto lg:px-6 sm:py-16">
                     <div className="flex justify-center max-w-4xl mx-auto text-center">
-                        <h2 className="text-2xl font-extrabold leading-tight tracking-tight text-gray-900">
-                            {medicoNombre && tituloFecha ? `Agenda del Dr. ${medicoNombre} para el ${tituloFecha}` : "Agenda diaria"}
-                        </h2>
+                        {medicoNombre && tituloFecha 
+                        ?   <div>
+                                <p className="text-2xl font-extrabold leading-tight tracking-tight text-gray-900">
+                                    Agenda del dia {tituloFecha}
+                                </p>
+                                <p className="text-2xl font-extrabold leading-tight tracking-tight text-gray-900">
+                                    Dr. {medicoNombre}
+                                </p>
+                            </div>
+                        : 
+                            <p className="text-2xl font-extrabold leading-tight tracking-tight text-gray-900">
+                                Agenda diaria    
+                            </p>
+                        }
                     </div>
 
                     <div className="flex flex-col justify-center items-center p-4">
