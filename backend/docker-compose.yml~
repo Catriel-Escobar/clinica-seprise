@@ -23,10 +23,12 @@ version: '3.9'
 
 services:
 
+
   spring-app:
-    image: madk3/clinica-seprise
+    image: clinica-seprise:0.0.1-SNAPSHOT
     container_name: spring_seprise
+
     ports:
-      - "8080:8080"
+      - "8080:8080" # Expone el puerto 8080 para el proyecto Spring Boot
 
 
