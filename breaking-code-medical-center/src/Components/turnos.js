@@ -1890,7 +1890,7 @@ const turnos = [
     ],
   },
   {
-    id:4,
+    id: 4,
     nombre: "Marcelo",
     apellido: "Galimberti",
     especialidad: "Medicina General",
@@ -2100,7 +2100,7 @@ const turnos = [
     ],
   },
   {
-    id:4,
+    id: 4,
     nombre: "Marcelo",
     apellido: "Galimberti",
     especialidad: "Medicina General",
@@ -2310,7 +2310,7 @@ const turnos = [
     ],
   },
   {
-    id:4,
+    id: 4,
     nombre: "Marcelo",
     apellido: "Galimberti",
     especialidad: "Medicina General",
@@ -2520,7 +2520,7 @@ const turnos = [
     ],
   },
   {
-    id:5,
+    id: 5,
     nombre: "Catriel",
     apellido: "Escobar",
     especialidad: "Neumonologia",
@@ -2730,7 +2730,7 @@ const turnos = [
     ],
   },
   {
-    id:5,
+    id: 5,
     nombre: "Catriel",
     apellido: "Escobar",
     especialidad: "Neumonologia",
@@ -2940,7 +2940,7 @@ const turnos = [
     ],
   },
   {
-    id:5,
+    id: 5,
     nombre: "Catriel",
     apellido: "Escobar",
     especialidad: "Neumonologia",
@@ -3150,4 +3150,5 @@ const turnos = [
     ],
   },
 ];
+
 export default turnos;

@@ -11,7 +11,7 @@ const SignIn = () => {
   const router = useRouter();
 
   const users = [
-    { username: "mg", password: "admin" },
+    { username: "mg", password: "admin", name:" Marcelo Galimberti", role: "M"  },
     { username: "me", password: "admin" },
     { username: "ce", password: "admin" },
     { username: "gb", password: "admin" },
