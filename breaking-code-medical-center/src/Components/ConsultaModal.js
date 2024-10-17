@@ -43,7 +43,7 @@ const ConsultaModal = ({ isOpen, onRequestClose, onSuccess, pacienteId }) => {
       onRequestClose={onRequestClose}
       ariaHideApp={false}
       contentLabel={"Agregar Consulta"}
-      className="bg-white p-6 rounded-md max-w-lg mx-auto mt-20 shadow-lg"
+      className="bg-white p-6 rounded-md w-[700px] mx-auto mt-20 shadow-lg"
       overlayClassName="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-start"
     >
       <h2 className="text-xl font-semibold mb-4">{"Agregar Consulta"}</h2>
@@ -88,7 +88,7 @@ const ConsultaModal = ({ isOpen, onRequestClose, onSuccess, pacienteId }) => {
             value={formData.detalle}
             onChange={handleChange}
             required
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300"
+            className="w-full h-[300px] px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300"
           ></textarea>
         </div>
         <div className="flex justify-end space-x-2">
@@ -101,7 +101,7 @@ const ConsultaModal = ({ isOpen, onRequestClose, onSuccess, pacienteId }) => {
           </button>
           <button
             type="submit"
-            className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors"
+            className="px-4 py-2 bg-[#87b9a5] text-white rounded-md hover:bg-[#4b665b] transition-colors"
           >
             {"Agregar"}
           </button>
