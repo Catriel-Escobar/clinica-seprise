@@ -114,28 +114,29 @@ const HistoriaClinica = () => {
 
   return (
     <>
-      <div className="bg-cyan-100 text-center text-4xl font-bold h-[100px] py-7">
+      <div className="bg-cyan-100 text-center text-4xl font-bold h-[50px] py-7">
         <h2 className="">Historia Clínica</h2>
       </div>
-      <div className="flex justify-center mb-6 bg-cyan-100">
+      <div className="flex justify-center py-4 mb-6 bg-cyan-100">
         <div>
-          <label className="pr-8 font-medium">DNI del paciente:</label>
+          <label className="pr-8 font-medium text-xl">DNI del paciente:</label>
           <input
             type="search"
             value={dni}
             onChange={(e) => setDni(e.target.value)}
             className="w-80 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300"
-            placeholder="Introduce el DNI"
+            placeholder="Buscar..."
           />
           <button
             type="submit"
             onClick={buscarPaciente}
-            className="m-2 rounded bg-[#a7e6cc] px-4 py-4 text-white"
+            className="m-2 rounded bg-[#87b9a5] px-2 py-2 text-white"
             disabled={loading}
           >
             {loading ? "" : ""}
             <FaSearch />
           </button>
+          
           {mensaje && <p className="text-red-500 px-60 mt-2">{mensaje}</p>}
         </div>
         
