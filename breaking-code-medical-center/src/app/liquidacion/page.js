@@ -44,8 +44,8 @@ const Liquidacion = () => {
 
             <div className="flex flex-row-reverse pr-6 pt-2 w-auto border-b-2 border-l-2 border-r-2 border-black bg-slate-50 h-24">
               <div className="flex flex-row">
-                <div className="flex pl-32 font-bold text-lg">Fecha: </div>
-                <div className="flex font-medium"> (del dia)</div>
+                <div className="flex font-bold text-lg">Fecha: </div>
+                <div className="flex font-medium text-lg"> (del dia)</div>
               </div>
             </div>
           </div>
