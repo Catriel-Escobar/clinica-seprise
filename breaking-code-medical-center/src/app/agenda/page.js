@@ -116,7 +116,7 @@ const Agenda = () => {
                         </div>
                     </div>
 
-                    <div className="flow-root max-w-3xl mx-auto mt-8 sm:mt-12 lg:mt-16">
+                    <div className="flow-rootnpm max-w-3xl mx-auto mt-8 sm:mt-12 lg:mt-16">
                         <div className="-my-4 divide-y divide-gray-200">
                             {filteredTurnos.map((item, index) => (
                                 <div

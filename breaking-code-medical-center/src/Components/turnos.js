@@ -5,7 +5,7 @@ const turnos = [
     apellido: "Abadi",
     especialidad: "Cardiología",
     valorConsulta: 1500,
-    fecha: "14/10/2024",
+    fecha: "17/10/2024",
     horarios: [
       {
         hora: "08:00 - 08:30",
@@ -215,7 +215,7 @@ const turnos = [
     apellido: "Abadi",
     especialidad: "Cardiología",
     valorConsulta: 1500,
-    fecha: "15/10/2024",
+    fecha: "18/10/2024",
     horarios: [
       {
         hora: "08:00 - 08:30",
@@ -425,7 +425,7 @@ const turnos = [
     apellido: "Abadi",
     especialidad: "Cardiología",
     valorConsulta: 1500,
-    fecha: "16/10/2024",
+    fecha: "21/10/2024",
     horarios: [
       {
         hora: "08:00 - 08:30",
@@ -635,7 +635,7 @@ const turnos = [
     apellido: "Bava",
     especialidad: "Dermatología",
     valorConsulta: 1300,
-    fecha: "14/10/2024",
+    fecha: "17/10/2024",
     horarios: [
       {
         hora: "08:00 - 08:30",
@@ -845,7 +845,7 @@ const turnos = [
     apellido: "Bava",
     especialidad: "Dermatología",
     valorConsulta: 1300,
-    fecha: "15/10/2024",
+    fecha: "18/10/2024",
     horarios: [
       {
         hora: "08:00 - 08:30",
@@ -1055,7 +1055,7 @@ const turnos = [
     apellido: "Bava",
     especialidad: "Dermatología",
     valorConsulta: 1300,
-    fecha: "16/10/2024",
+    fecha: "21/10/2024",
     horarios: [
       {
         hora: "08:00 - 08:30",
@@ -1265,7 +1265,7 @@ const turnos = [
     apellido: "Baranda",
     especialidad: "Neurología",
     valorConsulta: 1800,
-    fecha: "14/10/2024",
+    fecha: "17/10/2024",
     horarios: [
       {
         hora: "08:00 - 08:30",
@@ -1475,7 +1475,7 @@ const turnos = [
     apellido: "Baranda",
     especialidad: "Neurología",
     valorConsulta: 1800,
-    fecha: "15/10/2024",
+    fecha: "18/10/2024",
     horarios: [
       {
         hora: "08:00 - 08:30",
@@ -1685,7 +1685,7 @@ const turnos = [
     apellido: "Baranda",
     especialidad: "Neurología",
     valorConsulta: 1800,
-    fecha: "16/10/2024",
+    fecha: "21/10/2024",
     horarios: [
       {
         hora: "08:00 - 08:30",
@@ -1895,7 +1895,7 @@ const turnos = [
     apellido: "Galimberti",
     especialidad: "Medicina General",
     valorConsulta: 1300,
-    fecha: "14/10/2024",
+    fecha: "17/10/2024",
     horarios: [
       {
         hora: "08:00 - 08:30",
@@ -2105,7 +2105,7 @@ const turnos = [
     apellido: "Galimberti",
     especialidad: "Medicina General",
     valorConsulta: 1300,
-    fecha: "15/10/2024",
+    fecha: "18/10/2024",
     horarios: [
       {
         hora: "08:00 - 08:30",
@@ -2315,7 +2315,7 @@ const turnos = [
     apellido: "Galimberti",
     especialidad: "Medicina General",
     valorConsulta: 1300,
-    fecha: "16/10/2024",
+    fecha: "21/10/2024",
     horarios: [
       {
         hora: "08:00 - 08:30",
@@ -2525,7 +2525,7 @@ const turnos = [
     apellido: "Escobar",
     especialidad: "Neumonologia",
     valorConsulta: 1300,
-    fecha: "14/10/2024",
+    fecha: "17/10/2024",
     horarios: [
       {
         hora: "08:00 - 08:30",
@@ -2735,7 +2735,7 @@ const turnos = [
     apellido: "Escobar",
     especialidad: "Neumonologia",
     valorConsulta: 1300,
-    fecha: "15/10/2024",
+    fecha: "18/10/2024",
     horarios: [
       {
         hora: "08:00 - 08:30",
@@ -2945,7 +2945,7 @@ const turnos = [
     apellido: "Escobar",
     especialidad: "Neumonologia",
     valorConsulta: 1300,
-    fecha: "16/10/2024",
+    fecha: "21/10/2024",
     horarios: [
       {
         hora: "08:00 - 08:30",
