@@ -1,5 +1,5 @@
 import Image from "next/image";
-import fondo from "../assets/fondo.jpeg";
+import fondo from "../../assets/fondo.jpeg";
 
 
 const Home = () => {

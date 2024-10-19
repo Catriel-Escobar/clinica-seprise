@@ -3,13 +3,14 @@ import Link from "next/link";
 import { IoMdLogOut } from "react-icons/io";
 import Image from "next/image";
 import logo from "../assets/logo.png";
-import useAuth from "@/hooks/useAuth";
+import { useAuth } from "@/contexts/AuthContext"; 
 
 const Headers = () => {
   const { user, logout } = useAuth();
+  console.log(user)
 
   const navLinks = [
-    { name: "Home", href: "/" },
+    { name: "Home", href: "/home" },
     { name: "Agenda", href: "/agenda" },
     { name: "Historia Clinica", href: "/hc" },
     { name: "Facturacion", href: "/facturacion" },
@@ -31,10 +32,10 @@ const Headers = () => {
         </Link>
       </div>
       <div>
-        <ul className="flex justify-center items-center gap-x-4 text-lg">
+        <ul className="flex justify-center items-center gap-x-4 text-lg">          
           {navLinks.map((item) => (
             <li key={item.name}>
-              <Link href={item.href} aria-label={`Ir a ${item.name}`}>
+              <Link href={item.href } aria-label={`Ir a ${item.name}`}>
                 {item.name}
               </Link>
             </li>
@@ -43,7 +44,7 @@ const Headers = () => {
       </div>
       <div className="flex items-center gap-x-4">
         <button className="flex justify-center items-center w-[40px] h-[40px] rounded-full border-2">
-          {user?.toUpperCase()}
+          {user?.nombre[0]}{user?.apellido[0]}
         </button>
         <button
           onClick={logout}

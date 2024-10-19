@@ -5,7 +5,7 @@ const turnos = [
     apellido: "Abadi",
     especialidad: "Cardiología",
     valorConsulta: 1500,
-    fecha: "14/10/2024",
+    fecha: "17/10/2024",
     horarios: [
       {
         hora: "08:00 - 08:30",
