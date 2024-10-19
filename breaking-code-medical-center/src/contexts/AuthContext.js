@@ -1,12 +1,15 @@
 'use client';
 import { createContext, useState, useContext, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import Spinner from "@/Components/UIComponents/Spinner"; 
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [showSpinner, setShowSpinner] = useState(false); 
+  const [errorMessage, setErrorMessage] = useState("");
   const router = useRouter();
 
   useEffect(() => {
@@ -17,16 +20,20 @@ export const AuthProvider = ({ children }) => {
           const parsedUser = JSON.parse(storedUser);
           setUser(parsedUser); 
         } catch (error) {
-          console.error("Error parsing user data:", error);
+          console.error("Error de parseo de datos de usuario:", error);
           sessionStorage.removeItem("user");
         }
       }
       setLoading(false);
     };
+
     checkUser();
   }, []);
 
   const login = async (username, password) => {
+    setErrorMessage(""); 
+    setShowSpinner(true);
+
     try {
       const response = await fetch("/api/auth", {
         method: "POST",
@@ -38,20 +45,22 @@ export const AuthProvider = ({ children }) => {
 
       if (response.ok) {
         const data = await response.json();
-                
+
         if (data.usuarioId && data.usuario && data.nombre && data.apellido && data.role) {
           setUser(data);  
           sessionStorage.setItem("user", JSON.stringify(data)); 
+          setShowSpinner(false); 
           router.push("/home"); 
         } else {
-          throw new Error("Estructura de datos de usuario no válida");
+          throw new Error("Estructura de datos no válida");
         }
       } else {
         throw new Error("Error de autenticación");
       }
     } catch (error) {
       console.error(error.message);  
-      throw new Error(error.message);
+      setShowSpinner(false);
+      setErrorMessage(error.message); 
     }
   };
 
@@ -62,9 +71,15 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, loading, login, logout }}>
-      {children}
-    </AuthContext.Provider>
+    <>
+      {showSpinner ? (
+        <Spinner />
+      ) : (
+        <AuthContext.Provider value={{ user, loading, login, logout, errorMessage }}>
+          {children}
+        </AuthContext.Provider>
+      )}
+    </>
   );
 };
 

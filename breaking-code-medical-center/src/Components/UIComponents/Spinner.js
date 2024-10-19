@@ -4,11 +4,11 @@ const Spinner = () => {
   return (
     <div
     role="status"
-    className="min-h-[calc(100vh-400px)] grid place-content-center"
+    className="min-h-[100vh] grid place-content-center" style={{ background: "linear-gradient(to right, #87b9a5 0%, #87b9a5 34%, #C4EDED 100%)" }}
   >
     <svg
       aria-hidden="true"
-      className="w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
+      className="w-16 h-16 text-white animate-spin fill-[#87b9a5]"
       viewBox="0 0 100 101"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

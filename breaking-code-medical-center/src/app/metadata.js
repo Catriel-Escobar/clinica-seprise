@@ -1,3 +1,4 @@
+
 export const metadata = {
     title: 'BREAKING CODE MEDICAL CENTER - Home',
     description:"clinica",
@@ -5,5 +6,4 @@ export const metadata = {
     icons: {
       icon: '@/app/icon.ico',
     },
-  };
-  
+  };  

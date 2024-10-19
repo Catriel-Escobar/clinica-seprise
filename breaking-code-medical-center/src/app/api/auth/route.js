@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 
-export async function POST(request) {
+export const POST = async (request) => {
   const { usuario, contrasena } = await request.json();
 
   try {
@@ -20,6 +20,6 @@ export async function POST(request) {
       return NextResponse.json({ error: errorData.error || "Error de autenticación" }, { status: 401 });
     }
   } catch (error) {
-    return NextResponse.json({ error: "Error al conectar con el servidor" }, { status: 500 });
+    return NextResponse.json({ error: "Error de conección con el servidor" }, { status: 500 });
   }
-}
+};
