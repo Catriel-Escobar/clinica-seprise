@@ -10,6 +10,7 @@ public record TurnoResponseDTO(
 			LocalDate fecha,
 			LocalTime hora,
 			Boolean acreditado,
+			Boolean esSobreTurno,
 			Integer pacienteId,
 			String pacienteName,
 			String pacienteApellido,

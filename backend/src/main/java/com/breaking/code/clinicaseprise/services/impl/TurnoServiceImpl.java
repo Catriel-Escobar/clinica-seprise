@@ -38,9 +38,6 @@ public class TurnoServiceImpl implements TurnoService {
 	}
 
 
-
-
-
 	@Override
 	public TurnoResponseDTO create (TurnoRequestDTO dto) {
 		LocalDate fecha = dto.getFecha();
@@ -48,8 +45,9 @@ public class TurnoServiceImpl implements TurnoService {
 		String dia = dto.getFecha().getDayOfWeek().name();
 		if((hora.getHour() < 8 || hora.getHour() > 19) || (dia.equals( "SATURDAY" ) || dia.equals( "SUNDAY" )) || fecha.isBefore( LocalDate.now() ) ) throw new BadRequestException( "Fuera de dia y horario" );
 
-		Optional<Turno> turnoFound = turnoRepository.findByFechaHoraMedico( dto.getMedicoId(),fecha,hora );
-		if(turnoFound.isPresent()) throw new BadRequestException( "El turno solicitado ya esta ocupado" );
+		List<Turno> turnosFound = turnoRepository.findByFechaHoraMedico( dto.getMedicoId(),fecha,hora );
+		if(turnosFound.size() == 2) throw new BadRequestException( "El turno solicitado ya esta ocupado" );
+
 
 		Paciente paciente = pacienteService.findByDni(dto.getDni());
 		Medico medico = medicoService.findById(dto.getMedicoId());
@@ -58,6 +56,12 @@ public class TurnoServiceImpl implements TurnoService {
 		turno.setPaciente(paciente);
 		turno.setFecha(dto.getFecha());
 		turno.setHora(dto.getHora());
+		if( turnosFound.isEmpty() ) {
+			turno.setEsSobreTurno( false );
+		}else {
+			turno.setHora( hora.plusMinutes( 30 ) );
+			turno.setEsSobreTurno( true );
+		}
 		turno = turnoRepository.save(turno);
 		return turnoMapper.toDto(turno);
 	}

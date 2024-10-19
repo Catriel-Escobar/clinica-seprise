@@ -41,9 +41,9 @@ INSERT INTO registros_clinicos(paciente_id,medico_id,fecha,informe) VALUES(1,3,'
 INSERT INTO registros_clinicos(paciente_id,medico_id,fecha,informe) VALUES(1,4,'2024-08-11','informe 1');
 INSERT INTO registros_clinicos(paciente_id,medico_id,fecha,informe) VALUES(1,2,'2024-09-28','informe 1');
 
-INSERT INTO turnos (paciente_id,medico_id,fecha,hora,acreditado) VALUES (1,1,'2024-10-14','08:00:00',false);
-INSERT INTO turnos (paciente_id,medico_id,fecha,hora,acreditado) VALUES (2,2,'2024-10-18','18:00:00',false);
-INSERT INTO turnos (paciente_id,medico_id,fecha,hora,acreditado) VALUES (3,3,'2024-10-16','10:00:00',false);
-INSERT INTO turnos (paciente_id,medico_id,fecha,hora,acreditado) VALUES (4,1,'2024-10-15','09:00:00',false);
-INSERT INTO turnos (paciente_id,medico_id,fecha,hora,acreditado) VALUES (5,2,'2024-10-14','15:00:00',false);
-INSERT INTO turnos (paciente_id,medico_id,fecha,hora,acreditado) VALUES (2,4,'2024-10-14','14:00:00',false);
+INSERT INTO turnos (paciente_id,medico_id,fecha,hora,acreditado,es_sobre_turno) VALUES (1,1,'2024-10-14','08:00:00',false,false);
+INSERT INTO turnos (paciente_id,medico_id,fecha,hora,acreditado,es_sobre_turno) VALUES (2,2,'2024-10-18','18:00:00',false,false);
+INSERT INTO turnos (paciente_id,medico_id,fecha,hora,acreditado,es_sobre_turno) VALUES (3,3,'2024-10-16','10:00:00',false,false);
+INSERT INTO turnos (paciente_id,medico_id,fecha,hora,acreditado,es_sobre_turno) VALUES (4,1,'2024-10-15','09:00:00',false,false);
+INSERT INTO turnos (paciente_id,medico_id,fecha,hora,acreditado,es_sobre_turno) VALUES (5,2,'2024-10-14','15:00:00',false,false);
+INSERT INTO turnos (paciente_id,medico_id,fecha,hora,acreditado,es_sobre_turno) VALUES (2,4,'2024-10-14','14:00:00',false,false);

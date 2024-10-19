@@ -20,6 +20,6 @@ public interface TurnoRepository extends JpaRepository<Turno,Integer> {
 	@Query(value = "SELECT * FROM turnos as t WHERE t.paciente_id = :pacienteId",nativeQuery = true)
 	List<Turno> findByPacienteId(@Param("pacienteId") Integer pacienteId);
 
-	@Query(value = "SELECT * FROM turnos as T where t.medico_id = :medicoId AND t.fecha = :fecha AND t.hora = :hora", nativeQuery = true)
-	Optional<Turno> findByFechaHoraMedico( @Param( "medicoId" ) Integer medicoId, @Param( "fecha" )LocalDate fecha,@Param( "hora" ) LocalTime hora );
+	@Query(value = "SELECT * FROM turnos as T where t.medico_id = :medicoId AND t.fecha = :fecha AND HOUR(t.hora)  = HOUR(:hora) ", nativeQuery = true)
+	List<Turno> findByFechaHoraMedico( @Param( "medicoId" ) Integer medicoId, @Param( "fecha" )LocalDate fecha,@Param( "hora" ) LocalTime hora );
 }
