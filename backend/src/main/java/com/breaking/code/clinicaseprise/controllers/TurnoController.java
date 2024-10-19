@@ -3,7 +3,10 @@ package com.breaking.code.clinicaseprise.controllers;
 import com.breaking.code.clinicaseprise.dto.request.TurnoRequestDTO;
 import com.breaking.code.clinicaseprise.dto.response.TurnoResponseDTO;
 import com.breaking.code.clinicaseprise.mappers.TurnoMapper;
+import com.breaking.code.clinicaseprise.models.Factura;
 import com.breaking.code.clinicaseprise.models.Turno;
+import com.breaking.code.clinicaseprise.models.enums.FormaDePago;
+import com.breaking.code.clinicaseprise.repositories.FacturaRepository;
 import com.breaking.code.clinicaseprise.services.TurnoService;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +24,11 @@ public class TurnoController {
 	@Autowired
 	private TurnoMapper mapper;
 	private final TurnoService turnoService;
+
+
+    @Autowired
+    private FacturaRepository facturaRepository;
+
 	public TurnoController(TurnoService turnoService) {
 		this.turnoService = turnoService;
 	}
@@ -63,4 +71,12 @@ public class TurnoController {
 
 		return ResponseEntity.ok().body(turnoService.delete(id));
 	}
+
+	@PutMapping("/acreditar-turno")
+	public ResponseEntity<Factura> acreditarTurno(@RequestParam("turnoId") Integer turnoId, @RequestParam("formaDePago")FormaDePago formaDePago) {
+
+		return ResponseEntity.ok().body(turnoService.AcreditarTurno(turnoId, formaDePago));
+
+	}
+
 }
