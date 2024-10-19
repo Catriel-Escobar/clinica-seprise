@@ -1,5 +1,6 @@
 package com.breaking.code.clinicaseprise.models;
 
+import com.breaking.code.clinicaseprise.models.enums.FormaDePago;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -22,5 +23,6 @@ public class Factura {
 
     private LocalDate fecha;
     @Column(name = "forma_pago" ,nullable = false)
-    private String formaPago;
+    @Enumerated(EnumType.STRING)
+    private FormaDePago formaPago;
 }

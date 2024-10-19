@@ -3,6 +3,7 @@ package com.breaking.code.clinicaseprise.services.impl;
 import com.breaking.code.clinicaseprise.dto.request.PacienteRequestDTO;
 import com.breaking.code.clinicaseprise.dto.response.PacienteResponseDTO;
 import com.breaking.code.clinicaseprise.dto.response.RegistroClinicoResponseDTO;
+import com.breaking.code.clinicaseprise.exceptions.BadRequestException;
 import com.breaking.code.clinicaseprise.exceptions.NotFoundException;
 import com.breaking.code.clinicaseprise.mappers.PacienteMapper;
 import com.breaking.code.clinicaseprise.mappers.RegistroClinicoMapper;
@@ -35,9 +36,15 @@ public class PacienteServiceImpl implements PacienteService {
 
 	@Transactional
 	public Paciente create (PacienteRequestDTO dto) {
-		Paciente paciente = pacienteMapper.toPaciente(dto);
-		pacienteRepository.save(paciente);
-		return paciente;
+
+		try {
+			Paciente paciente = pacienteMapper.toPaciente(dto);
+			pacienteRepository.save(paciente);
+			return paciente;
+		} catch(Exception ex) {
+			throw new BadRequestException("El DNI ya se encuentra registrado");
+		}
+
 	}
 
 	@Override

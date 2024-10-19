@@ -5,9 +5,12 @@ import com.breaking.code.clinicaseprise.dto.response.TurnoResponseDTO;
 import com.breaking.code.clinicaseprise.exceptions.BadRequestException;
 import com.breaking.code.clinicaseprise.exceptions.NotFoundException;
 import com.breaking.code.clinicaseprise.mappers.TurnoMapper;
+import com.breaking.code.clinicaseprise.models.Factura;
 import com.breaking.code.clinicaseprise.models.Medico;
 import com.breaking.code.clinicaseprise.models.Paciente;
 import com.breaking.code.clinicaseprise.models.Turno;
+import com.breaking.code.clinicaseprise.models.enums.FormaDePago;
+import com.breaking.code.clinicaseprise.repositories.FacturaRepository;
 import com.breaking.code.clinicaseprise.repositories.TurnoRepository;
 import com.breaking.code.clinicaseprise.services.MedicoService;
 import com.breaking.code.clinicaseprise.services.PacienteService;
@@ -25,19 +28,35 @@ import java.util.Optional;
 public class TurnoServiceImpl implements TurnoService {
 
 	private final TurnoRepository turnoRepository;
+	private final FacturaRepository facturaRepository;
 
 
 	private final PacienteService pacienteService;
 	private final MedicoService medicoService;
 	@Autowired
 	private TurnoMapper turnoMapper;
-	public TurnoServiceImpl (TurnoRepository turnoRepository, PacienteService pacienteService, MedicoService medicoService ) {
+	public TurnoServiceImpl (TurnoRepository turnoRepository, PacienteService pacienteService, MedicoService medicoService, FacturaRepository facturaRepository  ) {
 		this.turnoRepository = turnoRepository;
 		this.pacienteService = pacienteService;
 		this.medicoService = medicoService;
+		this.facturaRepository = facturaRepository;
 	}
 
+	public Factura AcreditarTurno(Integer turnoId, FormaDePago formaDePago){
+		Turno turnoRespuesta = turnoRepository.findById(turnoId).orElseThrow( () -> new NotFoundException("Turno no encontrado") );
+		if (turnoRespuesta.getAcreditado() ) throw new BadRequestException("Turno ya acreditado");
 
+		turnoRespuesta.setAcreditado(true);
+		Factura factura = new Factura();
+		factura.setTurno(turnoRespuesta);
+		factura.setFecha(LocalDate.now());
+		factura.setFormaPago(formaDePago);
+
+		turnoRepository.save(turnoRespuesta);
+		facturaRepository.save(factura);
+
+		return factura;
+	}
 
 
 
