@@ -1,15 +1,15 @@
 
 -- CREACION DE USUARIOS
 
-INSERT INTO usuarios (usuario_id, nombre,apellido,usuario,contrasena,role) VALUES (1,'catrielll','escobarrrr','catrieloski','asda1234','ADMINISTRADOR');
-INSERT INTO usuarios (usuario_id, nombre,apellido,usuario,contrasena,role) VALUES (2,'gustavo','baranda','gustavitojs','gustaveli','ADMINISTRADOR');
-INSERT INTO usuarios (usuario_id, nombre,apellido,usuario,contrasena,role) VALUES (3,'M Eugenia','Baba','meugenia','meuge','ADMINISTRADOR');
-INSERT INTO usuarios (usuario_id, nombre,apellido,usuario,contrasena,role) VALUES (4,'Marcelo','Galimberti','mgalim','pelakiller','ADMINISTRADOR');
-INSERT INTO usuarios (usuario_id, nombre,apellido,usuario,contrasena,role) VALUES (5,'Alejandro','Abadi','alecuadrado','aleback','ADMINISTRADOR');
-INSERT INTO usuarios (usuario_id, nombre,apellido,usuario,contrasena,role) VALUES (6,'Juan','Perez','juancito','medico','MEDICO');
-INSERT INTO usuarios (usuario_id, nombre,apellido,usuario,contrasena,role) VALUES (7,'Carlos','Rojas','carlos','medico','MEDICO');
-INSERT INTO usuarios (usuario_id, nombre,apellido,usuario,contrasena,role) VALUES (8,'Robertita','Gomez','robertita','medico','MEDICO');
-INSERT INTO usuarios (usuario_id, nombre,apellido,usuario,contrasena,role) VALUES (9,'Juancita','Perez','juancita','medico','MEDICO');
+INSERT INTO usuarios (usuario_id, nombre_apellido,usuario,contrasena,role) VALUES (1,'catrielll escobarrrr','catrieloski','asda1234','ADMINISTRADOR');
+INSERT INTO usuarios (usuario_id, nombre_apellido,usuario,contrasena,role) VALUES (2,'gustavo baranda','gustavitojs','gustaveli','ADMINISTRADOR');
+INSERT INTO usuarios (usuario_id, nombre_apellido,usuario,contrasena,role) VALUES (3,'M Eugenia Baba','meugenia','meuge','ADMINISTRADOR');
+INSERT INTO usuarios (usuario_id, nombre_apellido,usuario,contrasena,role) VALUES (4,'Marcelo Galimberti','mgalim','pelakiller','ADMINISTRADOR');
+INSERT INTO usuarios (usuario_id, nombre_apellido,usuario,contrasena,role) VALUES (5,'Alejandro Abadi','alecuadrado','aleback','ADMINISTRADOR');
+INSERT INTO usuarios (usuario_id, nombre_apellido,usuario,contrasena,role) VALUES (6,'Juan Perez','juancito','medico','MEDICO');
+INSERT INTO usuarios (usuario_id, nombre_apellido,usuario,contrasena,role) VALUES (7,'Carlo Rojas','carlos','medico','MEDICO');
+INSERT INTO usuarios (usuario_id, nombre_apellido,usuario,contrasena,role) VALUES (8,'Robertita Gomez','robertita','medico','MEDICO');
+INSERT INTO usuarios (usuario_id, nombre_apellido,usuario,contrasena,role) VALUES (9,'Juancita Perez','juancita','medico','MEDICO');
 
 
 -- ESPECIALIDADES

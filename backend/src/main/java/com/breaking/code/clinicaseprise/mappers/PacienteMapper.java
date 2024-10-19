@@ -29,8 +29,8 @@ public interface PacienteMapper {
 
 	// Mapeo específico para convertir cada RegistroClinico a su DTO correspondiente
 	@Mapping( source = "medico.medicoId",target = "medicoId")
-	@Mapping( source = "medico.usuario.nombre",target = "medicoNombre")
-	@Mapping( source = "medico.usuario.apellido",target = "medicoApellido")
+	@Mapping( source = "medico.usuario.nombreApellido",target = "medicoNombre")
+//	@Mapping( source = "medico.usuario.apellido",target = "medicoApellido")
 	@Mapping( source = "medico.especialidad.nombreEspecialidad",target = "nombreEspecialidad")
 	RegistroClinicoResponseDTO toDto( RegistroClinico registroClinico);
 }

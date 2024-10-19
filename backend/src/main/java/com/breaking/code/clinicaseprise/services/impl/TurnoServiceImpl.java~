@@ -81,7 +81,7 @@ public class TurnoServiceImpl implements TurnoService {
 				throw new BadRequestException( "El turno ya esta ocupado" );
 			}
 		} );
-
+		
 		Paciente paciente = pacienteService.findByDni(dto.getDni());
 		Turno turno = new Turno();
 		turno.setMedico(medico);

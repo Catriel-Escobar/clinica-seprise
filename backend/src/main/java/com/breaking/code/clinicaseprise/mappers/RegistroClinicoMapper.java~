@@ -1,7 +1,7 @@
 package com.breaking.code.clinicaseprise.mappers;
 
 
-import com.breaking.code.clinicaseprise.dto.response.RegistroClinicoResponse;
+import com.breaking.code.clinicaseprise.dto.response.RegistroClinicoResponseDTO;
 import com.breaking.code.clinicaseprise.models.RegistroClinico;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -16,5 +16,5 @@ public interface RegistroClinicoMapper {
 	@Mapping( source = "medico.usuario.nombre",target = "medicoNombre")
 	@Mapping( source = "medico.usuario.apellido",target = "medicoApellido")
 	@Mapping( source = "medico.especialidad.nombreEspecialidad",target = "nombreEspecialidad")
-	RegistroClinicoResponse toDto(RegistroClinico registroClinico);
+	RegistroClinicoResponseDTO toDto( RegistroClinico registroClinico);
 }

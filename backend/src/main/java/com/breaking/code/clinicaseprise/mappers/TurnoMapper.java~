@@ -20,5 +20,6 @@ public interface TurnoMapper {
 	@Mapping(source = "medico.usuario.apellido", target = "medicoApellido")
 	@Mapping(source = "medico.especialidad.nombreEspecialidad", target = "especialidadNombre")
 	@Mapping(source = "medico.especialidad.precio", target = "especialidadPrecio")
+	@Mapping( source = "esSobreTurno" , target = "esSobreTurno")
 	TurnoResponseDTO toDto(Turno turno);
 }

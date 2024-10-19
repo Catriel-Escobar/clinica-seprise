@@ -27,8 +27,8 @@ public class Honorario {
     private Medico medico;
 
     @Column(nullable = false)
-    private Boolean pagado = false;
+    private Boolean pagado;
 
-    @Column(name = "fecha_pago")
+    @Column(name = "fecha_pago",nullable = false)
     private LocalDate fechaPago;
 }

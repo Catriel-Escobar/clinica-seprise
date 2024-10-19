@@ -12,6 +12,6 @@ public record MedicoResponseDTO(
 		String nombreEspecialidad,
 		Integer tiempoConsulta,
 		BigDecimal precio,
-		
+		BigDecimal nomenclador
 ) {
 }

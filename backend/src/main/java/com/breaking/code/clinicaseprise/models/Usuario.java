@@ -24,9 +24,9 @@ public class Usuario  {
     @Column(nullable = false)
     private String contrasena;
 
-    @Column(nullable = false)
-    private String nombre;
-
-    @Column(nullable = false)
-    private String apellido;
+    @Column(nullable = false, name = "nombre_apellido")
+    private String nombreApellido;
+//
+//    @Column(nullable = false)
+//    private String apellido;
 }
