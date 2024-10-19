@@ -7,6 +7,6 @@ public record UsuarioResponseDTO (
         String usuario,
         String nombre,
         String apellido,
-				String role
+		String role
 ) {
 }

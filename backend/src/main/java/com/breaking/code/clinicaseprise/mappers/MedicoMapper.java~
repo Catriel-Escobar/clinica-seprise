@@ -15,8 +15,8 @@ public interface MedicoMapper {
 
 
     @Mapping(source = "medico.medicoId",target = "medicoId")
-    @Mapping(source = "usuario.nombre",target = "nombre")
-    @Mapping(source = "usuario.apellido",target = "apellido")
+    @Mapping(source = "usuario.nombreApellido",target = "nombreApellido")
+//    @Mapping(source = "usuario.apellido",target = "apellido")
     @Mapping(source = "especialidad.especialidadId",target = "especialidadId")
     @Mapping(source = "especialidad.nombreEspecialidad",target = "nombreEspecialidad")
     @Mapping(source = "especialidad.tiempoConsulta",target = "tiempoConsulta")

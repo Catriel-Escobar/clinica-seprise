@@ -17,20 +17,11 @@ public interface PacienteMapper {
 	Paciente toPaciente(PacienteRequestDTO dto);
 
 
-
-//	@Mapping( source = "registrosClinicos.medico.medicoId",target = "registrosClinicos.medicoId")
-//	@Mapping( source = "registrosClinicos.medico.nombre",target = "registrosClinicos.medicoNombre")
-//	@Mapping( source = "registrosClinicos.medico.apellido",target = "registrosClinicos.medicoApellido")
-//	@Mapping( source = "registrosClinicos.medico.especialidad.nombreEspecialidad",target = "registrosClinicos.nombreEspecialidad")
-//	PacienteResponseDTO toDto(Paciente paciente);
-
-	@Mapping(target = "registrosClinicos", source = "registrosClinicos") // Mapeo de registros clínicos
+	@Mapping(target = "registrosClinicos", source = "registrosClinicos")
 	PacienteResponseDTO toDto(Paciente paciente);
 
-	// Mapeo específico para convertir cada RegistroClinico a su DTO correspondiente
 	@Mapping( source = "medico.medicoId",target = "medicoId")
 	@Mapping( source = "medico.usuario.nombreApellido",target = "medicoNombre")
-//	@Mapping( source = "medico.usuario.apellido",target = "medicoApellido")
 	@Mapping( source = "medico.especialidad.nombreEspecialidad",target = "nombreEspecialidad")
 	RegistroClinicoResponseDTO toDto( RegistroClinico registroClinico);
 }
