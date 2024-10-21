@@ -103,3 +103,30 @@ form {
   -webkit-appearance: none;
   appearance: none;
 }
+.search-container {
+  position: relative; /* Para posicionar el dropdown */
+}
+
+.dropdown {
+  position: absolute; /* Posicionar relativo al contenedor */
+  background-color: white; /* Fondo blanco */
+  border: 1px solid #ccc; /* Borde gris */
+  max-height: 200px; /* Altura máxima */
+  overflow-y: auto; /* Scroll si hay muchos resultados */
+  z-index: 1000; /* Asegura que se muestre por encima de otros elementos */
+}
+
+.dropdown ul {
+  list-style: none; /* Sin viñetas */
+  padding: 0; /* Sin padding */
+  margin: 0; /* Sin margen */
+}
+
+.dropdown li {
+  padding: 8px; /* Espaciado */
+  cursor: pointer; /* Cambia el cursor al pasar el mouse */
+}
+
+.dropdown li:hover {
+  background-color: #f0f0f0; /* Color de fondo al pasar el mouse */
+}
