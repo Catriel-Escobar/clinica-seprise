@@ -1,15 +1,15 @@
 
 -- CREACION DE USUARIOS
 
-INSERT INTO usuarios (usuario_id, nombre,apellido,usuario,contrasena,role) VALUES (1,'catrielll','escobarrrr','catrieloski','asda1234','ADMINISTRADOR');
-INSERT INTO usuarios (usuario_id, nombre,apellido,usuario,contrasena,role) VALUES (2,'gustavo','baranda','gustavitojs','gustaveli','ADMINISTRADOR');
-INSERT INTO usuarios (usuario_id, nombre,apellido,usuario,contrasena,role) VALUES (3,'M Eugenia','Baba','meugenia','meuge','ADMINISTRADOR');
-INSERT INTO usuarios (usuario_id, nombre,apellido,usuario,contrasena,role) VALUES (4,'Marcelo','Galimberti','mgalim','pelakiller','ADMINISTRADOR');
-INSERT INTO usuarios (usuario_id, nombre,apellido,usuario,contrasena,role) VALUES (5,'Alejandro','Abadi','alecuadrado','aleback','ADMINISTRADOR');
-INSERT INTO usuarios (usuario_id, nombre,apellido,usuario,contrasena,role) VALUES (6,'Juan','Perez','juancito','medico','MEDICO');
-INSERT INTO usuarios (usuario_id, nombre,apellido,usuario,contrasena,role) VALUES (7,'Carlos','Rojas','carlos','medico','MEDICO');
-INSERT INTO usuarios (usuario_id, nombre,apellido,usuario,contrasena,role) VALUES (8,'Robertita','Gomez','robertita','medico','MEDICO');
-INSERT INTO usuarios (usuario_id, nombre,apellido,usuario,contrasena,role) VALUES (9,'Juancita','Perez','juancita','medico','MEDICO');
+INSERT INTO usuarios (usuario_id, nombre_apellido,usuario,contrasena,role) VALUES (1,'catrielll escobarrrr','catrieloski','asda1234','ADMINISTRADOR');
+INSERT INTO usuarios (usuario_id, nombre_apellido,usuario,contrasena,role) VALUES (2,'gustavo baranda','gustavitojs','gustaveli','ADMINISTRADOR');
+INSERT INTO usuarios (usuario_id, nombre_apellido,usuario,contrasena,role) VALUES (3,'M Eugenia Baba','meugenia','meuge','ADMINISTRADOR');
+INSERT INTO usuarios (usuario_id, nombre_apellido,usuario,contrasena,role) VALUES (4,'Marcelo Galimberti','mgalim','pelakiller','ADMINISTRADOR');
+INSERT INTO usuarios (usuario_id, nombre_apellido,usuario,contrasena,role) VALUES (5,'Alejandro Abadi','alecuadrado','aleback','ADMINISTRADOR');
+INSERT INTO usuarios (usuario_id, nombre_apellido,usuario,contrasena,role) VALUES (6,'Juan Perez','juancito','medico','MEDICO');
+INSERT INTO usuarios (usuario_id, nombre_apellido,usuario,contrasena,role) VALUES (7,'Carlo Rojas','carlos','medico','MEDICO');
+INSERT INTO usuarios (usuario_id, nombre_apellido,usuario,contrasena,role) VALUES (8,'Robertita Gomez','robertita','medico','MEDICO');
+INSERT INTO usuarios (usuario_id, nombre_apellido,usuario,contrasena,role) VALUES (9,'Juancita Perez','juancita','medico','MEDICO');
 
 
 -- ESPECIALIDADES
@@ -41,9 +41,9 @@ INSERT INTO registros_clinicos(paciente_id,medico_id,fecha,informe) VALUES(1,3,'
 INSERT INTO registros_clinicos(paciente_id,medico_id,fecha,informe) VALUES(1,4,'2024-08-11','informe 1');
 INSERT INTO registros_clinicos(paciente_id,medico_id,fecha,informe) VALUES(1,2,'2024-09-28','informe 1');
 
-INSERT INTO turnos (paciente_id,medico_id,fecha,hora,acreditado) VALUES (1,1,'2024-10-14','08:00:00',false);
-INSERT INTO turnos (paciente_id,medico_id,fecha,hora,acreditado) VALUES (2,2,'2024-10-18','18:00:00',false);
-INSERT INTO turnos (paciente_id,medico_id,fecha,hora,acreditado) VALUES (3,3,'2024-10-16','10:00:00',false);
-INSERT INTO turnos (paciente_id,medico_id,fecha,hora,acreditado) VALUES (4,1,'2024-10-15','09:00:00',false);
-INSERT INTO turnos (paciente_id,medico_id,fecha,hora,acreditado) VALUES (5,2,'2024-10-14','15:00:00',false);
-INSERT INTO turnos (paciente_id,medico_id,fecha,hora,acreditado) VALUES (2,4,'2024-10-14','14:00:00',false);
+INSERT INTO turnos (paciente_id,medico_id,fecha,hora,acreditado,es_sobre_turno) VALUES (1,1,'2024-10-14','08:00:00',false,false);
+INSERT INTO turnos (paciente_id,medico_id,fecha,hora,acreditado,es_sobre_turno) VALUES (2,2,'2024-10-18','18:00:00',false,false);
+INSERT INTO turnos (paciente_id,medico_id,fecha,hora,acreditado,es_sobre_turno) VALUES (3,3,'2024-10-16','10:00:00',false,false);
+INSERT INTO turnos (paciente_id,medico_id,fecha,hora,acreditado,es_sobre_turno) VALUES (4,1,'2024-10-15','09:00:00',false,false);
+INSERT INTO turnos (paciente_id,medico_id,fecha,hora,acreditado,es_sobre_turno) VALUES (5,2,'2024-10-14','15:00:00',false,false);
+INSERT INTO turnos (paciente_id,medico_id,fecha,hora,acreditado,es_sobre_turno) VALUES (2,4,'2024-10-14','14:00:00',false,false);

@@ -7,11 +7,11 @@ import java.math.BigDecimal;
 public record MedicoResponseDTO(
 		Integer medicoId,
         String nombre,
-        String apellido,
+//        String apellido,
         Integer especialidadId,
 		String nombreEspecialidad,
 		Integer tiempoConsulta,
 		BigDecimal precio,
-		
+		BigDecimal nomenclador
 ) {
 }

@@ -13,6 +13,6 @@ public interface MedicoRepository  extends JpaRepository<Medico,Integer> {
 	@Query("SELECT m FROM Medico m")
 	List<MedicoProyeccion> findAllMedicosProjected();
 
-	@Query("SELECT m FROM Medico m inner join m.usuario u WHERE LOWER(u.nombre)= LOWER(:nombre) ")
-	List<Medico> findByName(@Param( "nombre" ) String nombre );
+	@Query("SELECT m FROM Medico m inner join m.usuario u WHERE LOWER(u.nombreApellido) LIKE LOWER(CONCAT('%', :nombre, '%'))")
+	List<Medico> findByName(@Param("nombre") String nombre);
 }

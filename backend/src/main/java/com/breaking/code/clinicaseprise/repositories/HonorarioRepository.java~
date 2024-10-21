@@ -17,6 +17,6 @@ public interface HonorarioRepository extends JpaRepository<Honorario,Integer> {
 	List<Honorario> findByMedicoIdAndPagado( @Param ( "medicoId" ) Integer medicoId, @Param ( "pagado" ) Boolean pagado );
 
 
-	@Query(value = "SELECT * FROM honorarios H WHERE H.pagado = false AND H.medico_id = :medicoId", nativeQuery = true)
-	List<Honorario> findByNoPagado(@Param( "medicoId" ) Integer medicoId);
+	@Query(value = "SELECT * FROM honorarios H WHERE H.pagado = false", nativeQuery = true)
+	List<Honorario> findByNoPagado();
 }

@@ -22,4 +22,6 @@ public class TurnoRequestDTO {
 	private LocalDate fecha;
 	@NotNull
 	private LocalTime hora;
+
+	private Boolean esSobreTurno = false;
 }

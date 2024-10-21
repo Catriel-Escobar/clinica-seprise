@@ -17,6 +17,7 @@ public interface TurnoMapper {
 	@Mapping(source = "paciente.sexo", target = "pacienteSexo")
 	@Mapping(source = "medico.medicoId", target = "medicoId")
 	@Mapping(source = "medico.usuario.nombreApellido", target = "medicoNombre")
+//	@Mapping(source = "medico.usuario.apellido", target = "medicoApellido")
 	@Mapping(source = "medico.especialidad.nombreEspecialidad", target = "especialidadNombre")
 	@Mapping(source = "medico.especialidad.precio", target = "especialidadPrecio")
 	@Mapping( source = "esSobreTurno" , target = "esSobreTurno")

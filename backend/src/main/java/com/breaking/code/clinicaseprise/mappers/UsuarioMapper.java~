@@ -10,7 +10,7 @@ import org.mapstruct.factory.Mappers;
 public interface UsuarioMapper {
     Usuario INSTANCE = Mappers.getMapper(Usuario.class);
 
-    @Mapping( source = "nombreApellido", target = "nombre")
+    @Mapping( source = )
     UsuarioResponseDTO toResponse(Usuario usuario);
 
 }

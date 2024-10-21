@@ -13,9 +13,15 @@ public record PacienteResponseDTO(
 	String tipoSangre,
 	String sexo,
 
+
+
+
 	List<RegistroClinicoResponseDTO> registrosClinicos
 ) {
 	public void setRegistrosClinicos( RegistroClinicoResponseDTO registroClinicoResponses ) {
 		this.registrosClinicos.add( registroClinicoResponses );
 	}
+
+
+
 }
