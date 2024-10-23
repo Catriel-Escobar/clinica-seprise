@@ -35,6 +35,9 @@ public class RegistroClinico {
     private LocalDate fecha;
 
     @Column(nullable = false)
+    private String motivo;
+
+    @Column(nullable = false)
     private String informe;
 }
 
