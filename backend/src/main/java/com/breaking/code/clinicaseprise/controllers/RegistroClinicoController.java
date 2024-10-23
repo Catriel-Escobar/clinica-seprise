@@ -3,10 +3,7 @@ package com.breaking.code.clinicaseprise.controllers;
 
 import com.breaking.code.clinicaseprise.dto.request.RegistroClinicoDTO;
 import com.breaking.code.clinicaseprise.dto.response.RegistroClinicoResponseDTO;
-import com.breaking.code.clinicaseprise.mappers.RegistroClinicoMapper;
-import com.breaking.code.clinicaseprise.models.RegistroClinico;
 import com.breaking.code.clinicaseprise.services.RegistroClinicoService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
