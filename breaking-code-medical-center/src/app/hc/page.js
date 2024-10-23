@@ -4,11 +4,15 @@ import hc from "@/assets/hc.png";
 import ConsultaModal from "@/Components/ConsultaModal";
 import { useAuth } from "@/contexts/AuthContext";
 import axios from "axios";
-import { format } from "date-fns";
-import { es } from "date-fns/locale";
+import { format, parseISO } from "date-fns";
 import Image from "next/image";
 import { useState } from "react";
-import { FaChevronDown, FaChevronUp, FaSearch } from "react-icons/fa";
+import {
+  FaChevronDown,
+  FaChevronUp,
+  FaSearch,
+  FaSpinner,
+} from "react-icons/fa";
 
 const HistoriaClinica = () => {
   const [dni, setDni] = useState("");
@@ -21,11 +25,10 @@ const HistoriaClinica = () => {
   const { user } = useAuth();
   const http = "http://localhost:8080/api/";
 
-  // Formatear fecha
+  // Función para formatear fecha
   const formatDate = (dateString) => {
-    const date = new Date(dateString);
-    if (isNaN(date)) return "Fecha inválida";
-    return format(date, "dd/MM/yyyy", { locale: es });
+    const date = parseISO(dateString);
+    return format(date, "dd/MM/yyyy");
   };
 
   // Función para buscar paciente por DNI
@@ -41,7 +44,6 @@ const HistoriaClinica = () => {
     setHistoriaClinica(null);
 
     try {
-      // Buscar paciente por DNI
       const respuestaPaciente = await axios.get(`${http}paciente?dni=${dni}`);
       const pacienteData = respuestaPaciente.data;
       setPaciente(pacienteData);
@@ -53,9 +55,9 @@ const HistoriaClinica = () => {
       if (error.response) {
         setMensaje("¡Paciente no encontrado!");
       } else if (error.request) {
-        setMensaje("Error de conexión. Por favor, verifica tu red.");
+        setMensaje("¡Error de conexión. Por favor, verifica tu red!");
       } else {
-        setMensaje("Error inesperado. Inténtalo nuevamente más tarde.");
+        setMensaje("¡Error inesperado. Inténtalo nuevamente más tarde!");
       }
     } finally {
       setLoading(false);
@@ -111,7 +113,7 @@ const HistoriaClinica = () => {
 
         setHistoriaClinica(registrosOrdenados);
       } catch (error) {
-        setMensaje("Ocurrió un error al actualizar la historia clínica.");
+        setMensaje("¡Ocurrió un error al actualizar la historia clínica!");
       } finally {
         setLoading(false);
       }
@@ -140,20 +142,19 @@ const HistoriaClinica = () => {
             className="m-2 rounded-lg bg-[#87b9a5] p-3 text-white"
             disabled={loading}
           >
-            {loading ? "" : ""}
-            <FaSearch />
+            {loading ? <FaSpinner className="animate-spin" /> : <FaSearch />}
           </button>
         </div>
       </div>
 
       <div className="container mx-auto">
-        {mensaje ? (
-          <p className="font-bold text-red-500 text-center text-lg my-2">
-            {mensaje}
-          </p>
-        ) : (
-          <p className="my-2 text-white">//</p>
-        )}
+        <p
+          className={`font-bold text-red-500 text-center text-lg my-2 ${
+            mensaje ? "visible" : "invisible"
+          }`}
+        >
+          {mensaje || "Espacio reservado"}
+        </p>
 
         {paciente ? (
           <div className="flex flex-col lg:flex-row justify-center gap-3">
@@ -284,7 +285,7 @@ const HistoriaClinica = () => {
           <div className="flex flex-col items-center justify-center min-h-[40vh]">
             <Image src={hc} alt="hc" className="max-w-xs mb-4" />
             <h2 className="text-gray-600 font-bold text-lg text-center">
-              Introduce el DNI para ver la historia clínica del paciente
+              Introduzca el DNI para ver la historia clínica del paciente.
             </h2>
           </div>
         )}
