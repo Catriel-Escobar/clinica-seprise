@@ -1,13 +1,18 @@
 "use client";
 
+import hc from "@/assets/hc.png";
 import ConsultaModal from "@/Components/ConsultaModal";
-import { FaChevronUp } from "react-icons/fa";
-import { FaChevronDown } from "react-icons/fa";
-import { FaSearch } from "react-icons/fa";
+import { useAuth } from "@/contexts/AuthContext";
 import axios from "axios";
-import { format } from "date-fns";
-import { es } from "date-fns/locale";
+import { format, parseISO } from "date-fns";
+import Image from "next/image";
 import { useState } from "react";
+import {
+  FaChevronDown,
+  FaChevronUp,
+  FaSearch,
+  FaSpinner,
+} from "react-icons/fa";
 
 const HistoriaClinica = () => {
   const [dni, setDni] = useState("");
@@ -17,13 +22,13 @@ const HistoriaClinica = () => {
   const [loading, setLoading] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const [expandedConsultas, setExpandedConsultas] = useState(new Set());
-  const http = "https://670848c88e86a8d9e42e92dd.mockapi.io/api";
+  const { user } = useAuth();
+  const http = "http://localhost:8080/api/";
 
-  // Formatear fecha
+  // Función para formatear fecha
   const formatDate = (dateString) => {
-    const date = new Date(dateString);
-    if (isNaN(date)) return "Fecha inválida";
-    return format(date, "dd/MM/yyyy", { locale: es });
+    const date = parseISO(dateString);
+    return format(date, "dd/MM/yyyy");
   };
 
   // Función para buscar paciente por DNI
@@ -39,33 +44,30 @@ const HistoriaClinica = () => {
     setHistoriaClinica(null);
 
     try {
-      // Buscar paciente por DNI
-      const respuestaPaciente = await axios.get(`${http}/pacientes?dni=${dni}`);
-      const pacienteData = respuestaPaciente.data[0];
+      const respuestaPaciente = await axios.get(`${http}paciente?dni=${dni}`);
+      const pacienteData = respuestaPaciente.data;
       setPaciente(pacienteData);
 
-      try {
-        // Obtener registros clínica por ID paciente
-        const respuestaHistoria = await axios.get(
-          `${http}/historia-clinica?paciente_id=${pacienteData.paciente_id}`,
-        );
-
-        const historiaData = respuestaHistoria.data;
-
-        const registrosOrdenados = ordenarRegistros(historiaData);
-
-        setHistoriaClinica(registrosOrdenados);
-      } catch (historiaError) {
-        if (historiaError.response && historiaError.response.status === 404) {
-          setHistoriaClinica([]);
-        } else {
-          setMensaje("Ocurrió un error al buscar la historia clínica.");
-        }
-      }
+      const historiaData = pacienteData.registrosClinicos;
+      const registrosOrdenados = ordenarRegistros(historiaData);
+      setHistoriaClinica(registrosOrdenados);
     } catch (error) {
-      setMensaje("Paciente no encontrado");
+      if (error.response) {
+        setMensaje("¡Paciente no encontrado!");
+      } else if (error.request) {
+        setMensaje("¡Error de conexión. Por favor, verifica tu red!");
+      } else {
+        setMensaje("¡Error inesperado. Inténtalo nuevamente más tarde!");
+      }
     } finally {
       setLoading(false);
+    }
+  };
+
+  // Función para manejar el envío con Enter
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      buscarPaciente();
     }
   };
 
@@ -100,14 +102,20 @@ const HistoriaClinica = () => {
   const refrescarHistoriaClinica = async () => {
     if (paciente) {
       try {
-        const respuesta = await axios.get(
-          `${http}/historia-clinica?paciente_id=${paciente.paciente_id}`,
+        const respuestaPaciente = await axios.get(
+          `${http}paciente?dni=${paciente.dni}`,
         );
-        const registrosOrdenados = ordenarRegistros(respuesta.data);
+
+        const pacienteData = respuestaPaciente.data;
+
+        const historiaData = pacienteData.registrosClinicos;
+        const registrosOrdenados = ordenarRegistros(historiaData);
 
         setHistoriaClinica(registrosOrdenados);
       } catch (error) {
-        setMensaje("Ocurrió un error al actualizar la historia clínica.");
+        setMensaje("¡Ocurrió un error al actualizar la historia clínica!");
+      } finally {
+        setLoading(false);
       }
     }
   };
@@ -115,7 +123,7 @@ const HistoriaClinica = () => {
   return (
     <>
       <div className="bg-cyan-100 text-center text-4xl font-bold h-[50px] py-7">
-        <h2 className="">Historia Clínica</h2>
+        <h2>Historia Clínica</h2>
       </div>
       <div className="flex justify-center py-4 mb-6 bg-cyan-100">
         <div>
@@ -124,33 +132,34 @@ const HistoriaClinica = () => {
             type="search"
             value={dni}
             onChange={(e) => setDni(e.target.value)}
+            onKeyDown={handleKeyDown}
             className="w-80 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300"
             placeholder="Buscar..."
           />
           <button
             type="submit"
             onClick={buscarPaciente}
-            className="m-2 rounded bg-[#87b9a5] px-2 py-2 text-white"
+            className="m-2 rounded-lg bg-[#87b9a5] p-3 text-white"
             disabled={loading}
           >
-            {loading ? "" : ""}
-            <FaSearch />
+            {loading ? <FaSpinner className="animate-spin" /> : <FaSearch />}
           </button>
-          
-          {mensaje && <p className="text-red-500 px-60 mt-2">{mensaje}</p>}
         </div>
-        
       </div>
 
-      
+      <div className="container mx-auto">
+        <p
+          className={`font-bold text-red-500 text-center text-lg my-2 ${
+            mensaje ? "visible" : "invisible"
+          }`}
+        >
+          {mensaje || "Espacio reservado"}
+        </p>
 
-
-      <div className="contenedor flex ">
-        <div className="mx-auto flex-col md:flex-row bg-white min-h-screen">
-          {/* Columna izquierda - Datos del paciente */}
-
-          {paciente && (
-            <div className="mt-6 pt-5">
+        {paciente ? (
+          <div className="flex flex-col lg:flex-row justify-center gap-3">
+            {/* Columna izquierda - Datos del paciente */}
+            <div className="min-w-60 mt-4 md:mt-0 px-4">
               <h3 className="text-xl font-bold mb-4">Datos del Paciente</h3>
               <p className="text-gray-800">
                 <strong>Nombre:</strong> {paciente.nombre}
@@ -166,7 +175,8 @@ const HistoriaClinica = () => {
                 {formatDate(paciente.fechaNacimiento)}
               </p>
               <p className="text-gray-800">
-                <strong>Obra Social:</strong> {paciente.obraSocial ? "Sí" : "No"}
+                <strong>Obra Social:</strong>{" "}
+                {paciente.obraSocial ? "Sí" : "No"}
               </p>
               <p className="text-gray-800">
                 <strong>Sexo:</strong>{" "}
@@ -177,98 +187,108 @@ const HistoriaClinica = () => {
               </p>
             </div>
 
-          )}
-        </div>
+            <div className="border-r border-gray-300 mx-5"></div>
 
+            {/* Columna derecha - Consultas históricas */}
+            <div className="mt-4 md:mt-0 px-4 ">
+              {historiaClinica && (
+                <div className="flex justify-between">
+                  <h3 className="text-xl font-bold">Consultas Históricas</h3>
+                  <div className="me-4 mb-3">
+                    <button
+                      onClick={agregarConsulta}
+                      className="bg-[#87b9a5] text-white px-4 py-2 rounded-md hover:bg-[#4b665b] transition-colors"
+                    >
+                      Agregar Consulta
+                    </button>{" "}
+                  </div>
+                </div>
+              )}
 
-        {/* Columna derecha - Consultas históricas */}
-        <div className="md:w-2/3 md:pl-6 mt-6 md:mt-0">
-          <div className="flex justify-between items-center px-5 mb-4">
-            <h3 className="text-xl font-bold">Consultas Históricas</h3>
-            {historiaClinica && (
-              <button
-                onClick={agregarConsulta}
-                className="bg-[#87b9a5] text-white px-4 py-2 rounded-md hover:bg-[#4b665b] transition-colors"
-              >
-                Agregar Consulta
-              </button>
-            )}
-          </div>
-
-          {historiaClinica ? (
-            historiaClinica.length > 0 ? (
-              <div className="overflow-x-auto pr-5">
-                <table className="min-w-full bg-white border">
-                  <thead>
-                    <tr>
-                      <th className="px-4 py-2 border-b text-left text-gray-700">
-                        Fecha
-                      </th>
-                      <th className="px-4 py-2 border-b text-left text-gray-700">
-                        Médico
-                      </th>
-                      <th className="px-4 py-2 border-b text-left text-gray-700">
-                        Motivo
-                      </th>
-                      <th className="px-4 py-2 border-b text-left text-gray-700">
-                        Detalle
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {historiaClinica.map((registro) => (
-                      <tr
-                        key={registro.registro_id}
-                        className="hover:bg-gray-100"
-                      >
-                        <td className="px-4 py-2 border-b text-gray-800">
-                          {formatDate(registro.fecha)}
-                        </td>
-                        <td className="px-4 py-2 border-b text-gray-800">
-                          {registro.medico}
-                        </td>
-                        <td className="px-4 py-2 border-b text-gray-800">
-                          {registro.motivo}
-                        </td>
-                        <td className="px-4 py-2 border-b text-gray-800">
-                          <div className="flex items-center">
-                            <span
-                              onClick={() => toggleExpand(registro.registro_id)}
-                              className="cursor-pointer text-blue-600 hover:underline flex-grow"
-                            >
-                              {expandedConsultas.has(registro.registro_id)
-                                ? registro.detalle
-                                : truncateText(registro.detalle, 100)}
-                            </span>
-                            <button
-                              onClick={() => toggleExpand(registro.registro_id)}
-                              className="ml-2 focus:outline-none"
-                            >
-                              {expandedConsultas.has(registro.registro_id) ? (
-                                <FaChevronUp className="h-5 w-5 text-gray-500" />
-                              ) : (
-                                <FaChevronDown className="h-5 w-5 text-gray-500" />
-                              )}
-                            </button>
-                          </div>
-                        </td>
+              {historiaClinica.length > 0 ? (
+                <div className="overflow-x-auto pr-5">
+                  <table className="min-w-full bg-white border">
+                    <thead>
+                      <tr>
+                        <th className="px-4 py-2 border-b text-left text-gray-700">
+                          Fecha
+                        </th>
+                        <th className="px-4 py-2 border-b text-left text-gray-700">
+                          Médico
+                        </th>
+                        <th className="px-4 py-2 border-b text-left text-gray-700">
+                          Motivo
+                        </th>
+                        <th className="px-4 py-2 border-b text-left text-gray-700">
+                          Detalle
+                        </th>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            ) : (
-              <p className="text-gray-600">
-                No hay consultas registradas para este paciente.
-              </p>
-            )
-          ) : (
-            <p className="text-gray-600">
-              Introduce el DNI para buscar al paciente y ver su historia clínica.
-            </p>
-          )}
-          
-        </div>
+                    </thead>
+                    <tbody>
+                      {historiaClinica.map((registro) => (
+                        <tr
+                          key={registro.registroClinicoId}
+                          className="hover:bg-gray-100"
+                        >
+                          <td className="px-4 py-2 border-b text-gray-800">
+                            {formatDate(registro.fecha)}
+                          </td>
+                          <td className="px-4 py-2 border-b text-gray-800">
+                            {registro.medicoNombre}
+                          </td>
+                          <td className="px-4 py-2 border-b text-gray-800">
+                            {registro.motivo}
+                          </td>
+                          <td className="px-4 py-2 border-b text-gray-800">
+                            <div className="flex items-center">
+                              <span
+                                onClick={() =>
+                                  toggleExpand(registro.registroClinicoId)
+                                }
+                                className="cursor-pointer text-blue-600 hover:underline flex-grow"
+                              >
+                                {expandedConsultas.has(
+                                  registro.registroClinicoId,
+                                )
+                                  ? registro.informe
+                                  : truncateText(registro.informe, 80)}
+                              </span>
+                              <button
+                                onClick={() =>
+                                  toggleExpand(registro.registroClinicoId)
+                                }
+                                className="ml-2 focus:outline-none"
+                              >
+                                {expandedConsultas.has(
+                                  registro.registroClinicoId,
+                                ) ? (
+                                  <FaChevronUp className="h-5 w-5 text-gray-500" />
+                                ) : (
+                                  <FaChevronDown className="h-5 w-5 text-gray-500" />
+                                )}
+                              </button>
+                            </div>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              ) : (
+                <p className="text-gray-600 font-bold">
+                  No hay consultas registradas para este paciente.
+                </p>
+              )}
+            </div>
+          </div>
+        ) : (
+          <div className="flex flex-col items-center justify-center min-h-[40vh]">
+            <Image src={hc} alt="hc" className="max-w-xs mb-4" />
+            <h2 className="text-gray-600 font-bold text-lg text-center">
+              Introduzca el DNI para ver la historia clínica del paciente.
+            </h2>
+          </div>
+        )}
         {/* Modal para Agregar una consulta */}
         {modalOpen && (
           <ConsultaModal
@@ -276,16 +296,14 @@ const HistoriaClinica = () => {
             onRequestClose={() => setModalOpen(false)}
             onSuccess={refrescarHistoriaClinica}
             historiaClinicaId={historiaClinica.id}
-            pacienteId={paciente.paciente_id}
+            pacienteId={paciente.pacienteId}
+            medicoId={user?.usuarioId}
+            medicoNombre={user?.nombre}
           />
         )}
-
-
       </div>
-
     </>
   );
 };
-
 
 export default HistoriaClinica;

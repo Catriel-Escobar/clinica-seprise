@@ -1,22 +1,32 @@
 import axios from "axios";
+import { format } from "date-fns";
 import { useEffect, useState } from "react";
 import Modal from "react-modal";
 
-const ConsultaModal = ({ isOpen, onRequestClose, onSuccess, pacienteId }) => {
+const fechaActual = () => {
+  const today = new Date();
+  return format(today, "dd/MM/yyyy");
+};
+
+const ConsultaModal = ({
+  isOpen,
+  onRequestClose,
+  onSuccess,
+  pacienteId,
+  medicoId,
+  medicoNombre,
+}) => {
   const [formData, setFormData] = useState({
-    fecha: "",
-    medico: "",
     motivo: "",
-    detalle: "",
-    paciente_id: pacienteId,
+    informe: "",
+    usuarioId: medicoId,
+    pacienteId: pacienteId,
   });
   const [error, setError] = useState("");
 
   useEffect(() => {
-    const currentDate = new Date().toISOString().split("T")[0];
     setFormData((prevData) => ({
       ...prevData,
-      fecha: currentDate,
     }));
   }, [pacienteId]);
 
@@ -27,9 +37,9 @@ const ConsultaModal = ({ isOpen, onRequestClose, onSuccess, pacienteId }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
-    const http = "https://670848c88e86a8d9e42e92dd.mockapi.io";
+    const http = "http://localhost:8080/api/";
     try {
-      await axios.post(`${http}/api/historia-clinica`, formData);
+      await axios.post(`${http}registros-clinicos`, formData);
       onSuccess();
       onRequestClose();
     } catch (err) {
@@ -47,14 +57,13 @@ const ConsultaModal = ({ isOpen, onRequestClose, onSuccess, pacienteId }) => {
       overlayClassName="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-start"
     >
       <h2 className="text-xl font-semibold mb-4">{"Agregar Consulta"}</h2>
-      {error && <p className="text-red-500 mb-2">{error}</p>}
+      {error && <p className="text-red-500 text-lg font-bold mb-2">{error}</p>}
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
           <label className="block text-gray-700">Fecha:</label>
           <input
-            type="date"
-            name="fecha"
-            value={formData.fecha}
+            type="text"
+            value={fechaActual()}
             readOnly
             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300"
           />
@@ -63,10 +72,8 @@ const ConsultaModal = ({ isOpen, onRequestClose, onSuccess, pacienteId }) => {
           <label className="block text-gray-700">Médico:</label>
           <input
             type="text"
-            name="medico"
-            value={formData.medico}
-            onChange={handleChange}
-            required
+            value={medicoNombre}
+            readOnly
             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300"
           />
         </div>
@@ -84,8 +91,8 @@ const ConsultaModal = ({ isOpen, onRequestClose, onSuccess, pacienteId }) => {
         <div>
           <label className="block text-gray-700">Detalle:</label>
           <textarea
-            name="detalle"
-            value={formData.detalle}
+            name="informe"
+            value={formData.informe}
             onChange={handleChange}
             required
             className="w-full h-[300px] px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300"
