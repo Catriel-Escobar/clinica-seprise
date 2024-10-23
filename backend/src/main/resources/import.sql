@@ -35,11 +35,12 @@ INSERT INTO pacientes( obra_social, apellido, nombre, dni, tipo_sangre, fecha_na
 INSERT INTO pacientes( obra_social, apellido, nombre, dni, tipo_sangre, fecha_nac, sexo) VALUES ( TRUE, 'Pérez', 'Carla', '34561234', 'O+', '1995-11-11', 'F');
 
 
-INSERT INTO registros_clinicos(paciente_id,medico_id,fecha,informe) VALUES(1,1,'2024-09-14','informe 1');
-INSERT INTO registros_clinicos(paciente_id,medico_id,fecha,informe) VALUES(1,2,'2024-05-25','informe 1');
-INSERT INTO registros_clinicos(paciente_id,medico_id,fecha,informe) VALUES(1,3,'2024-09-21','informe 1');
-INSERT INTO registros_clinicos(paciente_id,medico_id,fecha,informe) VALUES(1,4,'2024-08-11','informe 1');
-INSERT INTO registros_clinicos(paciente_id,medico_id,fecha,informe) VALUES(1,2,'2024-09-28','informe 1');
+INSERT INTO registros_clinicos(paciente_id,medico_id,fecha,informe,motivo) VALUES(1,1,'2024-09-14','Reposo por 24 hs. Cualquier cosa acudir de emergencia.','Fiebre alta');
+INSERT INTO registros_clinicos(paciente_id,medico_id,fecha,informe,motivo) VALUES(2,2,'2024-05-25','Siempre le duele la cabeza','Dolor de cabeza');
+INSERT INTO registros_clinicos(paciente_id,medico_id,fecha,informe,motivo) VALUES(4,3,'2024-09-21','El paciente presenta vómitos desde hace dos días\nSe le indica un antiemético y bebidas isotónicas\nSe lo volverá a controlar en tres días','Dolor de cabeza');
+INSERT INTO registros_clinicos(paciente_id,medico_id,fecha,informe,motivo) VALUES(1,4,'2024-08-11','El paciente presenta dolores persistentes de cabeza, punzantes. De larga duración y molestia a la luz.\nSe le indica analgécico de 1gr cada 8hs. \nSe indica tomografía computada y resonancia magnética de cabeza','Jaqueca');
+INSERT INTO registros_clinicos(paciente_id,medico_id,fecha,informe,motivo) VALUES(2,2,'2024-09-28','El paciente presenta sintomas de alta presión','Alta presión');
+INSERT INTO registros_clinicos(paciente_id,medico_id,fecha,informe,motivo) VALUES(3,2,'2024-09-28','La paciente presenta vómitos desde hace 36 horas. Se indica un antiemético','Vomitos');
 
 INSERT INTO turnos (paciente_id,medico_id,fecha,hora,acreditado,es_sobre_turno) VALUES (1,1,'2024-10-14','08:00:00',false,false);
 INSERT INTO turnos (paciente_id,medico_id,fecha,hora,acreditado,es_sobre_turno) VALUES (2,2,'2024-10-18','18:00:00',false,false);

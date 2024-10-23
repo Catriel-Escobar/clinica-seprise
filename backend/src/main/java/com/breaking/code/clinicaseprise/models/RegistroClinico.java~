@@ -22,7 +22,7 @@ public class RegistroClinico {
     private Integer registroClinicoId;
 
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "paciente_id",foreignKey = @ForeignKey(name = "FK_PACIENTE_REGISTRO_CLINICO"))
     @JsonIgnore
     private Paciente paciente;
@@ -33,6 +33,8 @@ public class RegistroClinico {
 
     @Column(nullable = false)
     private LocalDate fecha;
+
+    private String movito;
 
     @Column(nullable = false)
     private String informe;
