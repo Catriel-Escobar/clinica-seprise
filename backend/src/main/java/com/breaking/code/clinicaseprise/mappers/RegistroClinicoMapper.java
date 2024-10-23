@@ -19,8 +19,4 @@ public interface RegistroClinicoMapper {
 	@Mapping( source = "motivo",target = "motivo")
 	RegistroClinicoResponseDTO toDto( RegistroClinico registroClinico);
 
-
-	@Mapping( source = "medicoId",target = "medico.medicoId")
-	@Mapping( source = "pacienteId",target = "paciente.pacienteId")
-	RegistroClinico toRegistroClinico( RegistroClinicoDTO dto );
 }
