@@ -1,14 +1,14 @@
 'use client';
 import { createContext, useState, useContext, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import Spinner from "@/Components/UIComponents/Spinner"; 
+import Spinner from "@/Components/UIComponents/Spinner";
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [showSpinner, setShowSpinner] = useState(false); 
+  const [showSpinner, setShowSpinner] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const router = useRouter();
 
@@ -18,7 +18,7 @@ export const AuthProvider = ({ children }) => {
       if (storedUser) {
         try {
           const parsedUser = JSON.parse(storedUser);
-          setUser(parsedUser); 
+          setUser(parsedUser);
         } catch (error) {
           console.error("Error de parseo de datos de usuario:", error);
           sessionStorage.removeItem("user");
@@ -31,7 +31,7 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   const login = async (username, password) => {
-    setErrorMessage(""); 
+    setErrorMessage("");
     setShowSpinner(true);
 
     try {
@@ -46,11 +46,11 @@ export const AuthProvider = ({ children }) => {
       if (response.ok) {
         const data = await response.json();
 
-        if (data.usuarioId && data.usuario && data.nombre && data.apellido && data.role) {
-          setUser(data);  
-          sessionStorage.setItem("user", JSON.stringify(data)); 
-          setShowSpinner(false); 
-          router.push("/home"); 
+        if (data.usuarioId && data.usuario && data.nombre && data.role) {
+          setUser(data);
+          sessionStorage.setItem("user", JSON.stringify(data));
+          setShowSpinner(false);
+          router.push("/home");
         } else {
           throw new Error("Estructura de datos no válida");
         }
@@ -58,9 +58,9 @@ export const AuthProvider = ({ children }) => {
         throw new Error("Error de autenticación");
       }
     } catch (error) {
-      console.error(error.message);  
+      console.error(error.message);
       setShowSpinner(false);
-      setErrorMessage(error.message); 
+      setErrorMessage(error.message);
     }
   };
 
