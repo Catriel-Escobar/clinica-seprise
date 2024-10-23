@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 ::-webkit-scrollbar {
   width: 10px;
 }
@@ -25,7 +24,6 @@ form {
   width: 100%;
   max-width: 750px;
 }
-
 
 .button {
   margin-top: 10px;
@@ -99,34 +97,96 @@ form {
   width: 0;
   height: 0;
 }
+
 .no-clear::-webkit-search-cancel-button {
   -webkit-appearance: none;
   appearance: none;
 }
+
 .search-container {
-  position: relative; /* Para posicionar el dropdown */
+  position: relative;
 }
 
 .dropdown {
-  position: absolute; /* Posicionar relativo al contenedor */
-  background-color: white; /* Fondo blanco */
-  border: 1px solid #ccc; /* Borde gris */
-  max-height: 200px; /* Altura máxima */
-  overflow-y: auto; /* Scroll si hay muchos resultados */
-  z-index: 1000; /* Asegura que se muestre por encima de otros elementos */
+  position: absolute;
+  background-color: white;
+  border: 1px solid #ccc;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 1000;
 }
 
 .dropdown ul {
-  list-style: none; /* Sin viñetas */
-  padding: 0; /* Sin padding */
-  margin: 0; /* Sin margen */
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .dropdown li {
-  padding: 8px; /* Espaciado */
-  cursor: pointer; /* Cambia el cursor al pasar el mouse */
+  padding: 8px;
+  cursor: pointer;
 }
 
 .dropdown li:hover {
-  background-color: #f0f0f0; /* Color de fondo al pasar el mouse */
+  background-color: #f0f0f0;
+}
+
+.react-datepicker__close-icon {
+  width: 5px; 
+  height: 5px; 
+  padding: 0 !important;
+  margin-right: 15px; 
+}
+
+.react-datepicker__close-icon::after {
+  padding: 3px 5px !important;
+  border-radius: 50%;
+}
+
+
+.swal2-popup {
+  font-family: 'Arial', sans-serif;
+  border-radius: 8px;
+  background: #fefefe;
+  transition: all 0.3s ease; 
+}
+
+.swal2-title {
+  color: #333;
+}
+
+.swal2-content {
+  color: #666;
+  border-radius: 50px;
+}
+
+.swal2-confirm {
+  background-color: #28a745;
+  border: none;
+  border-radius: 15px;
+}
+
+.swal2-cancel {
+  background-color: #dc3545;
+  border: none;
+  border-radius: 15px;
+}
+
+.swal2-error {
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  color: #721c24;
+}
+
+.swal2-error .swal2-title {
+  color: #721c24;
+}
+
+.swal2-error .swal2-content {
+  color: #721c24;
+}
+
+.swal2-show {
+  background: #fff; 
+  border-radius: 15px;
 }

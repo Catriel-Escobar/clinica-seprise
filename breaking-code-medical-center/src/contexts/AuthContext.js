@@ -10,6 +10,7 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [showSpinner, setShowSpinner] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const [resultados, setResultados] = useState(null);
   const router = useRouter();
 
   useEffect(() => {
@@ -75,7 +76,7 @@ export const AuthProvider = ({ children }) => {
       {showSpinner ? (
         <Spinner />
       ) : (
-        <AuthContext.Provider value={{ user, loading, login, logout, errorMessage }}>
+        <AuthContext.Provider value={{ user, loading, login, logout, errorMessage, resultados, setResultados }}>
           {children}
         </AuthContext.Provider>
       )}
