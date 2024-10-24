@@ -1,11 +1,14 @@
 package com.breaking.code.clinicaseprise.services.impl;
 
+import com.breaking.code.clinicaseprise.dto.response.HonorarioResponseDTO;
 import com.breaking.code.clinicaseprise.exceptions.BadRequestException;
+import com.breaking.code.clinicaseprise.mappers.HonorarioMapper;
 import com.breaking.code.clinicaseprise.models.Honorario;
 import com.breaking.code.clinicaseprise.models.Medico;
 import com.breaking.code.clinicaseprise.models.Turno;
 import com.breaking.code.clinicaseprise.repositories.HonorarioRepository;
 import com.breaking.code.clinicaseprise.services.HonorarioService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -14,6 +17,8 @@ import java.util.List;
 @Service
 public class HonorarioServiceImpl implements HonorarioService {
 
+	@Autowired
+	private HonorarioMapper honorarioMapper;
 	private final HonorarioRepository honorarioRepository;
 	public HonorarioServiceImpl (HonorarioRepository honorarioRepository) {
 		this.honorarioRepository = honorarioRepository;
@@ -40,7 +45,7 @@ public class HonorarioServiceImpl implements HonorarioService {
 	}
 
 	@Override
-	public List<Honorario> honorariosNoPagados( Integer medicoId ) {
-		return honorarioRepository.findByNoPagado(medicoId);
+	public List<HonorarioResponseDTO> honorariosNoPagados( Integer medicoId ) {
+		return honorarioMapper.toDtoList( honorarioRepository.findByNoPagado(medicoId) );
 	}
 }

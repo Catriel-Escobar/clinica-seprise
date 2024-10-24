@@ -1,6 +1,7 @@
 package com.breaking.code.clinicaseprise.controllers;
 
 
+import com.breaking.code.clinicaseprise.dto.response.HonorarioResponseDTO;
 import com.breaking.code.clinicaseprise.models.Honorario;
 import com.breaking.code.clinicaseprise.services.HonorarioService;
 import org.springframework.http.ResponseEntity;
@@ -34,7 +35,7 @@ public class HonorariosController {
 
 
 	@GetMapping()
-	public ResponseEntity<List<Honorario>> honorariosNoPagos(
+	public ResponseEntity<List<HonorarioResponseDTO>> honorariosNoPagos(
 			@RequestParam("medicoId") Integer medicoId
 	) {
 		return ResponseEntity.ok().body( this.honorarioService.honorariosNoPagados( medicoId ));

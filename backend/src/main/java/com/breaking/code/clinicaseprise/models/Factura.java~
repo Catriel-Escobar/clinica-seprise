@@ -22,9 +22,8 @@ public class Factura {
     @JoinColumn(name = "turno_id",nullable = false,foreignKey = @ForeignKey(name = "FK_FACTURA_TURNO"))
     private Turno turno;
 
-    @Column(nullable = false)
     private BigDecimal monto;
-
+    
     private LocalDate fecha;
     @Column(name = "forma_pago" ,nullable = false)
     @Enumerated(EnumType.STRING)

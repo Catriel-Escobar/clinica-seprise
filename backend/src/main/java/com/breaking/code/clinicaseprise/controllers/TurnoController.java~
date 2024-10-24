@@ -9,7 +9,6 @@ import com.breaking.code.clinicaseprise.models.enums.FormaDePago;
 import com.breaking.code.clinicaseprise.repositories.FacturaRepository;
 import com.breaking.code.clinicaseprise.services.TurnoService;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -81,11 +80,7 @@ public class TurnoController {
 	}
 
 	@GetMapping("/find-turno")
-	public ResponseEntity<TurnoResponseDTO> findTurnoByDni(
-			@RequestParam("dni")
-			@Pattern(regexp = "^[0-9]{8}$", message = "El DNI debe tener exactamente 8 dígitos numéricos.")
-			String dni
-	) {
+	public ResponseEntity<TurnoResponseDTO> findTurnoByDni(@RequestParam("dni") String dni) {
 		return ResponseEntity.ok().body( turnoService.findByDni( dni ) );
 	}
 

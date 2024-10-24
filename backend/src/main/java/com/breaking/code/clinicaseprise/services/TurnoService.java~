@@ -20,7 +20,5 @@ public interface TurnoService {
 	Turno findById(Integer id);
 
 	Void delete( Integer id );
-
-	TurnoResponseDTO findByDni(String dni);
 //	String armandoAgenda();
 }
