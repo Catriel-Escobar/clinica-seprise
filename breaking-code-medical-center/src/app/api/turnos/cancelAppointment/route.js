@@ -21,10 +21,9 @@ export const DELETE = async (request) => {
       return NextResponse.json({ error: errorResponse.error || 'Error en la API externa' }, { status: externalApiResponse.status });
     }
 
-    // Aunque no haya contenido, devuelve un JSON vacío para evitar problemas con la respuesta.
     return NextResponse.json({ message: 'Turno eliminado correctamente' }, { status: 200 });
   } catch (error) {
-    console.error('Error al conectarse con la API externa:', error);
+    console.error('Error al conectarse al servidor:', error);
     return NextResponse.json({ error: 'Error interno del servidor' }, { status: 500 });
   }
 };

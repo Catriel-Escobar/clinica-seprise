@@ -133,7 +133,7 @@ const HistoriaClinica = () => {
             value={dni}
             onChange={(e) => setDni(e.target.value)}
             onKeyDown={handleKeyDown}
-            className="w-80 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300"
+            className="w-72 px-3 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring focus:border-blue-300"
             placeholder="Buscar..."
           />
           <button

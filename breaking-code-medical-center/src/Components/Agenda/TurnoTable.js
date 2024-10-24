@@ -21,9 +21,10 @@ const TurnoTable = ({ title, schedule, onActionClick }) => {
               {slot.occupied ? (slot.confirmed ? "Sí" : "No") : ""}
             </div>
             <div className="w-16 text-center text-lg font-normal sm:text-center text-gray-400 shrink-0">
-              <button
-                className="rounded p-2 text-white bg-[#87b9a5]"
+            <button
+                className={`rounded p-2 text-white ${slot.confirmed? "bg-gray-300" : "bg-[#87b9a5]"}`}
                 onClick={() => onActionClick(slot)}
+                disabled={slot.confirmed}
               >
                 <IoPersonAddSharp />
               </button>

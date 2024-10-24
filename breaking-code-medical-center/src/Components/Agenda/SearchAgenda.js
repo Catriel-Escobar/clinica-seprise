@@ -19,7 +19,7 @@ const SearchAgenda = ({ onSearch, setSelectedMedico, setResultados, resultados }
     debounce(async (text) => {
       setLoading(true); 
       await onSearch?.(text);
-    }, 300),
+    }, 1000),
     [onSearch]
   );
 
@@ -76,7 +76,7 @@ const SearchAgenda = ({ onSearch, setSelectedMedico, setResultados, resultados }
           <button
             type="submit"
             className="absolute right-[16px] rounded-lg bg-[#87b9a5] px-3 py-3 text-white"
-            disabled={loading} // Deshabilitar el botón si está cargando
+            disabled={loading} 
           >
             {loading ? <FaSpinner className="animate-spin" /> : <FaSearch />}
           </button>
@@ -89,7 +89,7 @@ const SearchAgenda = ({ onSearch, setSelectedMedico, setResultados, resultados }
               <div
                 key={index}
                 className="py-[10px] px-[20px] hover:bg-gray-200 hover:cursor-pointer hover:rounded-xl font-bold"
-                onClick={() => handleSearch(resultado)} // Finaliza loading aquí
+                onClick={() => handleSearch(resultado)} 
               >
                 Dr. {resultado.nombre}
               </div>
