@@ -111,6 +111,13 @@ public class TurnoServiceImpl implements TurnoService {
 		return turnos;
 	}
 
+
+	public TurnoResponseDTO findByDni(String dni) {
+		Paciente paciente = pacienteService.findByDni( dni );
+		Turno turno = turnoRepository.findLastByPacienteId(paciente.getPacienteId()).orElseThrow(() -> new NotFoundException( "Turno no encontrado" ));
+		return turnoMapper.toDto( turno );
+	}
+
 	@Override
 	public List<TurnoResponseDTO> findByMedicoId(Integer medicoId, LocalDate fecha) {
 		List<Turno> turnos = this.turnoRepository.findByMedicoId(medicoId, fecha);

@@ -24,6 +24,7 @@ public class FacturaServiceImpl implements FacturaService {
 		factura.setTurno(turno);
 		factura.setFecha( LocalDate.now());
 		factura.setFormaPago(formaDePago);
+		factura.setMonto( turno.getMedico().getEspecialidad().getPrecio() );
 		facturaRepository.save(factura);
 		return factura;
 	}

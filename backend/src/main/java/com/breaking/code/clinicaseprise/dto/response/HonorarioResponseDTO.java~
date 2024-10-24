@@ -1,0 +1,14 @@
+package com.breaking.code.clinicaseprise.dto.response;
+
+import java.math.BigDecimal;
+import java.time.LocalDate;
+
+public record HonorarioResponseDTO(
+		Integer honorarioId,
+		Boolean pagado,
+		String medicoNombre,
+
+		BigDecimal especialidadPrecio,
+		LocalDate fechaPago
+) {
+}

@@ -81,7 +81,7 @@ public class TurnoServiceImpl implements TurnoService {
 				throw new BadRequestException( "El turno ya esta ocupado" );
 			}
 		} );
-		
+
 		Paciente paciente = pacienteService.findByDni(dto.getDni());
 		Turno turno = new Turno();
 		turno.setMedico(medico);
@@ -108,6 +108,13 @@ public class TurnoServiceImpl implements TurnoService {
 	@Override
 	public List<Turno> findByPacienteId(Integer pacienteId) {
 		List<Turno> turnos = turnoRepository.findByPacienteId(pacienteId);
+		return turnos;
+	}
+
+
+	public List<Turno> findByDni(String dni) {
+		Paciente paciente = pacienteService.findByDni( dni );
+		Turno turnos = turnoRepository.findLastByPacienteId(paciente.getPacienteId()).orElseThrow(() -> new NotFoundException( "Turno no encontrado" ));
 		return turnos;
 	}
 

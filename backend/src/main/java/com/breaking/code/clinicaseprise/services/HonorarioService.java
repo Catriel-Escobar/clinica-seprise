@@ -1,5 +1,6 @@
 package com.breaking.code.clinicaseprise.services;
 
+import com.breaking.code.clinicaseprise.dto.response.HonorarioResponseDTO;
 import com.breaking.code.clinicaseprise.models.Honorario;
 import com.breaking.code.clinicaseprise.models.Medico;
 import com.breaking.code.clinicaseprise.models.Turno;
@@ -12,5 +13,5 @@ public interface HonorarioService {
 
 	void pagarHonorarios(Integer medicoId);
 
-	List<Honorario> honorariosNoPagados(Integer medicoId);
+	List<HonorarioResponseDTO> honorariosNoPagados( Integer medicoId);
 }
