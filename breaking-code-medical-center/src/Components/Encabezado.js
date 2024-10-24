@@ -18,10 +18,9 @@ const Encabezado = ({ titulo, consigna, onSearch }) => {
 
   return (
     <div className="relative flex flex-col justify-center">
-      <div className="bg-cyan-100 text-center text-4xl font-bold h-[60px] py-7">
+      <h2 className="bg-cyan-100 text-center text-3xl font-bold h-[60px] py-7">
         {titulo}
-      </div>
-
+      </h2>
       <div className="flex justify-center items-center h-[80px] bg-cyan-100">
         <div className="w-[320px] font-medium text-xl text-end">{consigna}:</div>
 

@@ -1,14 +1,11 @@
 'use client';
 import { createContext, useState, useContext, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import Spinner from "@/Components/UIComponents/Spinner";
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [showSpinner, setShowSpinner] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [resultados, setResultados] = useState(null);
   const router = useRouter();
@@ -25,7 +22,6 @@ export const AuthProvider = ({ children }) => {
           sessionStorage.removeItem("user");
         }
       }
-      setLoading(false);
     };
 
     checkUser();
@@ -33,7 +29,6 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (username, password) => {
     setErrorMessage("");
-    setShowSpinner(true);
 
     try {
       const response = await fetch("/api/auth", {
@@ -50,7 +45,6 @@ export const AuthProvider = ({ children }) => {
         if (data.usuarioId && data.usuario && data.nombre && data.role) {
           setUser(data);
           sessionStorage.setItem("user", JSON.stringify(data));
-          setShowSpinner(false);
           router.push("/home");
         } else {
           throw new Error("Estructura de datos no válida");
@@ -60,7 +54,6 @@ export const AuthProvider = ({ children }) => {
       }
     } catch (error) {
       console.error(error.message);
-      setShowSpinner(false);
       setErrorMessage(error.message);
     }
   };
@@ -72,15 +65,9 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <>
-      {showSpinner ? (
-        <Spinner />
-      ) : (
-        <AuthContext.Provider value={{ user, loading, login, logout, errorMessage, resultados, setResultados }}>
-          {children}
-        </AuthContext.Provider>
-      )}
-    </>
+    <AuthContext.Provider value={{ user, login, logout, errorMessage, resultados, setResultados }}>
+      {children}
+    </AuthContext.Provider>
   );
 };
 
