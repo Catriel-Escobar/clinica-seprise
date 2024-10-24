@@ -6,6 +6,8 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
+import java.util.List;
+
 @Mapper(componentModel = "spring")
 public interface HonorarioMapper {
 	Honorario INSTANCE = Mappers.getMapper(Honorario.class);
@@ -13,5 +15,6 @@ public interface HonorarioMapper {
 	@Mapping(source = "medico.usuario.nombreApellido", target = "medicoNombre")
 	@Mapping(source = "medico.especialidad.precio", target = "especialidadPrecio")
 	HonorarioResponseDTO toDto(Honorario honorario);
-
+	// Método para convertir una lista de Honorarios a una lista de HonorarioResponseDTO
+	List<HonorarioResponseDTO> toDtoList( List<Honorario> honorarios);
 }

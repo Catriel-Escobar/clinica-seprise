@@ -14,7 +14,7 @@ INSERT INTO usuarios (usuario_id, nombre_apellido,usuario,contrasena,role) VALUE
 
 -- ESPECIALIDADES
 
-INSERT INTO especialidades (especialidad_id,nomenclador,precio,tiempo_consulta,nombre_especialidad) VALUES (1,2000,3500,25,'fisio_kinesiologia');
+INSERT INTO especialidades (especialidad_id,nomenclador,precio,tiempo_consulta,nombre_especialidad) VALUES (1,2000,3500,30,'fisio_kinesiologia');
 INSERT INTO especialidades (especialidad_id,nomenclador,precio,tiempo_consulta,nombre_especialidad) VALUES (2,2200,4000,30,'salud_mental');
 INSERT INTO especialidades (especialidad_id,nomenclador,precio,tiempo_consulta,nombre_especialidad) VALUES (3,2000,3500,15,'traumatologia');
 
@@ -28,11 +28,11 @@ INSERT INTO medicos (usuario_id,especialidad_id) VALUES(8,3);
 INSERT INTO medicos (usuario_id,especialidad_id) VALUES(9,3);
 
 
-INSERT INTO pacientes( obra_social, apellido, nombre, dni, tipo_sangre, fecha_nac, sexo) VALUES ( TRUE, 'González', 'Lucía', '30548961', 'A+', '1990-07-14', 'F');
-INSERT INTO pacientes( obra_social, apellido, nombre, dni, tipo_sangre, fecha_nac, sexo) VALUES ( FALSE, 'Rodríguez', 'Marcos', '28412345', 'O-', '1985-12-22', 'M');
-INSERT INTO pacientes( obra_social, apellido, nombre, dni, tipo_sangre, fecha_nac, sexo) VALUES ( TRUE, 'Fernández', 'Sofía', '33456987', 'B+', '1993-03-09', 'F');
-INSERT INTO pacientes( obra_social, apellido, nombre, dni, tipo_sangre, fecha_nac, sexo) VALUES ( FALSE, 'López', 'Martín', '29345678', 'AB-', '1988-05-30', 'M');
-INSERT INTO pacientes( obra_social, apellido, nombre, dni, tipo_sangre, fecha_nac, sexo) VALUES ( TRUE, 'Pérez', 'Carla', '34561234', 'O+', '1995-11-11', 'F');
+INSERT INTO pacientes( obra_social, apellido, nombre, dni, tipo_sangre, fecha_nac, sexo) VALUES ( TRUE, 'González', 'Lucía', '11111111', 'A+', '1990-07-14', 'F');
+INSERT INTO pacientes( obra_social, apellido, nombre, dni, tipo_sangre, fecha_nac, sexo) VALUES ( FALSE, 'Rodríguez', 'Marcos', '22222222', 'O-', '1985-12-22', 'M');
+INSERT INTO pacientes( obra_social, apellido, nombre, dni, tipo_sangre, fecha_nac, sexo) VALUES ( TRUE, 'Fernández', 'Sofía', '33333333', 'B+', '1993-03-09', 'F');
+INSERT INTO pacientes( obra_social, apellido, nombre, dni, tipo_sangre, fecha_nac, sexo) VALUES ( FALSE, 'López', 'Martín', '84444444', 'AB-', '1988-05-30', 'M');
+INSERT INTO pacientes( obra_social, apellido, nombre, dni, tipo_sangre, fecha_nac, sexo) VALUES ( TRUE, 'Pérez', 'Carla', '55555558', 'O+', '1995-11-11', 'F');
 
 
 INSERT INTO registros_clinicos(paciente_id,medico_id,fecha,informe,motivo) VALUES(1,1,'2024-09-14','Reposo por 24 hs. Cualquier cosa acudir de emergencia.','Fiebre alta');
