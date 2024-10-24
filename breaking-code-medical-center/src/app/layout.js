@@ -31,7 +31,7 @@ const RootLayout = ({ children }) => {
       >
         <AuthProvider>
           {shouldShowHeaders && <Headers />}
-          {loading ? <Spinner /> : children}
+          {loading ? <Spinner isRoot={pathname === "/"} /> : children}
         </AuthProvider>
       </body>
     </html>

@@ -1,9 +1,13 @@
+const Spinner = ({ isRoot }) => {
+  const backgroundStyle = isRoot
+    ? { background: "linear-gradient(to right, #87b9a5 0%, #87b9a5 34%, #C4EDED 100%)" }
+    : {};
 
-const Spinner = () => {
   return (
     <div
       role="status"
-      className="min-h-[calc(100vh-90px)] grid place-content-center bg-transparent"
+      className={`grid place-content-center bg-transparent ${isRoot ? 'min-h-[100vh]' : 'min-h-[calc(100vh-90px)]'}`}
+      style={backgroundStyle} 
     >
       <svg
         aria-hidden="true"
@@ -22,7 +26,7 @@ const Spinner = () => {
         />
       </svg>
     </div>
-  )
-}
+  );
+};
 
-export default Spinner
+export default Spinner;
