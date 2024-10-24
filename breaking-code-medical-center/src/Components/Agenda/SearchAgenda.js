@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect, useCallback } from "react";
-import { FaSearch, FaTimes } from "react-icons/fa";
+import { FaSearch, FaTimes, FaSpinner } from "react-icons/fa";
 
 const debounce = (func, delay) => {
   let timeoutId;
@@ -14,9 +14,12 @@ const debounce = (func, delay) => {
 
 const SearchAgenda = ({ onSearch, setSelectedMedico, setResultados, resultados }) => {
   const [searchText, setSearchText] = useState("");
-
+  const [loading, setLoading] = useState(false); 
   const debouncedSearch = useCallback(
-    debounce((text) => onSearch?.(text), 300),
+    debounce(async (text) => {
+      setLoading(true); 
+      await onSearch?.(text);
+    }, 300),
     [onSearch]
   );
 
@@ -24,6 +27,7 @@ const SearchAgenda = ({ onSearch, setSelectedMedico, setResultados, resultados }
     if (searchText.length >= 3) {
       debouncedSearch(searchText);
     } else {
+      setLoading(false); 
       setResultados(null);
     }
   }, [searchText, debouncedSearch, setResultados]);
@@ -39,7 +43,7 @@ const SearchAgenda = ({ onSearch, setSelectedMedico, setResultados, resultados }
   const handleSearch = (resultado) => {
     setSelectedMedico(resultado);
     setSearchText("");
-    setResultados(null);
+    setResultados(null);  
   };
 
   return (
@@ -72,8 +76,9 @@ const SearchAgenda = ({ onSearch, setSelectedMedico, setResultados, resultados }
           <button
             type="submit"
             className="absolute right-[16px] rounded-lg bg-[#87b9a5] px-3 py-3 text-white"
+            disabled={loading} // Deshabilitar el botón si está cargando
           >
-            <FaSearch />
+            {loading ? <FaSpinner className="animate-spin" /> : <FaSearch />}
           </button>
         </form>
       </div>
@@ -84,7 +89,7 @@ const SearchAgenda = ({ onSearch, setSelectedMedico, setResultados, resultados }
               <div
                 key={index}
                 className="py-[10px] px-[20px] hover:bg-gray-200 hover:cursor-pointer hover:rounded-xl font-bold"
-                onClick={() => handleSearch(resultado)}
+                onClick={() => handleSearch(resultado)} // Finaliza loading aquí
               >
                 Dr. {resultado.nombre}
               </div>

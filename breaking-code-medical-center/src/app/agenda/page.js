@@ -14,13 +14,14 @@ const Agenda = () => {
   const [extraSchedule, setExtraSchedule] = useState([]);
   const [selectedTurno, setSelectedTurno] = useState(null);
   const [active, setActive] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleSearch = async (searchText) => {
     if (!searchText.trim()) {
       setResultados(null);
       return;
     }
-
+    setLoading(true);
     try {
       const response = await fetch(
         `/api/agenda/getDoctorByName?name=${searchText}`
@@ -39,7 +40,8 @@ const Agenda = () => {
   const handleDateChange = (date) => {
     setSelectedDate(date);
   };
-
+  
+  
   const handleCheckAvailability = async () => {
     if (!selectedMedico || !selectedDate) {
       console.error("Faltan el médico o la fecha");
@@ -63,17 +65,18 @@ const Agenda = () => {
 
   const generateSchedules = () => {
     if (!selectedMedico || !turnos) return;
-  
+
     const startHour = 9;
     const endHour = 12;
     const timeSlot = selectedMedico.tiempoConsulta;
     const normalSchedule = [];
     const extraSchedule = [];
-  
+
     const turnosOcupados =
       turnos?.map((turno) => {
         const timeParts = turno.hora.split(":");
-        const time = parseInt(timeParts[0], 10) * 60 + parseInt(timeParts[1], 10);
+        const time =
+          parseInt(timeParts[0], 10) * 60 + parseInt(timeParts[1], 10);
         const patientName = turno.pacienteName;
         const patientLastName = turno.pacienteApellido;
         const confirmed = turno.acreditado;
@@ -81,8 +84,8 @@ const Agenda = () => {
         const pacienteDni = turno.pacienteDni;
         const medicoId = turno.medicoId;
         const turnoId = turno.turnoId;
-        const drName = turno.medicoNombre
-  
+        const drName = turno.medicoNombre;
+
         return {
           time,
           patientName,
@@ -92,19 +95,24 @@ const Agenda = () => {
           pacienteDni,
           medicoId,
           turnoId,
-          drName
+          drName,
         };
       }) || [];
-  
+
     for (let hour = startHour; hour < endHour; hour++) {
       for (let minute = 0; minute < 60; minute += timeSlot) {
         const time = hour * 60 + minute;
-        const occupiedTurn = turnosOcupados.find((turno) => turno.time === time);
-  
+        const occupiedTurn = turnosOcupados.find(
+          (turno) => turno.time === time
+        );
+
         if (occupiedTurn) {
           if (!occupiedTurn.esSobreTurno) {
             normalSchedule.push({
-              time: `${String(hour).padStart(2, "0")}:${String(minute).padStart(2, "0")}`,
+              time: `${String(hour).padStart(2, "0")}:${String(minute).padStart(
+                2,
+                "0"
+              )}`,
               occupied: true,
               patientName: occupiedTurn.patientName,
               patientLastName: occupiedTurn.patientLastName,
@@ -115,9 +123,13 @@ const Agenda = () => {
               drName: occupiedTurn.drName,
             });
           } else {
-            if (!extraSchedule.some(turno => turno.time === occupiedTurn.time)) {
+            if (
+              !extraSchedule.some((turno) => turno.time === occupiedTurn.time)
+            ) {
               extraSchedule.push({
-                time: `${String(hour).padStart(2, "0")}:${String(minute).padStart(2, "0")}`,
+                time: `${String(hour).padStart(2, "0")}:${String(
+                  minute
+                ).padStart(2, "0")}`,
                 occupied: true,
                 patientName: occupiedTurn.patientName,
                 patientLastName: occupiedTurn.patientLastName,
@@ -131,7 +143,10 @@ const Agenda = () => {
           }
         } else {
           normalSchedule.push({
-            time: `${String(hour).padStart(2, "0")}:${String(minute).padStart(2, "0")}`,
+            time: `${String(hour).padStart(2, "0")}:${String(minute).padStart(
+              2,
+              "0"
+            )}`,
             occupied: false,
             patientName: null,
             patientLastName: null,
@@ -144,31 +159,47 @@ const Agenda = () => {
         }
       }
     }
-  
-    const sobreTurnosEspecificos = [9, 10, 11].map((hour) => {
-      const minute = 50;
-      const time = hour * 60 + minute;
-      const occupiedTurn = turnosOcupados.find((turno) => turno.time === time);
-  
-      if (!extraSchedule.some(turno => turno.time === `${String(hour).padStart(2, "0")}:${String(minute).padStart(2, "0")}`)) {
-        return {
-          time: `${String(hour).padStart(2, "0")}:${String(minute).padStart(2, "0")}`,
-          occupied: !!occupiedTurn,
-          patientName: occupiedTurn ? occupiedTurn.patientName : null,
-          patientLastName: occupiedTurn ? occupiedTurn.patientLastName : null,
-          confirmed: occupiedTurn ? occupiedTurn.confirmed : false,
-          pacienteDni: occupiedTurn ? occupiedTurn.pacienteDni : null,
-          medicoId: occupiedTurn ? occupiedTurn.medicoId : null,
-          turnoId: occupiedTurn ? occupiedTurn.turnoId : null,
-          drName: occupiedTurn ? occupiedTurn.drName : null,
-        };
-      }
-  
-      return null;
-    }).filter(turno => turno !== null);
-  
+
+    const sobreTurnosEspecificos = [9, 10, 11]
+      .map((hour) => {
+        const minute = 50;
+        const time = hour * 60 + minute;
+        const occupiedTurn = turnosOcupados.find(
+          (turno) => turno.time === time
+        );
+
+        if (
+          !extraSchedule.some(
+            (turno) =>
+              turno.time ===
+              `${String(hour).padStart(2, "0")}:${String(minute).padStart(
+                2,
+                "0"
+              )}`
+          )
+        ) {
+          return {
+            time: `${String(hour).padStart(2, "0")}:${String(minute).padStart(
+              2,
+              "0"
+            )}`,
+            occupied: !!occupiedTurn,
+            patientName: occupiedTurn ? occupiedTurn.patientName : null,
+            patientLastName: occupiedTurn ? occupiedTurn.patientLastName : null,
+            confirmed: occupiedTurn ? occupiedTurn.confirmed : false,
+            pacienteDni: occupiedTurn ? occupiedTurn.pacienteDni : null,
+            medicoId: occupiedTurn ? occupiedTurn.medicoId : null,
+            turnoId: occupiedTurn ? occupiedTurn.turnoId : null,
+            drName: occupiedTurn ? occupiedTurn.drName : null,
+          };
+        }
+
+        return null;
+      })
+      .filter((turno) => turno !== null);
+
     extraSchedule.push(...sobreTurnosEspecificos);
-  
+
     setNormalSchedule(normalSchedule);
     setExtraSchedule(extraSchedule);
   };
@@ -193,6 +224,8 @@ const Agenda = () => {
         setSelectedMedico={setSelectedMedico}
         setResultados={setResultados}
         resultados={resultados}
+        loading={loading}
+        setLoading={setLoading}
       />
       {selectedMedico ? (
         <div className="flex justify-center items-center">
@@ -237,7 +270,6 @@ const Agenda = () => {
         medicoId={selectedMedico?.medicoId}
         date={selectedDate}
         update={handleCheckAvailability}
-        handleTurnoClick={handleTurnoClick}
       />
     </div>
   );

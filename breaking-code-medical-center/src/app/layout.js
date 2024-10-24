@@ -1,24 +1,41 @@
-'use client';
+"use client";
+import { useState, useEffect } from "react";
 import { Montserrat } from "next/font/google";
 import "./globals.css";
 import Headers from "@/Components/UIComponents/Headers";
 import { usePathname } from "next/navigation";
 import { AuthProvider } from "@/contexts/AuthContext";
+import Spinner from "@/Components/UIComponents/Spinner"; 
 
 const montserrat = Montserrat({ subsets: ["latin"] });
 
 const RootLayout = ({ children }) => {
-  const path = usePathname();
+  const [loading, setLoading] = useState(true);
+  const pathname = usePathname();
+  const shouldShowHeaders = pathname !== "/";
+
+  useEffect(() => {
+    setLoading(true);
+
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, [pathname]);
 
   return (
     <html lang="en">
-      <body className={`${montserrat.className} antialiased min-h-[calc(100vh)] justify-center mx-auto`}>
+      <body
+        className={`${montserrat.className} antialiased min-h-[calc(100vh)] justify-center mx-auto`}
+      >
         <AuthProvider>
-          {path !== "/" && <Headers />} 
-          {children}
+          {shouldShowHeaders && <Headers />}
+          {loading ? <Spinner /> : children}
         </AuthProvider>
       </body>
     </html>
   );
 };
+
 export default RootLayout;

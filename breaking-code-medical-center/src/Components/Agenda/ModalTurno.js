@@ -4,7 +4,7 @@ import ModalHeader from "./ModalHeader";
 import ModalFormFields from "./ModalFormFields";
 import ModalActionButtons from "./ModalActionButtons";
 
-const ModalTurno = ({ active, setActive, turno, medicoId, date, update, handleTurnoClick }) => {
+const ModalTurno = ({ active, setActive, turno, medicoId, date, update }) => {
   useEffect(() => {
     if (active) {
       document.body.style.overflow = "hidden";
@@ -42,18 +42,18 @@ const ModalTurno = ({ active, setActive, turno, medicoId, date, update, handleTu
       Swal.fire("Error", "El DNI no puede estar vacío", "error");
       return;
     }
-  
-    update(); 
+
+    update();
     setLoading(true);
     setError(null);
-  
+
     const data = {
       dni,
       medicoId,
       fecha,
       hora: time,
     };
-  
+
     try {
       const response = await fetch("/api/turnos/createAppointment", {
         method: "POST",
@@ -62,31 +62,32 @@ const ModalTurno = ({ active, setActive, turno, medicoId, date, update, handleTu
         },
         body: JSON.stringify(data),
       });
-  
+
       if (!response.ok) {
         const errorData = await response.json();
         throw new Error(errorData.error || "Error al agregar el turno");
       }
-  
+
       const result = await response.json();
       setTurnoId(result.turnoId);
       Swal.fire("Éxito", "Turno agregado correctamente", "success");
-      
-      handleClose()
+      handleClose();
     } catch (error) {
       setError(error.message);
       Swal.fire("Error", error.message, "error");
-    } finally {
-      setLoading(false);
+    } finally {      
+      setTimeout(() => {
+        setLoading(false);
+      }, 1500); 
     }
   };
-  
+
   const handleDeleteTurno = async () => {
     if (!turnoId) {
       Swal.fire("Error", "No se encontró el ID del turno para eliminar", "error");
       return;
     }
-  
+
     const result = await Swal.fire({
       title: "¿Estás por cancelar el turno?",
       text: `Con el Dr. ${drName}`,
@@ -97,12 +98,12 @@ const ModalTurno = ({ active, setActive, turno, medicoId, date, update, handleTu
       confirmButtonText: "Confirmar",
       cancelButtonText: "Cancelar",
     });
-  
+
     if (result.isConfirmed) {
       update();
       setLoading(true);
       setError(null);
-  
+
       try {
         const response = await fetch(`/api/turnos/cancelAppointment?id=${turnoId}`, {
           method: "DELETE",
@@ -110,28 +111,29 @@ const ModalTurno = ({ active, setActive, turno, medicoId, date, update, handleTu
             "Content-Type": "application/json",
           },
         });
-  
+
         if (!response.ok) {
           const errorData = await response.json();
           throw new Error(errorData.error || "Error al eliminar el turno");
         }
-  
+
         const result = await response.json();
-  
+
         if (result.message) {
           Swal.fire("Éxito", result.message, "success");
         }
-        handleClose()
-       } catch (error) {
+        handleClose();
+      } catch (error) {
         console.error("Error en el cliente:", error);
         setError(error.message);
         Swal.fire("Error", error.message, "error");
       } finally {
-        setLoading(false);
+        setTimeout(() => {
+          setLoading(false);
+        }, 1500); 
       }
     }
   };
-  
 
   const handleDniChange = (e) => {
     const value = e.target.value;
