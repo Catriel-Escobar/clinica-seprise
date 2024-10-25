@@ -6,6 +6,7 @@ import Headers from "@/Components/UIComponents/Headers";
 import { usePathname } from "next/navigation";
 import { AuthProvider } from "@/contexts/AuthContext";
 import Spinner from "@/Components/UIComponents/Spinner"; 
+import Footer from "@/Components/UIComponents/Footer";
 
 const montserrat = Montserrat({ subsets: ["latin"] });
 
@@ -27,11 +28,12 @@ const RootLayout = ({ children }) => {
   return (
     <html lang="en">
       <body
-        className={`${montserrat.className} antialiased min-h-[calc(100vh)] justify-center mx-auto`}
+        className={`${montserrat.className} antialiased min-h-[calc(100vh-80px)] justify-center mx-auto`}
       >
         <AuthProvider>
           {shouldShowHeaders && <Headers />}
           {loading ? <Spinner isRoot={pathname === "/"} /> : children}
+          {shouldShowHeaders && <Footer />}
         </AuthProvider>
       </body>
     </html>

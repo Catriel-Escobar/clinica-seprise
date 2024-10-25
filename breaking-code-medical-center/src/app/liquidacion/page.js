@@ -1,5 +1,5 @@
-import Encabezado from "@/Components/UIComponents/Encabezado";
-import Factura from "@/Components/UIComponents/Factura";
+import Encabezado from "@/Components/Encabezado";
+import Factura from "@/Components/Factura";
 
 
 const Liquidacion = () => {
@@ -20,7 +20,7 @@ const Liquidacion = () => {
         fecha={"10/10/24"}
       />
 
-      <div className="bg-white block">
+      <div className="bg-white block pb-12 h-72">
         <div className="mt-1 max-w-2xl mx-auto">
           <div className="flex flex-col w-auto border-2 border-black bg-slate-50 h-64">
             <div className="p-3 font-medium text-gray-500">
@@ -39,8 +39,7 @@ const Liquidacion = () => {
             </div>
           </div>
         </div>
-      </div>
-
+      </div >
     </>
   );
 };
