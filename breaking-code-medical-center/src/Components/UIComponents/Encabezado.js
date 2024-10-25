@@ -22,7 +22,9 @@ const Encabezado = ({ titulo, consigna, onSearch }) => {
         {titulo}
       </h2>
       <div className="flex justify-center items-center h-[80px] bg-cyan-100">
-        <div className="w-[320px] font-medium text-xl text-end">{consigna}:</div>
+        <div className="w-[320px] font-medium text-xl text-end">
+          {consigna}:
+        </div>
 
         <form
           onSubmit={(e) => e.preventDefault()}

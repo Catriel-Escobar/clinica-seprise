@@ -1,5 +1,5 @@
-import Encabezado from "@/Components/Encabezado";
-import Factura from "@/Components/Factura";
+import Encabezado from "@/Components/UIComponents/Encabezado";
+import Factura from "@/Components/UIComponents/Factura";
 
 
 const Liquidacion = () => {
