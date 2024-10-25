@@ -1,5 +1,4 @@
 "use client";
-import React from 'react'
 
 const Footer = () => {
 
@@ -11,11 +10,7 @@ const Footer = () => {
         <p className="text-white font-semibold text-sm xl:text-center"> Tecnicatura en Diseño de Software - Desarrollo de Sistemas de Información orientados a la gestión y apoyo a las decisiones </p>
         <p className="text-white font-semibold text-sm xl:text-center"> - Copyright 2024 - </p>
       </div>
-
-
     </footer>
   );
-
 }
-
 export default Footer

@@ -1,10 +1,10 @@
-import Encabezado from "@/Components/Encabezado";
-import Factura from "@/Components/Factura";
+import Encabezado from "@/Components/UIComponents/Encabezado";
+import Factura from "@/Components/UIComponents/Factura";
 
 
 const Liquidacion = () => {
   return (
-    <>
+    <div className="min-h-[calc(100vh-170px)]">
       <Encabezado
         titulo={"Liquidación de Honorarios"}
         consigna={"Ingrese Id de médico"}
@@ -40,7 +40,7 @@ const Liquidacion = () => {
           </div>
         </div>
       </div >
-    </>
+    </div>
   );
 };
 

@@ -1,14 +1,12 @@
-import Encabezado from "@/Components/Encabezado";
-import Factura from "@/Components/Factura";
-import Footer from "@/Components/UIComponents/Footer";
-
+import Encabezado from "@/Components/UIComponents/Encabezado";
+import Factura from "@/Components/UIComponents/Factura";
 
 const Facturacion = () => {
   return (
     <>
       <Encabezado titulo={"Facturación de atención médica"} consigna={"Ingrese Id de paciente"} />
 
-      <div className="h-auto">
+      <div className="min-h-[calc(100vh-310px)]">
         <Factura distincion={"Sr/a:"} apellido={"Gutierrez- "} nombre={"Pablo"} dni={" 21212121"} caracteristica={"Obra Social:"} nominal={" Medicus"} />
 
         <div className="bg-white block pb-12 h-72">

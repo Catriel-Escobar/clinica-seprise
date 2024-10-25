@@ -1,5 +1,4 @@
 "use client";
-import Footer from "@/Components/UIComponents/Footer";
 import hc from "@/assets/hc.png";
 import ConsultaModal from "@/Components/ConsultaModal";
 import { useAuth } from "@/contexts/AuthContext";
@@ -282,7 +281,7 @@ const HistoriaClinica = () => {
             </div>
           </div>
         ) : (
-          <div className="flex flex-col items-center justify-center min-h-[calc(100vh-375px)]">
+          <div className="flex flex-col items-center justify-center min-h-[calc(100vh-374px)]">
             <Image src={hc} alt="hc" className="max-w-xs mb-4" />
             <h2 className="text-gray-600 font-bold text-lg text-center">
               Introduzca el DNI para ver la historia clínica del paciente.

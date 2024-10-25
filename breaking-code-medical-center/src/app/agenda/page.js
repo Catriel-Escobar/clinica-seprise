@@ -4,7 +4,6 @@ import SearchAgenda from "@/Components/Agenda/SearchAgenda";
 import FechaFiltrada from "@/Components/Agenda/FechaFiltrada";
 import TurnoTable from "@/Components/Agenda/TurnoTable";
 import ModalTurno from "@/Components/Agenda/ModalTurno";
-import Footer from "@/Components/UIComponents/Footer";
 
 const Agenda = () => {
   const [selectedMedico, setSelectedMedico] = useState(null);
