@@ -1,11 +1,12 @@
 import Image from "next/image";
 import fondo from "../../assets/fondo.jpeg";
+import Footer from "@/Components/UIComponents/Footer";
 
 
 const Home = () => {
   return (
-    
-      <div className="relative w-screen h-[calc(100vh-90px)] flex justify-center items-center overflow-hidden">
+    <>
+      <div className="relative w-screen h-[calc(90vh-66px)] flex justify-center items-center overflow-hidden">
         <Image
           src={fondo}
           alt="Consultorio externos"
@@ -16,6 +17,10 @@ const Home = () => {
         />
       
       </div>
+      
+      
+      
+      </>
     );
 };
 

@@ -1,5 +1,6 @@
 import Encabezado from "@/Components/Encabezado";
 import Factura from "@/Components/Factura";
+import Footer from "@/Components/UIComponents/Footer";
 
 
 const Liquidacion = () => {
@@ -11,7 +12,7 @@ const Liquidacion = () => {
 
       <Factura distincion={"Dr/a:"} apellido={"Rodriguez- "} nombre={"Juana"} dni={" 21212121"} caracteristica={"Especialidad:"} nominal={" Cardiologo"} fecha={"10/10/24"} />
 
-      <div className="bg-white block">
+      <div className="bg-white block pb-12">
         <div className="mt-1 max-w-2xl mx-auto">
 
           <div className="flex flex-col w-auto border-2 border-black bg-slate-50 h-64">
@@ -29,6 +30,7 @@ const Liquidacion = () => {
 
         </div>
       </div >
+      
     </>
   )
 }
