@@ -157,7 +157,7 @@ const HistoriaClinica = () => {
         </p>
 
         {paciente ? (
-          <div className="flex flex-col lg:flex-row justify-center gap-3 min-h-[calc(100vh-360px)]">
+          <div className="flex flex-col lg:flex-row justify-center gap-3 min-h-[calc(100vh-375px)]">
             {/* Columna izquierda - Datos del paciente */}
             <div className="min-w-60 mt-4 md:mt-0 px-4">
               <h3 className="text-xl font-bold mb-4">Datos del Paciente</h3>
@@ -282,7 +282,7 @@ const HistoriaClinica = () => {
             </div>
           </div>
         ) : (
-          <div className="flex flex-col items-center justify-center min-h-[calc(100vh-350px)]">
+          <div className="flex flex-col items-center justify-center min-h-[calc(100vh-375px)]">
             <Image src={hc} alt="hc" className="max-w-xs mb-4" />
             <h2 className="text-gray-600 font-bold text-lg text-center">
               Introduzca el DNI para ver la historia clínica del paciente.

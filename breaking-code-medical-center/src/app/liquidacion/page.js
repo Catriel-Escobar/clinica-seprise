@@ -12,7 +12,7 @@ const Liquidacion = () => {
 
       <Factura distincion={"Dr/a:"} apellido={"Rodriguez- "} nombre={"Juana"} dni={" 21212121"} caracteristica={"Especialidad:"} nominal={" Cardiologo"} fecha={"10/10/24"} />
 
-      <div className="bg-white block pb-12">
+      <div className="bg-white block pb-12 h-72">
         <div className="mt-1 max-w-2xl mx-auto">
 
           <div className="flex flex-col w-auto border-2 border-black bg-slate-50 h-64">

@@ -28,7 +28,7 @@ const RootLayout = ({ children }) => {
   return (
     <html lang="en">
       <body
-        className={`${montserrat.className} antialiased min-h-[calc(100vh-70px)] justify-center mx-auto`}
+        className={`${montserrat.className} antialiased min-h-[calc(100vh-80px)] justify-center mx-auto`}
       >
         <AuthProvider>
           {shouldShowHeaders && <Headers />}

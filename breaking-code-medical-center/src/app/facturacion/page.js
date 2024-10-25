@@ -13,7 +13,7 @@ const Facturacion = () => {
       <div className="h-auto">
         <Factura distincion={"Sr/a:"} apellido={"Gutierrez- "} nombre={"Pablo"} dni={" 21212121"} caracteristica={"Obra Social:"} nominal={" Medicus"} />
 
-        <div className="bg-white block pb-12">
+        <div className="bg-white block pb-12 h-72">
           <div className="mt-1 max-w-2xl mx-auto">
 
             <div className="flex flex-col w-auto border-2 border-black bg-slate-50 h-64">
