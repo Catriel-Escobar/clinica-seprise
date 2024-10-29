@@ -1,10 +1,9 @@
 "use client";
-import hc from "@/assets/hc.png";
 import ConsultaModal from "@/Components/ConsultaModal";
+import Message from "@/Components/UIComponents/Message";
 import { useAuth } from "@/contexts/AuthContext";
 import axios from "axios";
 import { format, parseISO } from "date-fns";
-import Image from "next/image";
 import { useState } from "react";
 import {
   FaChevronDown,
@@ -281,12 +280,7 @@ const HistoriaClinica = () => {
             </div>
           </div>
         ) : (
-          <div className="flex flex-col items-center justify-center min-h-[calc(100vh-374px)]">
-            <Image src={hc} alt="hc" className="max-w-xs mb-4" />
-            <h2 className="text-gray-600 font-bold text-lg text-center">
-              Introduzca el DNI para ver la historia clínica del paciente.
-            </h2>
-          </div>
+          <Message message={"Introduzca el DNI para ver la historia clínica del paciente."}/>
         )}
         {/* Modal para Agregar una consulta */}
         {modalOpen && (

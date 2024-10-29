@@ -4,10 +4,10 @@ const NavLinks = ({ user }) => {
   const navLinks = [
     { name: "Home", href: "/home" },
     { name: "Agenda", href: "/agenda" },
+    { name: "Registrar Paciente", href: "/rp", roles: ["ADMINISTRADOR"] },
     { name: "Historia Clinica", href: "/hc", roles: ["MEDICO"] },
     { name: "Facturacion", href: "/facturacion", roles: ["ADMINISTRADOR"] },
     { name: "Liquidacion", href: "/liquidacion", roles: ["ADMINISTRADOR"] },
-    { name: "Registrar Paciente", href: "/rp", roles: ["ADMINISTRADOR"] },
   ];
 
   const userRole = user?.role || "";

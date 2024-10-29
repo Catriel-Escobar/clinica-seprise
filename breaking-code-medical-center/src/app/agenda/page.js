@@ -4,6 +4,7 @@ import SearchAgenda from "@/Components/Agenda/SearchAgenda";
 import FechaFiltrada from "@/Components/Agenda/FechaFiltrada";
 import TurnoTable from "@/Components/Agenda/TurnoTable";
 import ModalTurno from "@/Components/Agenda/ModalTurno";
+import Message from "@/Components/UIComponents/Message";
 
 const Agenda = () => {
   const [selectedMedico, setSelectedMedico] = useState(null);
@@ -235,9 +236,7 @@ const Agenda = () => {
           />
         </div>
       ) : (
-        <div className="h-[calc(100vh-310px)] grid place-content-center">
-          <p className="font-2xl">No hay búsquedas vigentes</p>
-        </div>
+        <Message message={"Ingrese el nombre del medico"} />
       )}
       {selectedMedico && (
         <h2 className={`text-center text-2xl font-medium my-6 ${!turnos?"h-[calc(100vh-435px)]":""}`}>

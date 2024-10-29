@@ -83,7 +83,7 @@ const PacienteForm = ({ formData, handleChange, handleSubmit, loading, isFocused
           </option>
         </select>
         <label
-          className="label"
+          className="label ml-[-3px]"
           htmlFor="sexo"
           style={{
             width: isFocused ? "50px" : "120px",

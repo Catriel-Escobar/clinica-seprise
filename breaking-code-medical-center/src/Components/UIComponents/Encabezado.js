@@ -16,6 +16,13 @@ const Encabezado = ({ titulo, consigna, onSearch }) => {
     }
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault(); 
+    if (onSearch) {
+      onSearch(searchText); 
+    }
+  };
+
   return (
     <div className="relative flex flex-col justify-center">
       <h2 className="bg-cyan-100 text-center text-3xl font-bold h-[60px] py-7">
@@ -26,10 +33,7 @@ const Encabezado = ({ titulo, consigna, onSearch }) => {
           {consigna}:
         </div>
 
-        <form
-          onSubmit={(e) => e.preventDefault()}
-          className="flex relative w-96 m-0 px-6 h-[48px] rounded-xl"
-        >
+        <form onSubmit={handleSubmit} className="flex relative w-96 m-0 px-6 h-[48px] rounded-xl">
           <input
             className="w-72 px-3 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring focus:border-blue-300"
             type="text"

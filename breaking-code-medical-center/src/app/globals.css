@@ -49,11 +49,11 @@ form {
 .text-input {
   font-family: inherit;
   width: 100%;
-  padding: 8px;
+  padding: 6px;
   border: 2px solid #EBEBEB;
   color: #404e4e;
   background: #ffffff;
-  border-radius: 15px;
+  border-radius: 10px;
   font-size: 18px;
   outline: none;
   transition: all 0.3s;
