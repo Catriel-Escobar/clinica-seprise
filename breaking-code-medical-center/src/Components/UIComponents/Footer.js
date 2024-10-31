@@ -13,7 +13,7 @@ const Footer = () => {
         <p className=" text-white font-semibold text-base capitalize xl:text-center">Alejandro Abadi - Gustavo Baranda - María Eugenia Bava  Catriel Escobar - Marcelo Galimberti </p>
       </div>
       <div className="container flex flex-col gap-3 mx-4 w-[800px]">
-        <p className=" text-white font-semibold text-sm xl:text-center"> Desarrollo de Sistemas de Información orientados a la gestión y apoyo a las decisiones  Tecnicatura en Diseño de Software </p>
+        <p className=" text-white font-semibold text-sm xl:text-center"> Desarrollo de Sistemas de Información orientados a la gestión y apoyo a las decisiones  Tecnicatura en Desarrollo de Software </p>
       </div>
       <div className="container flex flex-col gap-3 mx-8 w-[400px]">
         <p className="text-white font-semibold text-sm xl:text-center"> - Copyright 2024 - </p>
