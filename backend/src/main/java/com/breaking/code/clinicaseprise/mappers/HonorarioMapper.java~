@@ -14,7 +14,9 @@ public interface HonorarioMapper {
 
 	@Mapping(source = "medico.usuario.nombreApellido", target = "medicoNombre")
 	@Mapping(source = "medico.especialidad.precio", target = "especialidadPrecio")
+	@Mapping(source = "turno.fecha", target = "fechaTurno")
+	@Mapping(source = "turno.hora", target = "horaTurno")
+	@Mapping(source = "turno.paciente.nombre", target = "nombrePaciente")
 	HonorarioResponseDTO toDto(Honorario honorario);
-	// Método para convertir una lista de Honorarios a una lista de HonorarioResponseDTO
 	List<HonorarioResponseDTO> toDtoList( List<Honorario> honorarios);
 }
