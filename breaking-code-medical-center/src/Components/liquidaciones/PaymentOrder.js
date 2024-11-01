@@ -53,7 +53,7 @@ const Factura = ({ honorarios, numeroFactura }) => {
         heightLeft -= pageHeight;
       }
 
-      pdf.save(`factura${honorarios[0]?.medicoNombre}.pdf"`);
+      pdf.save(`factura${honorarios[0]?.medicoNombre}.pdf`);
     });
   };
 

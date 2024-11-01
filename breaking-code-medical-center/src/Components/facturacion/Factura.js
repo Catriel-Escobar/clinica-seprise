@@ -41,7 +41,7 @@ const Factura = ({ turnoData, formaDePago }) => {
         heightLeft -= pageHeight;
       }
 
-      pdf.save(`factura${turnoData?.pacienteApellido} ${turnoData?.pacienteName}.pdf"`);
+      pdf.save(`factura${turnoData?.pacienteApellido} ${turnoData?.pacienteName}.pdf`);
     });
   };
 
