@@ -6,8 +6,8 @@ const NavLinks = ({ user }) => {
     { name: "Agenda", href: "/agenda" },
     { name: "Registrar Paciente", href: "/rp", roles: ["ADMINISTRADOR"] },
     { name: "Historia Clinica", href: "/hc", roles: ["MEDICO"] },
-    { name: "Facturacion", href: "/facturacion", roles: ["ADMINISTRADOR"] },
-    { name: "Liquidacion", href: "/liquidacion", roles: ["ADMINISTRADOR"] },
+    { name: "Facturación", href: "/facturacion", roles: ["ADMINISTRADOR"] },
+    { name: "Liquidación", href: "/liquidacion", roles: ["ADMINISTRADOR"] },
   ];
 
   const userRole = user?.role || "";

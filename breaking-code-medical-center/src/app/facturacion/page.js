@@ -141,7 +141,7 @@ const Facturacion = () => {
   return (
     <div className="flex flex-col min-h-[calc(100vh-170px)]">
       <Encabezado
-        titulo={"Facturacion de Atención Medica"}
+        titulo={"Facturación de Atención Médica"}
         consigna={"Ingrese DNI de Paciente"}
         onSearch={handleSearch}
       />

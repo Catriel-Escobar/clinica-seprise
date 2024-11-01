@@ -1,7 +1,7 @@
 import Image from "next/image";
 import logoAFIP from "@/assets/afip.svg";
 import qr from "@/assets/qr.jpeg";
-import logo from "@/assets/BreakingCode.png";
+import logoSPbn from "@/assets/logoSPbn.png";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
 import { FaFilePdf  } from "react-icons/fa";
@@ -75,7 +75,7 @@ const Factura = ({ honorarios, numeroFactura }) => {
         <div className="flex justify-between relative border border-black px-2">
           <div className="w-1/2 space-y-1 border-r border-black">
             <div className="flex justify-center items-center">
-              <Image src={logo} className="w-[120px]" alt="logo"/>
+              <Image src={logoSPbn} className="w-[120px]" alt="logo"/>
             </div>
             <p className="font-bold text-sm">Razón Social: <span className="font-normal">CLINICA SEPRICE SA</span></p>
             <p className="font-bold text-sm">Domicilio Comercial: <span className="font-normal">Av. Jujuy 255 - CABA</span></p>
