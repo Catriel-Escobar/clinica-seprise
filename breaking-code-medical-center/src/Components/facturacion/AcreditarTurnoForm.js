@@ -163,8 +163,6 @@ const AcreditarTurnoForm = ({
             "Acreditar Turno"
           )}
         </button>
-
-        {mensaje && <p className="mt-4 text-green-500">{mensaje}</p>}
       </form>
     </div>
   );

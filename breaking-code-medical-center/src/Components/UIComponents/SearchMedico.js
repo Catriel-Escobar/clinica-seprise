@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect, useCallback } from "react";
 import { FaSearch, FaTimes, FaSpinner } from "react-icons/fa";
+import { usePathname } from "next/navigation";
 
 const debounce = (func, delay) => {
   let timeoutId;
@@ -12,9 +13,11 @@ const debounce = (func, delay) => {
   };
 };
 
-const SearchAgenda = ({ onSearch, setSelectedMedico, setResultados, resultados }) => {
+const SearchAgenda = ({ onSearch, setSelectedMedico, setResultados, resultados, titulo, handleHonorarios }) => {
   const [searchText, setSearchText] = useState("");
   const [loading, setLoading] = useState(false); 
+  const pathname = usePathname();
+
   const debouncedSearch = useCallback(
     debounce(async (text) => {
       setLoading(true); 
@@ -41,15 +44,19 @@ const SearchAgenda = ({ onSearch, setSelectedMedico, setResultados, resultados }
   };
 
   const handleSearch = (resultado) => {
+ 
     setSelectedMedico(resultado);
-    setSearchText("");
+    if (pathname === "/liquidacion"){
+      handleHonorarios()    
+     }
+      setSearchText("");
     setResultados(null);  
   };
 
   return (
     <div className="relative flex flex-col justify-center">
       <h2 className="bg-cyan-100 text-center text-3xl font-bold h-[60px] py-7">
-        Buscar Médico
+        {titulo}
       </h2>
       <div className="flex justify-center items-center h-[80px] bg-cyan-100">
         <span className="w-[320px] font-medium text-xl text-end">

@@ -1,6 +1,6 @@
 "use client";
-import { useState, useEffect } from "react";
-import SearchAgenda from "@/Components/Agenda/SearchAgenda";
+import { useState, useEffect, useCallback } from "react";
+import SearchMedico from "@/Components/UIComponents/SearchMedico";
 import FechaFiltrada from "@/Components/Agenda/FechaFiltrada";
 import TurnoTable from "@/Components/Agenda/TurnoTable";
 import ModalTurno from "@/Components/Agenda/ModalTurno";
@@ -17,7 +17,7 @@ const Agenda = () => {
   const [active, setActive] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const handleSearch = async (searchText) => {
+  const handleSearch = useCallback(async (searchText) => {
     if (!searchText.trim()) {
       setResultados(null);
       return;
@@ -36,14 +36,13 @@ const Agenda = () => {
     } catch (error) {
       console.error("Error en la petición:", error);
     }
-  };
+  });
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
   };
-  
-  
-  const handleCheckAvailability = async () => {
+    
+  const handleCheckAvailability = useCallback( async () => {
     if (!selectedMedico || !selectedDate) {
       console.error("Faltan el médico o la fecha");
       return;
@@ -62,7 +61,7 @@ const Agenda = () => {
     } catch (error) {
       console.error("Error en la petición:", error);
     }
-  };
+  });
 
   const generateSchedules = () => {
     if (!selectedMedico || !turnos) return;
@@ -218,9 +217,8 @@ const Agenda = () => {
 
   return (
     <div>
-      <SearchAgenda
+      <SearchMedico
         titulo="Buscar Médico"
-        consigna="Ingrese el nombre del médico"
         onSearch={handleSearch}
         setSelectedMedico={setSelectedMedico}
         setResultados={setResultados}
@@ -268,7 +266,7 @@ const Agenda = () => {
         turno={selectedTurno}
         medicoId={selectedMedico?.medicoId}
         date={selectedDate}
-        update={handleCheckAvailability}
+        update={handleCheckAvailability}        
       />
      
       

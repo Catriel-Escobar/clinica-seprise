@@ -7,13 +7,25 @@ import html2canvas from "html2canvas";
 import { FaFilePdf  } from "react-icons/fa";
 
 
-const Factura = ({ turnoData, formaDePago }) => {
+const Factura = ({ honorarios, numeroFactura }) => {
     const getCurrentDate = () => {
       const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
       return new Date().toLocaleDateString('es-AR', options).replace(/\//g, '/');
     };
 
     const currentDate = getCurrentDate();
+
+    const capitalizeFirstLetter = (string) => {
+      if (!string) return "";
+      return string.charAt(0).toUpperCase() + string.slice(1);
+    };
+
+    const totalEspecialidadPrecio = honorarios?.reduce((total, honorario) => {
+      return total + (honorario.especialidadPrecio || 0);
+    }, 0);
+
+    const iibb = honorarios ? totalEspecialidadPrecio*0.02 : "0,00"
+    const ganacia = honorarios ? totalEspecialidadPrecio*0.03 : "0,00"
 
   const handleDownloadPDF = () => {
     const input = document.getElementById("factura");
@@ -41,17 +53,17 @@ const Factura = ({ turnoData, formaDePago }) => {
         heightLeft -= pageHeight;
       }
 
-      pdf.save(`factura${turnoData?.pacienteApellido} ${turnoData?.pacienteName}.pdf"`);
+      pdf.save(`factura${honorarios[0]?.medicoNombre}.pdf"`);
     });
   };
 
   return (
-    <div className="relative min-h-full my-10">
+    <div className="relative min-h-full my-20">
         <button
         onClick={handleDownloadPDF}
-        className="absolute left-[calc(50%-125px)] top-[-20px] w-[250px] flex justify-center items-center sm:w-auto py-2 px-5 solid border-2 border-[#87b9a5] bg-[#87b9a5] text-white font-semibold rounded-xl shadow-md hover:bg-white hover:text-black hover:solid focus:outline-none focus:ring focus:ring-white focus:ring-opacity-75 tracking-widest"
+        className="absolute left-[calc(50%-125px)] top-[-60px] w-[250px] flex justify-center items-center sm:w-auto py-2 px-5 solid border-2 border-[#87b9a5] bg-[#87b9a5] text-white font-semibold rounded-xl shadow-md hover:bg-white hover:text-black hover:solid focus:outline-none focus:ring focus:ring-white focus:ring-opacity-75 tracking-widest"
       >
-        <FaFilePdf className="text-red-600 mr-2" sixe={50} /> Descargar Factura
+        <FaFilePdf className="text-red-600 mr-2" sixe={50} /> Descargar Orden de Pago
       </button>
       <div
         id="factura"
@@ -70,14 +82,14 @@ const Factura = ({ turnoData, formaDePago }) => {
             <p className="font-bold text-sm pb-4">Condición frente al IVA: <span className="font-normal">IVA Responsable Inscripto</span></p>
           </div>
           <div className="font-bold border border-t-0 border-black px-2 absolute left-1/2 transform -translate-x-1/2 bg-white">
-            <p className="text-4xl text-center">B</p>
+            <p className="text-4xl text-center">OP</p>
             <p className="text-sm pb-2">COD. 01</p>
           </div>
           <div className="w-1/2 pl-[50px]">
-            <h2 className="text-xl font-bold mt-2 mb-12">FACTURA</h2>
+            <h2 className="text-xl font-bold mt-2 mb-12">Orden de Pago</h2>
             <div className="flex justify-between items-center font-bold text-sm">
               <p>Punto de Venta: 00002</p>
-              <p>{`Comp. Nro: 000${turnoData?.numeroFactura}`}</p>
+              <p>{`Comp. Nro: 000${numeroFactura}`}</p>
             </div>
             <p className="font-bold text-sm">Fecha de Emisión: <span className="font-normal">{currentDate}</span></p>
             <p className="font-bold text-sm">
@@ -95,42 +107,66 @@ const Factura = ({ turnoData, formaDePago }) => {
         <div className="mb-4 border border-t-0 border-black px-2 pt-0 grid grid-cols-2 gap-4">
           <div className="space-y-1 py-2">
             <p className="font-bold text-sm">
-              Apellido y Nombre: <span className="font-normal">{`${turnoData?.pacienteApellido} ${turnoData?.pacienteName}`}</span>
+              Apellido y Nombre: <span className="font-normal">{`${honorarios && honorarios?.length > 0? honorarios[0].medicoNombre : ""}`}</span>
             </p>
             <p className="font-bold text-sm">
-              DNI:<span className="font-normal"> {turnoData?.pacienteDni} </span>
+              Legajo Nro: <span className="font-normal">{`${honorarios && honorarios?.length > 0? honorarios[0]?.medicoId : ""}`} </span>
             </p>
-            <p className="font-bold text-sm pb-2">
-              Obra Social: <span className="font-normal">{turnoData?.obraSocial}</span>
+            <p className="font-bold text-sm">
+              Especialidad: <span className="font-normal">{`${honorarios && honorarios?.length > 0? capitalizeFirstLetter(honorarios[0]?.nombreEspecialidad) : ""}`} </span>
             </p>
+
           </div>
 
           <div className="space-y-1 py-2">
             <p className="font-bold text-sm">
-              Medio de pago: <span className="font-normal">{formaDePago}</span>
-            </p>
+              Medio de pago: <span className="font-normal">Transferencia</span>
+            </p> 
             <p className="font-bold text-sm">
-              Condición frente al IVA:{" "}
-              <span className="font-normal">Consumidor Final </span>
+              Condición frente al IVA: 
+              <span className="font-normal"> Responsable Inscripto </span>
             </p>
           </div>
         </div>
 
         <div className="h-[290px]">
-          <table className="w-full border-collapse pb-4">
-            <thead>
-              <tr className="border border-black">
-                <th className="p-2 text-start">Concepto</th>
-                <th className="p-2 text-end">Subtotal</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td className="pl-2">{`Consulta medica ${turnoData?.especialidadNombre} con el DR. ${turnoData?.medicoNombre}`}</td>
-                <td className="pr-2 text-end">{`$${turnoData?.especialidadPrecio*0.79}`}</td>
-              </tr>
-            </tbody>
-          </table>
+        <table className="min-w-full border-collapse border border-gray-300 my-4">
+          <thead>
+            <tr className="border  border-black">
+              <th className="px-4 py-2">Nombre</th>
+              <th className="px-4 py-2">Fecha</th>
+              <th className="px-4 py-2">Hora</th>
+              <th className="px-4 py-2">Valor</th>
+            </tr>
+          </thead>
+          <tbody>
+            {honorarios &&
+              honorarios.map((honorario, index) => (
+                <tr key={index}>
+                  <td className="px-4 py-2">
+                    {honorario.nombrePaciente} {honorario.apellidoPaciente}
+                  </td>
+                  <td className="text-center px-4 py-2">
+                    {honorario.fechaTurno.split("-").reverse().join("-")}
+                  </td>
+                  <td className="text-center px-4 py-2">
+                    {honorario.horaTurno.substring(0, 5)}
+                  </td>
+                  <td className="text-center px-4 py-2">
+                    ${honorario.especialidadPrecio}
+                  </td>
+                </tr>
+              ))}
+            <tr>
+              <td className="font-bold px-4 py-2"></td>
+              <td className="px-4 py-2"></td>
+              <td className="text-center px-4 py-2 font-bold">Total</td>
+              <td className="text-center px-4 py-2 font-bold">
+                ${totalEspecialidadPrecio}
+              </td>
+            </tr>
+          </tbody>
+        </table>
         </div>
 
         <div className="flex justify-between mt-4 border border-black p-2 pb-2">
@@ -138,19 +174,15 @@ const Factura = ({ turnoData, formaDePago }) => {
           <div className="flex justify-between w-1/2 text-right space-y-1">
             <div className="text-start space-y-1">
               <p className="font-bold">Importe Neto Gravado: </p>
-              <p className="font-bold">IVA 21%: </p>
-              <p className="font-bold">IVA 10.5%: </p>
-              <p className="font-bold">IVA 5%: </p>
-              <p className="font-bold">IVA 2.5%: </p>
+              <p className="font-bold">Retencion IIBB 3%: </p>
+              <p className="font-bold">Retencion Ganancia 2%: </p>
               <p className="font-bold">Importe Total:</p>
             </div>
             <div className="space-y-1">
-              <p>{`$${turnoData?.especialidadPrecio*0.79}`}</p>
-              <p>{`$${turnoData?.especialidadPrecio*0.21}`}</p>
-              <p>$0,00</p>
-              <p>$0,00</p>
-              <p>$0,00</p>
-              <p>{`$${turnoData?.especialidadPrecio}`}</p>
+              <p>${totalEspecialidadPrecio? totalEspecialidadPrecio : "0,00"}</p>
+              <p>${iibb}</p>
+              <p>${ganacia}</p>
+              <p className="font-bold">${`${totalEspecialidadPrecio? totalEspecialidadPrecio-iibb-ganacia : "0,00"}`}</p>
             </div>
           </div>
         </div>
