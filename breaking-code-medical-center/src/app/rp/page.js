@@ -92,7 +92,7 @@ const RegistroPaciente = () => {
       <div className="flex justify-center items-center bg-cyan-100 text-center text-3xl font-bold  py-7 h-[140px]">
         <h2>Registrar paciente</h2>
       </div>
-      <div className="grid place-content-center h-[calc(100vh-230px)]">
+      <div className="grid place-content-center h-[calc(100vh-310px)]">
         <PacienteForm
           formData={formData}
           handleChange={handleChange}

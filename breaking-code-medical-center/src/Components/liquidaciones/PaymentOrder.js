@@ -191,7 +191,7 @@ const Factura = ({ honorarios, numeroFactura }) => {
           <div className="flex justify-between items-center mb-2">
             <div className="space-y-1">
               <div className="flex justify-start">
-                <Image src={logoAFIP} className="logo w-[100px] mr-4" alt="qr"/>
+                <Image src={logoAFIP} className="logo mr-4" alt="qr" width={100}/>
                 <p className="font-bold">Comprobante Autorizado</p>
               </div>
               <div>
@@ -212,7 +212,7 @@ const Factura = ({ honorarios, numeroFactura }) => {
           </div>
           <div className="flex justify-between items-center">
             <div className="flex items-center space-x-4">
-              <Image src={qr} alt="Código de Barras" className="w-36 h-36" />
+              <Image src={qr} alt="QR" width={144} height={144} priority/>  
             </div>
           </div>
         </div>

@@ -158,7 +158,8 @@ const Facturacion = () => {
           formaDePago={formaDePago}
         />
       )}
-      {turnoData && turnoData.acreditado && <Factura turnoData={turnoData} formaDePago={formaDePago} />}
+      {turnoData && turnoData.acreditado && 
+      <Factura turnoData={turnoData} formaDePago={formaDePago} />}
     </div>
   );
 };

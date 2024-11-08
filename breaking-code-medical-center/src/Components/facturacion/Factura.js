@@ -180,7 +180,7 @@ const Factura = ({ turnoData, formaDePago }) => {
           </div>
           <div className="flex justify-between items-center">
             <div className="flex items-center space-x-4">
-              <Image src={qr} alt="Código de Barras" className="w-36 h-36" />
+              <Image src={qr} alt="QR" width={144} height={144} priority/>
             </div>
           </div>
         </div>

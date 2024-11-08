@@ -1,30 +1,50 @@
+import Image from 'next/image';
+
 const Spinner = ({ isRoot }) => {
   const backgroundStyle = isRoot
-    ? { background: "linear-gradient(to right, #87b9a5 0%, #87b9a5 34%, #C4EDED 100%)" }
+    ? {
+        background:
+          "linear-gradient(to right, #87b9a5 0%, #87b9a5 34%, #C4EDED 100%)",
+      }
     : {};
 
   return (
     <div
       role="status"
-      className={`grid place-content-center bg-transparent ${isRoot ? 'min-h-[100vh]' : 'min-h-[calc(100vh-90px)]'}`}
-      style={backgroundStyle} 
+      className={`grid place-content-center bg-transparent ${
+        isRoot ? "min-h-[100vh]" : "min-h-[calc(100vh-170px)]"
+      }`}
+      style={backgroundStyle}
     >
       <svg
-        aria-hidden="true"
-        className="w-16 h-16 text-white animate-spin fill-[#87b9a5]"
-        viewBox="0 0 100 101"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
-          fill="currentColor"
-        />
-        <path
-          d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
-          fill="currentFill"
-        />
-      </svg>
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="110 50 328 140"
+          className="w-[300px] h-[300px] text-black"
+        >
+          <style jsx>{`
+            #pulsar5512 {
+              stroke-dasharray: 281;
+              animation: dash11432 2.5s infinite linear forwards;
+            }
+
+            @keyframes dash11432 {
+              from {
+                stroke-dashoffset: 814;
+              }
+              to {
+                stroke-dashoffset: -814;
+              }
+            }
+          `}</style>
+          <path
+            id="pulsar5512"
+            stroke="currentColor"
+            fill="none"
+            strokeWidth="4"
+            strokeLinejoin="round"
+            d="M0,90L250,90Q257,60 262,87T267,95 270,88 273,92t6,35 7,-60T290,127 297,107s2,-11 10,-10 1,1 8,-10T319,95c6,4 8,-6 10,-17s2,10 9,11h210"
+          />
+        </svg>
     </div>
   );
 };
