@@ -20,7 +20,7 @@ const RootLayout = ({ children }) => {
 
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 500);
+    }, 600);
 
     return () => clearTimeout(timer);
   }, [pathname]);

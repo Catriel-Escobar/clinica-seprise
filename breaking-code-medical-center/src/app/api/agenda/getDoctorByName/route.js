@@ -1,4 +1,4 @@
-gimport { NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 
 export const GET = async (request) => {
   const { searchParams } = new URL(request.url);
